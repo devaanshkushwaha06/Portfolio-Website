@@ -37,6 +37,23 @@ body {
     padding: 0;
 }
 
+/* Ensure no gaps between sections */
+section {
+    display: block;
+    margin: 0;
+}
+
+/* Specifically target hero and about for seamless connection */
+#home,
+#about {
+    margin: 0 !important;
+    padding-top: 0 !important;
+}
+
+#home {
+    padding-bottom: 0 !important;
+}
+
 html {
     margin: 0;
     padding: 0;
@@ -387,11 +404,12 @@ html {
     color: white;
     position: relative;
     overflow: hidden;
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
     z-index: 1;
     width: 100%;
     max-width: 100vw;
+    transform: none !important;
 }
 
 /* Perfect Space Sky - No Blinking */
@@ -919,6 +937,30 @@ html {
 /* Section Styles */
 section {
     padding: 80px 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Fix the gap between Hero and About sections */
+.hero {
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative;
+    transform: none !important;
+}
+
+.about {
+    padding: 80px 0 !important;
+    margin: 0 !important;
+    position: relative;
+    top: -1px;
+    transform: none !important;
+}
+
+/* Remove all conflicting rules that might be causing the gap */
+.hero + .about {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
 /* Ensure sections stick together during scroll */
@@ -926,20 +968,21 @@ section {
 .about {
     will-change: transform;
     backface-visibility: hidden;
-    transform: translateZ(0);
 }
 
 /* Remove padding from hero section to stick with about section */
 section.hero {
     padding: 0 !important;
     margin: 0 !important;
+    transform: none !important;
 }
 
 /* Ensure about section starts immediately after hero */
 section.about {
     padding: 80px 0 !important;
     margin: 0 !important;
-    transform: translateY(-1px) !important;
+    top: -1px;
+    transform: none !important;
 }
 
 /* Force sections to stick together */
@@ -986,9 +1029,15 @@ section.about {
     color: var(--text-light);
     position: relative;
     overflow: hidden;
-    padding: 80px 0;
-    margin: 0;
-    transform: translateY(-1px);
+    padding: 80px 0 !important;
+    margin: 0 !important;
+    top: -1px;
+    transform: none !important;
+}
+
+/* Add padding above About Me heading to match bottom padding */
+.about .section-title {
+    padding-top: 80px;
 }
 
 .about::before {

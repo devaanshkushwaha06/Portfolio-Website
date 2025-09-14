@@ -503,13 +503,14 @@ window.addEventListener('load', function() {
     }
 });
 
-// Parallax effect for hero section
+// Parallax effect for hero section - minimized to prevent gap issues
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
-    const rate = scrolled * -0.5;
     
+    // Only apply minimal parallax to prevent gap issues
     if (hero) {
+        const rate = scrolled * -0.2; // Reduced from -0.5
         hero.style.transform = `translateY(${rate}px)`;
     }
 });
