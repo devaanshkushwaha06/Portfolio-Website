@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VFX Portfolio Thumbnail Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 30px;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .thumbnail {
+            width: 400px;
+            height: 300px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        /* ACM Intro Thumbnail */
+        .acm-thumbnail {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ffd700 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .acm-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.3) 0%, transparent 50%);
+            animation: acmPulse 4s ease-in-out infinite;
+        }
+
+        .acm-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .acm-logo {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            margin-bottom: 10px;
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        .acm-subtitle {
+            font-size: 1rem;
+            color: #ffd700;
+            font-weight: 500;
+        }
+
+        /* Adventure Quest Thumbnail */
+        .adventure-thumbnail {
+            background: linear-gradient(45deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+        }
+
+        .adventure-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(240, 147, 251, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 70% 70%, rgba(255, 215, 0, 0.3) 0%, transparent 40%);
+        }
+
+        .adventure-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .adventure-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #f093fb, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            animation: adventureGlow 4s ease-in-out infinite;
+        }
+
+        .adventure-subtitle {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        /* ODYSSEY Thumbnail */
+        .odyssey-thumbnail {
+            background: linear-gradient(135deg, #2c1810 0%, #8b4513 30%, #ffd700 70%, #b8860b 100%);
+            position: relative;
+        }
+
+        .odyssey-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.5) 0%, transparent 30%),
+                linear-gradient(0deg, rgba(0,0,0,0.3) 0%, transparent 50%);
+        }
+
+        .odyssey-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .odyssey-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4);
+            margin-bottom: 10px;
+            animation: odysseyGlow 5s ease-in-out infinite;
+        }
+
+        .odyssey-subtitle {
+            color: white;
+            font-size: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Play buttons */
+        .play-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #0a0a0a;
+            animation: playPulse 2s ease-in-out infinite;
+        }
+
+        /* Animations */
+        @keyframes acmPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+            50% { text-shadow: 0 0 40px rgba(255, 215, 0, 1), 0 0 60px rgba(255, 215, 0, 0.5); }
+        }
+
+        @keyframes adventureGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        @keyframes odysseyGlow {
+            0%, 100% { 
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4); 
+            }
+            50% { 
+                text-shadow: 0 0 50px rgba(255, 215, 0, 1), 0 0 80px rgba(255, 215, 0, 0.6); 
+            }
+        }
+
+        @keyframes playPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .download-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #ffd700, #b8860b);
+            color: #0a0a0a;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .instructions {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 VFX Portfolio Thumbnails</h1>
+        
+        <div class="instructions">
+            <h3>📋 Instructions:</h3>
+            <p>1. Right-click on each thumbnail below</p>
+            <p>2. Select "Save image as..." or "Copy image"</p>
+            <p>3. Save as JPG files with these names:</p>
+            <ul>
+                <li><strong>acm-intro-thumb.jpg</strong> - for UPES ACM Intro</li>
+                <li><strong>adventure-quest-thumb.jpg</strong> - for 3D Adventure Quest</li>
+                <li><strong>odyssey-event-thumb.jpg</strong> - for ODYSSEY Event</li>
+            </ul>
+        </div>
+
+        <div class="thumbnail-grid">
+            <!-- ACM Intro Thumbnail -->
+            <div class="thumbnail acm-thumbnail" id="acm-thumb">
+                <div class="acm-content">
+                    <div class="acm-logo">ACM</div>
+                    <div class="acm-subtitle">UPES Motion Graphics</div>
+                </div>
+                <div class="play-button">▶</div>
+            </div>
+
+            <!-- Adventure Quest Thumbnail -->
+            <div class="thumbnail adventure-thumbnail" id="adventure-thumb">
+                <div class="adventure-content">
+                    <div class="adventure-title">3D</div>
+                    <div class="adventure-subtitle">Adventure Quest</div>
+                </div>
+                <div class="play-button">▶</div>
+            </div>
+
+            <!-- ODYSSEY Thumbnail -->
+            <div class="thumbnail odyssey-thumbnail" id="odyssey-thumb">
+                <div class="odyssey-content">
+                    <div class="odyssey-title">ODYSSEY</div>
+                    <div class="odyssey-subtitle">7 Events Coverage</div>
+                </div>
+                <div class="play-button">▶</div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h3>🎨 Custom VFX Thumbnails Ready!</h3>
+            <p>Each thumbnail is designed to match your portfolio's cinematic theme with golden accents and professional VFX styling.</p>
+            
+            <button class="download-btn" onclick="downloadAsImage('acm-thumb', 'acm-intro-thumb.jpg')">
+                Download ACM Intro
+            </button>
+            <button class="download-btn" onclick="downloadAsImage('adventure-thumb', 'adventure-quest-thumb.jpg')">
+                Download Adventure Quest
+            </button>
+            <button class="download-btn" onclick="downloadAsImage('odyssey-thumb', 'odyssey-event-thumb.jpg')">
+                Download ODYSSEY Event
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function downloadAsImage(elementId, filename) {
+            const element = document.getElementById(elementId);
+            
+            // Create canvas
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = 400;
+            canvas.height = 300;
+            
+            // Convert element to image (simplified approach)
+            html2canvas(element).then(canvas => {
+                const link = document.createElement('a');
+                link.download = filename;
+                link.href = canvas.toDataURL();
+                link.click();
+            }).catch(() => {
+                alert('Please right-click on the thumbnail and save it manually as: ' + filename);
+            });
+        }
+
+        // Add some interactive effects
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                alert('Right-click and save this thumbnail for your portfolio!');
+            });
+        });
+    </script>
+</body>
+</html>

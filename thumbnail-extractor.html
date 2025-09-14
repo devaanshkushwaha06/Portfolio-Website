@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Thumbnail Extractor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        video {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #6c5ce7;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        button {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #5a4fcf;
+        }
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #6c5ce7;
+        }
+        .download-link {
+            display: none;
+            background: #00b894;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Video Thumbnail Extractor</h1>
+        <p>Extract perfect thumbnails from your VFX videos for your portfolio!</p>
+        
+        <div class="instructions">
+            <h3>📋 Instructions:</h3>
+            <ol>
+                <li>Click "Choose File" and select your video</li>
+                <li>Play the video and pause at a good frame (2-5 seconds in)</li>
+                <li>Click "Capture Thumbnail" to extract the current frame</li>
+                <li>Download the thumbnail and save it with the correct name</li>
+            </ol>
+        </div>
+
+        <input type="file" id="videoInput" accept="video/*" style="margin: 20px 0;">
+        
+        <video id="videoPlayer" controls style="display: none;">
+            Your browser does not support the video tag.
+        </video>
+        
+        <br>
+        <button onclick="captureFrame()" id="captureBtn" style="display: none;">📸 Capture Thumbnail</button>
+        
+        <canvas id="thumbnailCanvas" style="display: none;"></canvas>
+        
+        <br>
+        <a id="downloadLink" class="download-link">💾 Download Thumbnail</a>
+        
+        <div class="instructions">
+            <h3>📁 Save your thumbnails as:</h3>
+            <ul>
+                <li><strong>adventure-quest-thumb.jpg</strong> - For your 3D Adventure Quest video</li>
+                <li><strong>acm-intro-thumb.jpg</strong> - For UPES ACM intro</li>
+                <li><strong>compositing-thumb.jpg</strong> - For compositing work</li>
+            </ul>
+            <p>Save them in: <code>frontend/assets/images/</code></p>
+        </div>
+    </div>
+
+    <script>
+        const videoInput = document.getElementById('videoInput');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const captureBtn = document.getElementById('captureBtn');
+        const canvas = document.getElementById('thumbnailCanvas');
+        const downloadLink = document.getElementById('downloadLink');
+        const ctx = canvas.getContext('2d');
+
+        videoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const videoURL = URL.createObjectURL(file);
+                videoPlayer.src = videoURL;
+                videoPlayer.style.display = 'block';
+                captureBtn.style.display = 'inline-block';
+            }
+        });
+
+        function captureFrame() {
+            if (videoPlayer.videoWidth === 0) return;
+            
+            // Set canvas size to match desired thumbnail size
+            canvas.width = 400;
+            canvas.height = 250;
+            
+            // Calculate aspect ratio
+            const videoAspect = videoPlayer.videoWidth / videoPlayer.videoHeight;
+            const canvasAspect = canvas.width / canvas.height;
+            
+            let sx = 0, sy = 0, sw = videoPlayer.videoWidth, sh = videoPlayer.videoHeight;
+            
+            if (videoAspect > canvasAspect) {
+                // Video is wider, crop sides
+                sw = videoPlayer.videoHeight * canvasAspect;
+                sx = (videoPlayer.videoWidth - sw) / 2;
+            } else {
+                // Video is taller, crop top/bottom
+                sh = videoPlayer.videoWidth / canvasAspect;
+                sy = (videoPlayer.videoHeight - sh) / 2;
+            }
+            
+            // Draw the frame
+            ctx.drawImage(videoPlayer, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+            
+            // Show canvas and download link
+            canvas.style.display = 'block';
+            
+            // Create download link
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.download = 'video-thumbnail.jpg';
+                downloadLink.style.display = 'inline-block';
+                downloadLink.textContent = '💾 Download Thumbnail (400x250)';
+            }, 'image/jpeg', 0.9);
+        }
+    </script>
+</body>
+</html>

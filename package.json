@@ -1,0 +1,31 @@
+{
+  "name": "devaansh-kushwaha-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Devaansh Kushwaha - VFX Artist and B.Tech Student",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "install-backend": "cd backend && npm install",
+    "build": "echo 'Building frontend assets...'",
+    "serve": "npm start",
+    "test-email": "node backend/test-contact.js",
+    "setup": "npm install && cp .env.example .env",
+    "deploy:vercel": "vercel --prod",
+    "deploy:heroku": "git push heroku main"
+  },
+  "keywords": ["portfolio", "vfx", "artist", "website"],
+  "author": "Devaansh Kushwaha",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "nodemailer": "^6.9.7",
+    "dotenv": "^16.3.1",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
