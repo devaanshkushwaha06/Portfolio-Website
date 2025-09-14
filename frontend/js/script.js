@@ -241,8 +241,16 @@ function setupModal() {
     const modal = document.getElementById('videoModal');
     const closeBtn = modal.querySelector('.close');
     
-    closeBtn.addEventListener('click', closeModal);
+    // Ensure the close button exists and add event listener
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
+    }
     
+    // Click outside modal to close
     window.addEventListener('click', function(e) {
         if (e.target === modal) {
             closeModal();
@@ -268,21 +276,24 @@ function openVideoModal(videoId) {
     // Video file mapping with thumbnails
     const videoFiles = {
         '21-days-of-code': {
-            video: 'assets/videos/21-days-of-code.mp4',
+            type: 'drive',
+            driveLink: 'https://drive.google.com/file/d/1ms_g7NX6fCiV8KZba6Y52i_rBxXu_mfn/view?usp=drive_link',
             title: '21 Days of Code',
             subtitle: 'Coding Journey & Development Process',
             gradient: 'linear-gradient(135deg, #00ff88 0%, #00b4db 50%, #0083b0 100%)',
             glow: 'rgba(0, 255, 136, 0.4)'
         },
         'treasure-hunt': {
-            video: 'assets/videos/treasure-hunt.mp4',
+            type: 'drive',
+            driveLink: 'https://drive.google.com/file/d/1NUD5HSXHSATJi2B4u-qqCQxGZgGLRyZ7/view?usp=sharing',
             title: 'Treasure Hunt',
             subtitle: 'Adventure Quest & Visual Effects',
             gradient: 'linear-gradient(135deg, #d4af37 0%, #f4e99b 50%, #d4af37 100%)',
             glow: 'rgba(212, 175, 55, 0.4)'
         },
         'odyssey-event': {
-            video: 'assets/videos/7EVENTS(ODYSSEY).mp4',
+            type: 'drive',
+            driveLink: 'https://drive.google.com/file/d/1HKUJKu2R4FIOmBKfyCac-0oiObhsOJtv/view?usp=sharing',
             title: 'ODYSSEY',
             subtitle: '7 Events Competition Coverage',
             gradient: 'linear-gradient(135deg, #4a4af0 0%, #8a2be2 50%, #00bfff 100%)',
@@ -298,7 +309,7 @@ function openVideoModal(videoId) {
         modalTitle.textContent = videoData.title;
         modalSubtitle.textContent = videoData.subtitle;
         
-        // Create a themed thumbnail
+        // Create a themed thumbnail style
         const thumbnailStyle = `
             background: ${videoData.gradient};
             width: 100%;
@@ -320,6 +331,61 @@ function openVideoModal(videoId) {
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.1);
         `;
+        
+        // Handle Google Drive links differently
+        if (videoData.type === 'drive') {
+            // Create Google Drive link interface
+            videoContainer.innerHTML = `
+                <div style="${thumbnailStyle}"
+                     onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(0, 0, 0, 0.6), 0 0 70px ${videoData.glow}';"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.5), 0 0 50px ${videoData.glow}';">
+                    <div style="text-align: center;">
+                        <div style="
+                            background: rgba(255, 255, 255, 0.2);
+                            border-radius: 50%;
+                            width: 100px;
+                            height: 100px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 1.5rem auto;
+                            backdrop-filter: blur(10px);
+                            border: 2px solid rgba(255, 255, 255, 0.3);
+                        ">
+                            <i class="fas fa-external-link-alt" style="font-size: 2.5rem; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);"></i>
+                        </div>
+                        <div style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);">
+                            ${videoData.title}
+                        </div>
+                        <button onclick="window.open('${videoData.driveLink}', '_blank')" style="
+                            background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #ea4335 100%);
+                            color: white;
+                            border: none;
+                            padding: 15px 30px;
+                            border-radius: 50px;
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+                        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.4)';" 
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.3)';">
+                            <i class="fas fa-external-link-alt" style="margin-right: 8px;"></i>
+                            Open Video in Google Drive
+                        </button>
+                        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);">
+                            Video will open in a new tab
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Show modal
+            modal.style.display = 'block';
+            setTimeout(() => modal.classList.add('show'), 10);
+            return;
+        }
         
         videoContainer.innerHTML = `
             <div id="thumbnailContainer" style="${thumbnailStyle}"
@@ -420,16 +486,24 @@ function openVideoModal(videoId) {
 
 function closeModal() {
     const modal = document.getElementById('videoModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
     
-    // Stop any playing videos
-    const videoContainer = document.getElementById('videoContainer');
-    const videos = videoContainer.querySelectorAll('video');
-    videos.forEach(video => {
-        video.pause();
-        video.currentTime = 0;
-    });
+    // Add smooth transition out
+    modal.classList.remove('show');
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // Stop any playing videos
+        const videoContainer = document.getElementById('videoContainer');
+        if (videoContainer) {
+            const videos = videoContainer.querySelectorAll('video');
+            videos.forEach(video => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+    }, 300);
 }
 
 // Smooth scrolling
