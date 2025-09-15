@@ -1825,6 +1825,564 @@ section.about {
     box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
 }
 
+/* Hackathons Section */
+.hackathons {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: var(--text-light);
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 0;
+}
+
+.hackathons::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="c" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23c)"/><circle cx="800" cy="300" r="150" fill="url(%23c)"/><circle cx="600" cy="700" r="120" fill="url(%23c)"/></svg>') no-repeat;
+    background-size: cover;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.hackathons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hackathon-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 350px;
+}
+
+/* Scroll Animation States */
+.scroll-animate-left {
+    opacity: 0;
+    transform: translateX(-100px) translateY(30px) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate-right {
+    opacity: 0;
+    transform: translateX(100px) translateY(30px) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+
+.scroll-animate-up {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+}
+
+.scroll-animate-left.animate,
+.scroll-animate-right.animate,
+.scroll-animate-up.animate {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+}
+
+/* Fallback for no-js or slow loading */
+.hackathon-item {
+    opacity: 1;
+}
+
+.hackathon-item.scroll-animate-left,
+.hackathon-item.scroll-animate-right,
+.hackathon-item.scroll-animate-up {
+    opacity: 0;
+}
+
+/* Ensure visibility after 3 seconds regardless of scroll position */
+.hackathon-item.scroll-animate-left,
+.hackathon-item.scroll-animate-right,
+.hackathon-item.scroll-animate-up {
+    animation: fallbackShow 0.5s ease-out 3s forwards;
+}
+
+@keyframes fallbackShow {
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+    }
+}
+
+.hackathon-item:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 10px 30px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hackathon-item:hover .custom-thumbnail {
+    transform: scale(1.05);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.hackathon-item:hover .hackathon-badge {
+    transform: scale(1.1);
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hackathon-image {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bubble-labyrinth-custom {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.bubble-labyrinth-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(240, 147, 251, 0.3) 0%, transparent 50%);
+    animation: bubbleFloat 8s ease-in-out infinite;
+}
+
+.bubble-labyrinth-custom::after {
+    content: '🎮';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    opacity: 0.7;
+    animation: gamepadSpin 10s linear infinite;
+}
+
+.skillchain-custom {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.skillchain-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(118, 75, 162, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(240, 147, 251, 0.2) 0%, transparent 70%);
+    animation: skillPulse 8s ease-in-out infinite;
+}
+
+.skillchain-custom::after {
+    content: '⛓️';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    animation: skillLinkSway 6s ease-in-out infinite;
+}
+
+.skillchain-custom .thumbnail-title {
+    color: #ffffff;
+    text-shadow: 
+        0 0 30px rgba(240, 147, 251, 0.8),
+        0 0 60px rgba(102, 126, 234, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.4);
+    animation: skillGlow 6s ease-in-out infinite;
+    font-weight: 900;
+    letter-spacing: 4px;
+    font-size: 3.2rem;
+    filter: brightness(1.1);
+}
+
+.skillchain-custom .thumbnail-subtitle {
+    color: #e8eaf6;
+    text-shadow: 
+        0 0 25px rgba(118, 75, 162, 0.9),
+        0 0 50px rgba(102, 126, 234, 0.7),
+        0 2px 6px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    letter-spacing: 2px;
+    animation: skillSubtitleGlow 5s ease-in-out infinite alternate;
+    filter: brightness(1.05);
+}
+
+@keyframes skillPulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.9;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes skillGlow {
+    0%, 100% { 
+        text-shadow: 
+            0 0 30px rgba(240, 147, 251, 0.8),
+            0 0 60px rgba(102, 126, 234, 0.6),
+            0 4px 8px rgba(0, 0, 0, 0.4);
+        filter: brightness(1.1);
+    }
+    33% { 
+        text-shadow: 
+            0 0 40px rgba(240, 147, 251, 1),
+            0 0 80px rgba(102, 126, 234, 0.8),
+            0 4px 8px rgba(0, 0, 0, 0.4);
+        filter: brightness(1.2);
+    }
+    66% { 
+        text-shadow: 
+            0 0 35px rgba(118, 75, 162, 1),
+            0 0 70px rgba(240, 147, 251, 0.9),
+            0 4px 8px rgba(0, 0, 0, 0.4);
+        filter: brightness(1.15);
+    }
+}
+
+@keyframes skillSubtitleGlow {
+    0% { 
+        text-shadow: 
+            0 0 25px rgba(118, 75, 162, 0.9),
+            0 0 50px rgba(102, 126, 234, 0.7),
+            0 2px 6px rgba(0, 0, 0, 0.5);
+        filter: brightness(1.05);
+    }
+    100% { 
+        text-shadow: 
+            0 0 35px rgba(118, 75, 162, 1),
+            0 0 70px rgba(102, 126, 234, 0.9),
+            0 2px 6px rgba(0, 0, 0, 0.5);
+        filter: brightness(1.1);
+    }
+}
+
+@keyframes skillLinkSway {
+    0%, 100% { 
+        transform: rotate(0deg) scale(1);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+    25% { 
+        transform: rotate(15deg) scale(1.1);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    }
+    50% { 
+        transform: rotate(-10deg) scale(1.05);
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+    }
+    75% { 
+        transform: rotate(20deg) scale(1.15);
+        filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.45));
+    }
+}
+
+.coming-soon-custom {
+    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    opacity: 0.7;
+}
+
+.coming-soon-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.05) 2px,
+        rgba(255, 255, 255, 0.05) 4px
+    );
+}
+
+.hackathon-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+.hackathon-badge i {
+    margin-right: 5px;
+    color: #f093fb;
+}
+
+.hackathon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(15px);
+    z-index: 10;
+}
+
+.hackathon-item:hover .hackathon-overlay {
+    opacity: 1;
+}
+
+.hackathon-overlay h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #f093fb;
+    font-weight: 700;
+}
+
+.hackathon-details {
+    margin-bottom: 1rem;
+}
+
+.hackathon-details > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.hackathon-details i {
+    margin-right: 8px;
+    color: #667eea;
+    width: 16px;
+}
+
+.hackathon-overlay p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.hackathon-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+    background: rgba(102, 126, 234, 0.2);
+    color: #667eea;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.hackathon-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.hackathon-buttons .view-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.hackathon-buttons .view-btn.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.hackathon-buttons .view-btn.primary:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.hackathon-buttons .view-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hackathon-buttons .view-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+@keyframes bubbleFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes gamepadSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hackathons Responsive Design */
+@media (max-width: 768px) {
+    .hackathons-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .hackathon-item {
+        height: 300px;
+        margin: 0 1rem;
+    }
+    
+    .hackathon-item:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+    
+    .hackathon-overlay {
+        padding: 1.5rem;
+    }
+    
+    .hackathon-overlay h4 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .hackathon-overlay p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+    
+    .hackathon-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .hackathon-buttons .view-btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .custom-thumbnail .thumbnail-title {
+        font-size: 2.5rem !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .custom-thumbnail .thumbnail-subtitle {
+        font-size: 1rem !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .hackathon-badge {
+        top: 10px;
+        left: 10px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    /* Disable scroll animations on mobile for better performance */
+    .scroll-animate-left,
+    .scroll-animate-right,
+    .scroll-animate-up {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hackathons {
+        padding: 6rem 0;
+    }
+    
+    .hackathon-item {
+        height: 280px;
+        margin: 0 0.5rem;
+    }
+    
+    .hackathon-overlay {
+        padding: 1rem;
+    }
+    
+    .hackathon-tech {
+        gap: 0.3rem;
+    }
+    
+    .tech-tag {
+        padding: 3px 6px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hackathons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+    
+    .hackathon-item {
+        height: 320px;
+    }
+    
+    .hackathon-overlay h4 {
+        font-size: 1.6rem;
+    }
+}
+
 /* Skills Section */
 .skills {
     background: linear-gradient(135deg, var(--dark-bg) 0%, #2d1b69 50%, var(--darker-bg) 100%);

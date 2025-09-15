@@ -14,6 +14,18 @@ function initializeWebsite() {
     setupScrollAnimations();
     setupModal();
     setupSmoothScrolling();
+    
+    // Ensure hackathon cards are visible
+    setTimeout(() => {
+        const hackathonItems = document.querySelectorAll('.hackathon-item');
+        hackathonItems.forEach(item => {
+            if (!item.classList.contains('animate')) {
+                item.classList.add('animate');
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0) translateY(0) scale(1)';
+            }
+        });
+    }, 2000);
 }
 
 // Navigation functionality
@@ -211,15 +223,43 @@ function setupScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                // Add animate class for hackathon items
+                if (entry.target.classList.contains('scroll-animate-left') || 
+                    entry.target.classList.contains('scroll-animate-right') || 
+                    entry.target.classList.contains('scroll-animate-up')) {
+                    entry.target.classList.add('animate');
+                }
             }
         });
     }, observerOptions);
     
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.portfolio-item, .skill-item, .contact-item, .stat-item');
+    const animatedElements = document.querySelectorAll('.portfolio-item, .skill-item, .contact-item, .stat-item, .hackathon-item');
     animatedElements.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
+    });
+    
+    // Hackathon scroll animations
+    const hackathonObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add staggered delay for each card
+                const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
+                setTimeout(() => {
+                    entry.target.classList.add('animate');
+                }, index * 200); // 200ms delay between each card
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    // Observe hackathon items
+    const hackathonItems = document.querySelectorAll('.scroll-animate-left, .scroll-animate-right, .scroll-animate-up');
+    hackathonItems.forEach(item => {
+        hackathonObserver.observe(item);
     });
     
     // Animate skill bars when in view
