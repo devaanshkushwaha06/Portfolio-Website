@@ -14,6 +14,17 @@ function initializeWebsite() {
     setupScrollAnimations();
     setupModal();
     setupSmoothScrolling();
+    setupReviewSystem();
+    // Ensure DOM is ready for calculator
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(setupProjectCalculator, 200);
+            setTimeout(updateAvailabilityStatus, 100);
+        });
+    } else {
+        setTimeout(setupProjectCalculator, 200);
+        setTimeout(updateAvailabilityStatus, 100);
+    }
 }
 
 // Navigation functionality
@@ -641,3 +652,417 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Project Calculator Functions
+function setupProjectCalculator() {
+    console.log('Attempting to setup calculator...');
+    
+    // Wait a bit more and try multiple times if needed
+    let attempts = 0;
+    const maxAttempts = 5;
+    
+    function trySetup() {
+        attempts++;
+        console.log(`Calculator setup attempt ${attempts}`);
+        
+        const lengthSlider = document.getElementById('video-length');
+        const lengthDisplay = document.getElementById('length-display');
+        const complexitySelect = document.getElementById('complexity');
+        const urgencySelect = document.getElementById('urgency');
+        
+        if (!lengthSlider || !lengthDisplay || !complexitySelect || !urgencySelect) {
+            console.log('Calculator elements not found:', {
+                slider: !!lengthSlider,
+                display: !!lengthDisplay,
+                complexity: !!complexitySelect,
+                urgency: !!urgencySelect
+            });
+            
+            if (attempts < maxAttempts) {
+                setTimeout(trySetup, 500);
+                return;
+            } else {
+                console.log('Calculator not available on this page or failed to load');
+                return;
+            }
+        }
+        
+        console.log('All calculator elements found, setting up events...');
+        
+        // Remove existing event listeners first
+        lengthSlider.removeEventListener('input', handleSliderChange);
+        complexitySelect.removeEventListener('change', handleComplexityChange);
+        urgencySelect.removeEventListener('change', handleUrgencyChange);
+        
+        // Add event listeners
+        lengthSlider.addEventListener('input', handleSliderChange);
+        complexitySelect.addEventListener('change', handleComplexityChange);
+        urgencySelect.addEventListener('change', handleUrgencyChange);
+        
+        // Setup checkbox listeners for the correct IDs
+        const checkboxes = document.querySelectorAll('#scriptwriting, #voiceover, #subtitles, #consultation');
+        checkboxes.forEach(checkbox => {
+            checkbox.removeEventListener('change', handleCheckboxChange);
+            checkbox.addEventListener('change', handleCheckboxChange);
+        });
+        
+        // Initial setup
+        updateLengthDisplay();
+        calculatePrice();
+        console.log('Calculator setup complete!');
+    }
+    
+    trySetup();
+}
+
+function handleSliderChange(event) {
+    console.log('Slider changed to:', event.target.value);
+    updateLengthDisplay();
+    calculatePrice();
+}
+
+function handleComplexityChange(event) {
+    console.log('Complexity changed to:', event.target.value);
+    calculatePrice();
+}
+
+function handleUrgencyChange(event) {
+    console.log('Urgency changed to:', event.target.value);
+    calculatePrice();
+}
+
+function handleCheckboxChange(event) {
+    console.log('Checkbox changed:', event.target.id, event.target.checked);
+    calculatePrice();
+}
+
+function updateLengthDisplay() {
+    const lengthSlider = document.getElementById('video-length');
+    const lengthDisplay = document.getElementById('length-display');
+    
+    if (!lengthSlider || !lengthDisplay) {
+        console.log('Length elements not found');
+        return;
+    }
+    
+    const totalSeconds = parseInt(lengthSlider.value);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    
+    let displayText;
+    if (minutes > 0) {
+        displayText = seconds > 0 ? `${minutes}m ${seconds}s` : `${minutes} minute${minutes > 1 ? 's' : ''}`;
+    } else {
+        displayText = `${seconds} seconds`;
+    }
+    
+    lengthDisplay.textContent = displayText;
+    console.log('Length display updated to:', displayText);
+}
+
+function calculatePrice() {
+    console.log('Starting price calculation...');
+    
+    const lengthSlider = document.getElementById('video-length');
+    const complexitySelect = document.getElementById('complexity');
+    const urgencySelect = document.getElementById('urgency');
+    const scriptwriting = document.getElementById('scriptwriting');
+    const voiceoverCheck = document.getElementById('voiceover');
+    const subtitlesCheck = document.getElementById('subtitles');
+    const consultationCheck = document.getElementById('consultation');
+    
+    // Price display elements
+    const basePriceEl = document.getElementById('base-price');
+    const additionalCostsEl = document.getElementById('additional-costs');
+    const urgencyCostEl = document.getElementById('urgency-cost');
+    const totalPriceEl = document.getElementById('total-price');
+    
+    if (!lengthSlider || !complexitySelect || !urgencySelect) {
+        console.log('Required calculator elements not found:', {
+            slider: !!lengthSlider,
+            complexity: !!complexitySelect,
+            urgency: !!urgencySelect
+        });
+        return;
+    }
+    
+    // Get current values
+    const length = parseInt(lengthSlider.value) || 180;
+    const complexity = complexitySelect.value || 'basic';
+    const urgency = urgencySelect.value || 'standard';
+    
+    console.log('Calculator inputs:', { length, complexity, urgency });
+    
+    // Base pricing
+    const basePrices = {
+        basic: 999,
+        standard: 2499,
+        premium: 4999,
+        custom: 7999
+    };
+    
+    let basePrice = basePrices[complexity] || 999;
+    
+    // Length multiplier for longer videos
+    if (length > 300) { // Over 5 minutes
+        const extraMinutes = Math.ceil((length - 300) / 60);
+        basePrice += extraMinutes * 200;
+    }
+    
+    // Additional services
+    let additionalCosts = 0;
+    if (scriptwriting && scriptwriting.checked) additionalCosts += 500;
+    if (voiceoverCheck && voiceoverCheck.checked) additionalCosts += 800;
+    if (subtitlesCheck && subtitlesCheck.checked) additionalCosts += 300;
+    if (consultationCheck && consultationCheck.checked) additionalCosts += 400;
+    
+    // Urgency modifier
+    let urgencyModifier = 1;
+    let urgencyCost = 0;
+    if (urgency === 'fast') {
+        urgencyModifier = 1.2;
+        urgencyCost = Math.round((basePrice + additionalCosts) * 0.2);
+    } else if (urgency === 'rush') {
+        urgencyModifier = 1.5;
+        urgencyCost = Math.round((basePrice + additionalCosts) * 0.5);
+    }
+    
+    const totalPrice = Math.round((basePrice + additionalCosts) * urgencyModifier);
+    
+    // Update display elements
+    if (basePriceEl) basePriceEl.textContent = `₹${basePrice.toLocaleString()}`;
+    if (additionalCostsEl) additionalCostsEl.textContent = `₹${additionalCosts.toLocaleString()}`;
+    if (urgencyCostEl) urgencyCostEl.textContent = urgencyCost > 0 ? `+₹${urgencyCost.toLocaleString()}` : '₹0';
+    if (totalPriceEl) totalPriceEl.textContent = `₹${totalPrice.toLocaleString()}`;
+    
+    // Update timeline info
+    const deliveryTimes = {
+        basic: '2-3 days',
+        standard: '3-4 days',
+        premium: '4-5 days',
+        custom: '5-7 days'
+    };
+    
+    const revisions = {
+        basic: '2 included',
+        standard: '3 included',
+        premium: '4 included',
+        custom: 'Unlimited*'
+    };
+    
+    let deliveryTime = deliveryTimes[complexity] || '2-3 days';
+    if (urgency === 'fast') deliveryTime = '2-3 days';
+    if (urgency === 'rush') deliveryTime = '24-48 hours';
+    
+    const deliveryTimeEl = document.getElementById('delivery-time');
+    const revisionCountEl = document.getElementById('revision-count');
+    
+    if (deliveryTimeEl) deliveryTimeEl.textContent = deliveryTime;
+    if (revisionCountEl) revisionCountEl.textContent = revisions[complexity] || '2 included';
+    
+    console.log('Price calculation complete:', {
+        basePrice,
+        additionalCosts,
+        urgencyCost,
+        totalPrice
+    });
+    
+    return totalPrice;
+}
+
+function generateQuote() {
+    const length = document.getElementById('video-length').value;
+    const complexity = document.getElementById('complexity').value;
+    const urgency = document.getElementById('urgency').value;
+    const totalPrice = document.getElementById('total-price').textContent;
+    const deliveryTime = document.getElementById('delivery-time').textContent;
+    
+    const quoteMessage = `Hi Devaansh! I'm interested in your VFX services.
+
+Project Details:
+- Video Length: ${Math.floor(length/60)} minutes ${length%60} seconds
+- Complexity: ${complexity.charAt(0).toUpperCase() + complexity.slice(1)}
+- Timeline: ${urgency}
+- Estimated Price: ${totalPrice}
+- Delivery: ${deliveryTime}
+
+Can we discuss this project further?`;
+
+    const encodedMessage = encodeURIComponent(quoteMessage);
+    const whatsappURL = `https://wa.me/+916265954576?text=${encodedMessage}`;
+    
+    window.open(whatsappURL, '_blank');
+}
+
+// Availability Status Updates
+function updateAvailabilityStatus() {
+    // This would typically connect to a real-time system
+    // For now, we'll simulate dynamic status
+    const statusDot = document.querySelector('.status-dot');
+    const statusText = document.querySelector('.status-text');
+    
+    if (!statusDot) return;
+    
+    // Simulate availability status (in real app, this would be dynamic)
+    const currentHour = new Date().getHours();
+    const isWorkingHours = currentHour >= 9 && currentHour <= 22; // 9 AM to 10 PM
+    
+    if (isWorkingHours) {
+        statusDot.style.background = '#00ff88';
+        statusText.textContent = 'Available for projects';
+        statusText.style.color = '#00ff88';
+    } else {
+        statusDot.style.background = '#ffa500';
+        statusText.textContent = 'Away (will respond soon)';
+        statusText.style.color = '#ffa500';
+    }
+}
+
+// Update availability every 30 minutes
+setInterval(updateAvailabilityStatus, 30 * 60 * 1000);
+
+// Additional fallback initialization for calculator
+window.addEventListener('load', function() {
+    console.log('Window fully loaded, doing final calculator check...');
+    setTimeout(setupProjectCalculator, 100);
+});
+
+// Review System Functions
+function setupReviewSystem() {
+    console.log('Setting up review system...');
+    
+    const starRating = document.getElementById('starRating');
+    const ratingInput = document.getElementById('rating');
+    const reviewForm = document.getElementById('reviewForm');
+    
+    if (!starRating || !ratingInput || !reviewForm) {
+        console.log('Review system elements not found on this page');
+        return;
+    }
+    
+    // Setup star rating
+    const stars = starRating.querySelectorAll('.star');
+    let currentRating = 0;
+    
+    stars.forEach((star, index) => {
+        star.addEventListener('click', function() {
+            currentRating = index + 1;
+            ratingInput.value = currentRating;
+            updateStars(currentRating);
+        });
+        
+        star.addEventListener('mouseover', function() {
+            updateStars(index + 1);
+        });
+    });
+    
+    starRating.addEventListener('mouseleave', function() {
+        updateStars(currentRating);
+    });
+    
+    function updateStars(rating) {
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('active');
+            } else {
+                star.classList.remove('active');
+            }
+        });
+    }
+    
+    // Setup form submission
+    reviewForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitReview();
+    });
+    
+    console.log('Review system setup complete');
+}
+
+function submitReview() {
+    const form = document.getElementById('reviewForm');
+    const formData = new FormData(form);
+    
+    // Validate required fields
+    const requiredFields = ['clientName', 'projectType', 'rating', 'reviewText'];
+    const allowPublish = document.getElementById('allowPublish').checked;
+    
+    for (let field of requiredFields) {
+        if (!formData.get(field)) {
+            alert(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
+            return;
+        }
+    }
+    
+    if (!allowPublish) {
+        alert('Please agree to publish the review to proceed');
+        return;
+    }
+    
+    // Create review object
+    const reviewData = {
+        name: formData.get('clientName'),
+        company: formData.get('clientCompany') || '',
+        website: formData.get('clientWebsite') || '',
+        projectType: formData.get('projectType'),
+        rating: parseInt(formData.get('rating')),
+        reviewText: formData.get('reviewText'),
+        date: new Date().toLocaleDateString()
+    };
+    
+    // Add review to display
+    addReviewToDisplay(reviewData);
+    
+    // Clear form
+    form.reset();
+    document.getElementById('rating').value = '';
+    document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
+    
+    // Show success message
+    alert('Thank you for your review! It has been added to the website.');
+    
+    // Scroll to reviews
+    document.getElementById('reviewsDisplay').scrollIntoView({ behavior: 'smooth' });
+}
+
+function addReviewToDisplay(reviewData) {
+    const reviewsDisplay = document.getElementById('reviewsDisplay');
+    const placeholder = reviewsDisplay.querySelector('.review-placeholder');
+    
+    // Create star display
+    const starsHtml = '★'.repeat(reviewData.rating) + '☆'.repeat(5 - reviewData.rating);
+    
+    // Create review HTML
+    const reviewHtml = `
+        <div class="review-item">
+            <div class="quote-icon">
+                <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="review-rating" style="color: #ffd700; font-size: 1.5rem; margin-bottom: 15px;">
+                ${starsHtml}
+            </div>
+            <p>"${reviewData.reviewText}"</p>
+            <div class="client-info">
+                <div class="client-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="client-details">
+                    <h4>${reviewData.name}</h4>
+                    <span>${reviewData.projectType}${reviewData.company ? ' • ' + reviewData.company : ''}</span>
+                    <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 5px;">
+                        ${reviewData.date}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Replace placeholder or add to existing reviews
+    if (placeholder) {
+        placeholder.outerHTML = reviewHtml;
+    } else {
+        reviewsDisplay.insertAdjacentHTML('beforeend', reviewHtml);
+    }
+    
+    console.log('Review added to display:', reviewData);
+}
