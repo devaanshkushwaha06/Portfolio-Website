@@ -382,6 +382,7 @@
             } else if (isLocalhost) {
                 return `http://localhost:${window.location.port || '4000'}`;
             } else {
+                // For production/Vercel deployment, use the same domain
                 return window.location.origin;
             }
         }

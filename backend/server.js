@@ -418,13 +418,16 @@ app.get('/api/about', (req, res) => {
 
 // Admin Authentication Middleware
 function authenticateAdmin(req, res, next) {
+    console.log('🔐 Admin authentication attempt');
     const { password } = req.body;
     if (password !== ADMIN_PASSWORD) {
+        console.log('❌ Invalid admin password attempt');
         return res.status(401).json({ 
             success: false, 
             message: 'Invalid admin password' 
         });
     }
+    console.log('✅ Admin authenticated successfully');
     next();
 }
 
