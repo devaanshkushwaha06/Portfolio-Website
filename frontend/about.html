@@ -754,7 +754,7 @@
                 console.log('Review submission result:', result);
                 
                 if (result.success) {
-                    showNotification('Thank you for your review! It will appear after approval.', 'success');
+                    showNotification('Thank you for your review! It is now under review and will appear on the website once approved by our team.', 'success');
                     e.target.reset();
                     
                     // Reset star rating
@@ -850,7 +850,49 @@
             
             // Test server connection
             testServerConnection();
+            
+            // Load approved reviews
+            loadApprovedReviews();
         });
+
+        // Load approved reviews for public display
+        async function loadApprovedReviews() {
+            try {
+                const isLocalFile = window.location.protocol === 'file:';
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                
+                let baseUrl = '';
+                if (isLocalFile) {
+                    baseUrl = 'http://localhost:4000'; // Updated to use port 4000
+                } else if (isLocalhost) {
+                    baseUrl = `http://localhost:${window.location.port || '4000'}`;
+                } else {
+                    baseUrl = window.location.origin;
+                }
+                
+                const reviewsUrl = `${baseUrl}/api/reviews/approved`;
+                
+                console.log('Loading approved reviews from:', reviewsUrl);
+                
+                const response = await fetch(reviewsUrl);
+                
+                if (response.ok) {
+                    const approvedReviews = await response.json();
+                    console.log('Loaded approved reviews:', approvedReviews);
+                    
+                    // Display each approved review
+                    approvedReviews.forEach(review => {
+                        addReviewToDisplay(review);
+                    });
+                    
+                    console.log(`✅ Loaded ${approvedReviews.length} approved reviews`);
+                } else {
+                    console.log('No approved reviews found or server error');
+                }
+            } catch (error) {
+                console.error('Error loading approved reviews:', error);
+            }
+        }
 
         // Test server connection
         async function testServerConnection() {

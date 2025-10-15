@@ -348,12 +348,13 @@ app.post('/api/reviews', contactLimiter, async (req, res) => {
         
         res.json({ 
             success: true, 
-            message: 'Thank you for your review! It will appear on the website after approval.',
+            message: 'Thank you for your review! It is currently under review and will appear on the website once approved.',
             review: {
                 name: reviewerName,
                 position: reviewerPosition || '',
                 rating: rating,
-                text: reviewText
+                text: reviewText,
+                status: 'pending_approval'
             }
         });
         
