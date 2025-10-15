@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devaansh K. | VFX Portfolio & Services</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/multipage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/navigation.js"></script>
+    <script src="js/multipage.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Devaansh K.</a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="vfx.html" class="nav-link">VFX</a>
+                <a href="technical.html" class="nav-link">Technical</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header services-header">
+        <div class="container">
+            <div class="header-content">
+                <h1>VFX Portfolio & Services</h1>
+                <p>Explore my creative journey through visual effects and professional VFX services</p>
+                <div class="header-badges">
+                    <div class="badge">
+                        <i class="fas fa-star"></i>
+                        <span>Fresh Talent</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Satisfaction</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-clock"></i>
+                        <span>Fast Delivery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VFX Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">My VFX Portfolio</h2>
+            <p class="section-subtitle">Explore my creative journey through visual effects and digital artistry</p>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="motion-graphics">Motion Graphics</button>
+                <button class="filter-btn" data-filter="3d-animation">3D Animation</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Portfolio items will be loaded here -->
+                <div class="portfolio-item" data-category="motion-graphics">
+                    <div class="portfolio-image">
+                        <div class="custom-thumbnail coding-challenge-custom">
+                            <div class="thumbnail-content">
+                                <div class="thumbnail-title">21 DAYS</div>
+                                <div class="thumbnail-subtitle">OF CODE</div>
+                            </div>
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h4>21 Days of Code</h4>
+                            <p>Epic coding marathon showcasing algorithmic mastery, creative solutions, and cutting-edge programming techniques across 21 challenging days.</p>
+                            <button class="view-btn" onclick="openVideoModal('21-days-of-code')">Watch Journey</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="3d-animation">
+                    <div class="portfolio-image">
+                        <div class="custom-thumbnail treasure-hunt-custom">
+                            <div class="thumbnail-content">
+                                <div class="thumbnail-title">TREASURE</div>
+                                <div class="thumbnail-subtitle">Hunt</div>
+                            </div>
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h4>Treasure Hunt</h4>
+                            <p>Thrilling adventure quest with cinematic storytelling, dynamic action sequences, and immersive treasure-seeking excitement.</p>
+                            <button class="view-btn" onclick="openVideoModal('treasure-hunt')">Start Quest</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="motion-graphics">
+                    <div class="portfolio-image">
+                        <div class="custom-thumbnail odyssey-event-custom">
+                            <div class="thumbnail-content">
+                                <div class="thumbnail-title">ODYSSEY</div>
+                                <div class="thumbnail-subtitle">7 Events Competition</div>
+                            </div>
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h4>ODYSSEY - 7 Events Competition</h4>
+                            <p>Elite competition coverage with premium production quality, multi-angle filming, and championship-level visual storytelling.</p>
+                            <button class="view-btn" onclick="openVideoModal('odyssey-event')">Watch Coverage</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="portfolio-cta">
+                <h3>Ready to create something amazing?</h3>
+                <p>Let's discuss your project and bring your vision to life</p>
+                <div class="cta-buttons">
+                    <a href="#services" class="btn btn-primary">View Services</a>
+                    <a href="about.html#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Pricing Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Premium VFX Services</h2>
+            <p class="section-subtitle">Transform your vision into cinematic reality with professional-grade visual effects and storytelling</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>🎥 Basic Plan</h3>
+                    <p>Perfect for short videos with simple editing needs and quick turnaround times.</p>
+                    <div class="pricing">
+                        <span class="price-from">₹999 / $15</span>
+                        <span class="price-note">Delivery in 2 days</span>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Up to 3 minutes</li>
+                        <li><i class="fas fa-check"></i> Simple cuts and background music</li>
+                        <li><i class="fas fa-check"></i> Basic color correction</li>
+                        <li><i class="fas fa-check"></i> Standard resolution export</li>
+                        <li><i class="fas fa-check"></i> Fast delivery in 2 days</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="about.html#contact" class="btn btn-outline">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="service-card featured">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="service-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>⭐ Standard Plan</h3>
+                    <p>Enhanced video editing with professional effects, transitions, and captions for polished content.</p>
+                    <div class="pricing">
+                        <span class="price-from">₹2,499 / $35</span>
+                        <span class="price-note">Delivery in 3–4 days</span>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Up to 10 minutes</li>
+                        <li><i class="fas fa-check"></i> Color correction, transitions, captions</li>
+                        <li><i class="fas fa-check"></i> Professional audio mixing</li>
+                        <li><i class="fas fa-check"></i> Motion graphics elements</li>
+                        <li><i class="fas fa-check"></i> High-quality export formats</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="about.html#contact" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>🎬 Premium Plan</h3>
+                    <p>Advanced video production with motion graphics, LUTs, subtitles, and custom visual effects.</p>
+                    <div class="pricing">
+                        <span class="price-from">₹4,999 / $60</span>
+                        <span class="price-note">Delivery in 5 days</span>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Up to 15 minutes</li>
+                        <li><i class="fas fa-check"></i> Motion graphics, LUTs, subtitles</li>
+                        <li><i class="fas fa-check"></i> Custom visual effects</li>
+                        <li><i class="fas fa-check"></i> Professional color grading</li>
+                        <li><i class="fas fa-check"></i> Advanced audio post-production</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="about.html#contact" class="btn btn-outline">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>🌟 Custom Made Plan</h3>
+                    <p>Fully tailored video production with script-based editing, storytelling flow, branding, and creative consultation.</p>
+                    <div class="pricing">
+                        <span class="price-from">Starting from ₹7,999 / $95</span>
+                        <span class="price-note">Delivery time based on project complexity</span>
+                    </div>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Fully tailored to your project needs</li>
+                        <li><i class="fas fa-check"></i> Script-based editing & storytelling flow</li>
+                        <li><i class="fas fa-check"></i> Branding & creative consultation</li>
+                        <li><i class="fas fa-check"></i> Unlimited revisions (within scope)</li>
+                        <li><i class="fas fa-check"></i> Custom pricing for bulk projects</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="about.html#contact" class="btn btn-outline">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-note">
+                <p><i class="fas fa-info-circle"></i> <strong>Fresh Talent Advantage:</strong> As an emerging professional, I offer premium quality work at competitive student-friendly rates. Every project receives dedicated personal attention because your success builds my portfolio. Get professional VFX services with innovative approaches and modern techniques.</p>
+            </div>
+            
+            <div class="special-offer-banner">
+                <div class="offer-content">
+                    <h3>🌟 New Freelancer Special Offer</h3>
+                    <p><strong>First-time clients get:</strong></p>
+                    <ul class="offer-features">
+                        <li><i class="fas fa-gift"></i> Free consultation call (30 minutes)</li>
+                        <li><i class="fas fa-edit"></i> One extra revision included</li>
+                        <li><i class="fas fa-clock"></i> Priority delivery scheduling</li>
+                        <li><i class="fas fa-handshake"></i> 100% satisfaction guarantee</li>
+                    </ul>
+                    <div class="offer-cta">
+                        <a href="about.html#contact" class="btn-offer">Claim Your Special Offer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Documentation Section -->
+    <section id="process-workflow" class="process-workflow">
+        <div class="container">
+            <h2 class="section-title">My Professional Workflow</h2>
+            <p class="section-subtitle">Transparent process from concept to delivery - know exactly what to expect</p>
+            
+            <div class="process-timeline">
+                <div class="process-step" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-comments"></i> Discovery & Consultation</h3>
+                        <p>Free 30-minute consultation to understand your vision, goals, and requirements. We'll discuss style, timeline, and budget.</p>
+                        <div class="step-duration">Duration: 30 minutes</div>
+                        <div class="step-deliverable">Deliverable: Project brief & quote</div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-pencil-ruler"></i> Planning & Storyboarding</h3>
+                        <p>Create detailed project plan, storyboard key scenes, and establish the visual style. You'll approve the roadmap before we begin.</p>
+                        <div class="step-duration">Duration: 1-2 days</div>
+                        <div class="step-deliverable">Deliverable: Storyboard & project timeline</div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-video"></i> Production & Creation</h3>
+                        <p>Execute the vision with professional editing, VFX work, color grading, and audio mixing. Regular progress updates included.</p>
+                        <div class="step-duration">Duration: 2-5 days (based on complexity)</div>
+                        <div class="step-deliverable">Deliverable: First draft for review</div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-edit"></i> Review & Revisions</h3>
+                        <p>You review the first draft and provide feedback. I implement changes and refinements until you're 100% satisfied.</p>
+                        <div class="step-duration">Duration: 1-2 days per revision</div>
+                        <div class="step-deliverable">Deliverable: Revised versions</div>
+                    </div>
+                </div>
+                
+                <div class="process-step" data-step="5">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3><i class="fas fa-check-circle"></i> Final Delivery</h3>
+                        <p>Final video delivered in your preferred format and resolution, plus project files if requested. Ongoing support included.</p>
+                        <div class="step-duration">Duration: Same day</div>
+                        <div class="step-deliverable">Deliverable: Final video + source files</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="process-guarantees">
+                <div class="guarantee-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>On-Time Delivery</h4>
+                        <p>99% on-time delivery record with clear milestones</p>
+                    </div>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-sync"></i>
+                    <div>
+                        <h4>Unlimited Revisions*</h4>
+                        <p>Keep refining until it's perfect (*within project scope)</p>
+                    </div>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-headset"></i>
+                    <div>
+                        <h4>24/7 Communication</h4>
+                        <p>Regular updates and quick responses to your questions</p>
+                    </div>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h4>100% Satisfaction</h4>
+                        <p>Your success is my success - guaranteed quality</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Calculator Section -->
+    <section id="project-calculator" class="project-calculator">
+        <div class="container">
+            <h2 class="section-title">Project Timeline & Quote Calculator</h2>
+            <p class="section-subtitle">Get an instant estimate for your VFX project</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="video-length">Video Length</label>
+                        <div class="slider-container">
+                            <input type="range" id="video-length" min="30" max="900" value="180" step="30">
+                            <div class="slider-value">
+                                <span id="length-display">3 minutes</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="complexity">Project Complexity</label>
+                        <select id="complexity">
+                            <option value="basic">Basic (Cuts, Music, Color)</option>
+                            <option value="standard">Standard (Transitions, Graphics, Captions)</option>
+                            <option value="premium">Premium (VFX, Motion Graphics, Advanced)</option>
+                            <option value="custom">Custom (Full Production)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="urgency">Delivery Timeline</label>
+                        <select id="urgency">
+                            <option value="standard">Standard (5-7 days)</option>
+                            <option value="fast">Fast (3-4 days) +20%</option>
+                            <option value="rush">Rush (24-48 hours) +50%</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Additional Services</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" id="scriptwriting"> Script Writing (+₹500)</label>
+                            <label><input type="checkbox" id="voiceover"> Voice Over (+₹800)</label>
+                            <label><input type="checkbox" id="subtitles"> Subtitles (+₹300)</label>
+                            <label><input type="checkbox" id="consultation"> Extended Consultation (+₹400)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculator-result">
+                    <div class="estimate-card">
+                        <h3>Project Estimate</h3>
+                        <div class="price-breakdown">
+                            <div class="base-price">
+                                <span>Base Price:</span>
+                                <span id="base-price">₹999</span>
+                            </div>
+                            <div class="additional-costs">
+                                <span>Additional Services:</span>
+                                <span id="additional-costs">₹0</span>
+                            </div>
+                            <div class="urgency-modifier">
+                                <span>Timeline Modifier:</span>
+                                <span id="urgency-cost">₹0</span>
+                            </div>
+                            <hr>
+                            <div class="total-price">
+                                <span>Total Estimate:</span>
+                                <span id="total-price">₹999</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-info">
+                            <div class="timeline-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Delivery: <span id="delivery-time">2-3 days</span></span>
+                            </div>
+                            <div class="timeline-item">
+                                <i class="fas fa-edit"></i>
+                                <span>Revisions: <span id="revision-count">2 included</span></span>
+                            </div>
+                        </div>
+                        
+                        <button class="get-quote-btn" onclick="generateQuote()">
+                            Get Detailed Quote
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="calculator-disclaimer">
+                <p><i class="fas fa-info-circle"></i> This is an estimate. Final pricing may vary based on specific requirements and project complexity. Contact for accurate quote.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me Section -->
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Me for Your VFX Project?</h2>
+            <p class="section-subtitle">Fresh talent meets professional quality</p>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Student-Friendly Pricing</h3>
+                    <p>Professional quality at competitive rates. Get premium VFX services without breaking the bank.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Fresh Perspective</h3>
+                    <p>Latest techniques and modern trends. I bring current industry knowledge and innovative approaches.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Dedicated Attention</h3>
+                    <p>Every project gets personal focus. Your success is my portfolio - I'm invested in making you look amazing.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Quick Turnaround</h3>
+                    <p>Flexible schedule means faster delivery. University life allows me to prioritize your urgent projects.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Continuous Learning</h3>
+                    <p>Always updating skills with latest tools and techniques. You get the benefit of cutting-edge knowledge.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Collaborative Approach</h3>
+                    <p>Open communication and feedback loops ensure the final product exceeds your expectations.</p>
+                </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="trust-indicators">
+                <h3>Why Clients Love Working With Me</h3>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Satisfaction Guarantee</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-redo"></i>
+                        <span>Unlimited Revisions*</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Quick Response Time</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-handshake"></i>
+                        <span>Personal Attention</span>
+                    </div>
+                </div>
+                <p class="trust-note">*Within project scope. Your success is my priority.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Project?</h2>
+                <p>Let's discuss your vision and bring it to life with professional VFX services</p>
+                <div class="cta-buttons">
+                    <a href="about.html#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="https://wa.me/+916265954576?text=Hi%20Devaansh!%20I%27m%20interested%20in%20your%20VFX%20services.%20Can%20we%20discuss%20my%20project?" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Quick Chat
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <video id="modal-video" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-placeholder">
+                    <i class="fas fa-video"></i>
+                    <p>Video Coming Soon</p>
+                    <small>This video is being prepared and will be available shortly.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <script>
+        // Initialize page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            setupPortfolioFilters();
+            setupModal();
+            setupCalculator();
+        });
+
+        // Project calculator functionality
+        function setupCalculator() {
+            // Calculator functionality is now handled in multipage.js
+            // This is kept for backward compatibility
+        }
+
+        function generateQuote() {
+            const totalPrice = document.getElementById('total-price').textContent;
+            const deliveryTime = document.getElementById('delivery-time').textContent;
+            
+            const message = `Hi Devaansh! I'd like to get a detailed quote for a VFX project. Based on the calculator, the estimate is ${totalPrice} with delivery in ${deliveryTime}. Can we discuss the details?`;
+            
+            window.open(`https://wa.me/+916265954576?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+</body>
+</html>

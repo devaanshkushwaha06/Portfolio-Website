@@ -44,7 +44,9 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from frontend directory
-app.use(express.static(path.join(__dirname, '../frontend')));
+const staticPath = path.join(__dirname, '../frontend');
+console.log('Serving static files from:', staticPath);
+app.use(express.static(staticPath));
 
 // Configure nodemailer
 const transporter = nodemailer.createTransport({
@@ -55,91 +57,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Portfolio data
-const portfolioData = {
-    projects: [
-        {
-            id: 'acm-intro',
-            title: 'UPES ACM Intro',
-            category: 'motion-graphics',
-            description: 'Dynamic motion graphics intro for UPES ACM showcasing modern design principles and smooth animations.',
-            thumbnail: '/assets/images/acm-intro-thumb.jpg',
-            videoUrl: '/assets/videos/acm-intro.mp4',
-            technologies: ['After Effects', 'Illustrator'],
-            year: 2024
-        },
-        {
-            id: 'compositing',
-            title: 'Digital Compositing Showcase',
-            category: 'compositing',
-            description: 'Advanced compositing techniques blending live-action footage with digital elements seamlessly.',
-            thumbnail: '/assets/images/compositing-thumb.jpg',
-            videoUrl: '/assets/videos/compositing-work.mp4',
-            technologies: ['Nuke', 'After Effects', 'Photoshop'],
-            year: 2023
-        },
-        {
-            id: 'adventure-quest',
-            title: '3D Adventure Quest',
-            category: '3d-animation',
-            description: 'An immersive 3D animated adventure showcasing character animation, environmental design, and storytelling through visual effects.',
-            thumbnail: '/assets/images/adventure-quest-thumb.jpg',
-            videoUrl: '/assets/videos/adventure-quest.mp4',
-            technologies: ['Blender', 'After Effects', 'Substance Painter'],
-            year: 2024
-        }
-    ],
-    skills: {
-        vfx: [
-            { name: 'After Effects', level: 90 },
-            { name: 'Premiere Pro', level: 85 },
-            { name: 'Blender', level: 80 },
-            { name: 'DaVinci Resolve', level: 75 }
-        ],
-        programming: [
-            { name: 'Python', level: 85 },
-            { name: 'JavaScript', level: 80 },
-            { name: 'HTML/CSS', level: 90 },
-            { name: 'Node.js', level: 75 }
-        ],
-        design: [
-            { name: 'Motion Graphics', level: 95 },
-            { name: 'Adobe Photoshop', level: 90 },
-            { name: 'Adobe Illustrator', level: 80 },
-            { name: 'Color Grading', level: 85 }
-        ]
-    }
-};
-
-// API Routes
-
-// Get portfolio projects
-app.get('/api/portfolio', (req, res) => {
-    const { category } = req.query;
-    let projects = portfolioData.projects;
-    
-    if (category && category !== 'all') {
-        projects = projects.filter(project => project.category === category);
-    }
-    
-    res.json({ success: true, projects });
-});
-
-// Get specific project
-app.get('/api/portfolio/:id', (req, res) => {
-    const { id } = req.params;
-    const project = portfolioData.projects.find(p => p.id === id);
-    
-    if (!project) {
-        return res.status(404).json({ success: false, message: 'Project not found' });
-    }
-    
-    res.json({ success: true, project });
-});
-
-// Get skills data
-app.get('/api/skills', (req, res) => {
-    res.json({ success: true, skills: portfolioData.skills });
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+    console.log('🔍 Health check requested');
+    res.json({ 
+        success: true, 
+        message: 'Server is running',
+        timestamp: new Date().toISOString()
+    });
 });
 
 // Contact form submission
@@ -336,59 +261,13 @@ app.post('/api/reviews', contactLimiter, async (req, res) => {
     }
 });
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-    console.log('🔍 Health check requested');
-    res.json({ 
-        success: true, 
-        message: 'Server is running',
-        timestamp: new Date().toISOString()
-    });
-});
-
-// About endpoint
-app.get('/api/about', (req, res) => {
-    const aboutData = {
-        name: 'Devaansh Kushwaha',
-        title: 'VFX Artist & Creative Developer',
-        education: {
-            degree: 'Bachelor of Technology (B.Tech)',
-            university: 'University of Petroleum and Energy Studies (UPES)',
-            location: 'Dehradun, Uttarakhand, India',
-            status: 'Current Student'
-        },
-        position: {
-            title: 'VFX Head',
-            organization: 'UPES ACM (Association for Computing Machinery)',
-            description: 'Leading VFX projects and mentoring fellow students in visual effects and creative technologies.'
-        },
-        contact: {
-            email: ['devaanshkushwaha06@gmail.com', 'Devkush2006@outlook.com'],
-            phone: '+91 6265954576',
-            location: 'UPES Dehradun, Uttarakhand, India'
-        },
-        social: {
-            linkedin: 'https://www.linkedin.com/in/devaansh-kushwaha-316340338',
-            github: 'https://github.com/devaanshkushwaha06',
-            instagram: 'https://www.instagram.com/devaanshkushwaha06/'
-        },
-        stats: {
-            projects: '50+',
-            experience: '3+',
-            clients: '100+'
-        },
-        bio: [
-            "I'm Devaansh Kushwaha, currently pursuing my B.Tech degree at UPES Dehradun. As the VFX Head at UPES ACM, I lead creative projects and push the boundaries of visual storytelling through cutting-edge technology.",
-            "My passion lies in creating immersive visual experiences that captivate audiences and bring ideas to life. I combine technical expertise with artistic vision to deliver exceptional VFX work."
-        ]
-    };
-    
-    res.json({ success: true, about: aboutData });
-});
-
 // Serve the main HTML file for all non-API routes
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    // Don't serve index.html for API routes or static files
+    if (req.path.startsWith('/api/') || req.path.includes('.')) {
+        return res.status(404).json({ error: 'Not found' });
+    }
+    res.sendFile(path.join(staticPath, 'index.html'));
 });
 
 // Error handling middleware
@@ -407,6 +286,7 @@ app.listen(PORT, () => {
     console.log(`🔧 API Health: http://localhost:${PORT}/api/health`);
     console.log(`📧 Contact endpoint: http://localhost:${PORT}/api/contact`);
     console.log(`⭐ Reviews endpoint: http://localhost:${PORT}/api/reviews`);
+    console.log(`📁 Static files: ${staticPath}`);
 });
 
 module.exports = app;

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devaansh K. | About & Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/multipage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/navigation.js"></script>
+    <script src="js/multipage.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Devaansh K.</a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="vfx.html" class="nav-link">VFX</a>
+                <a href="technical.html" class="nav-link">Technical</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Server Status Indicator -->
+    <div id="serverStatus" class="server-status">
+        <div class="status-dot"></div>
+        <span id="statusText">Checking connection...</span>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header about-header">
+        <div class="container">
+            <div class="header-content">
+                <h1>About Me & Contact</h1>
+                <p>Learn more about my journey and get in touch for your next project</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-intro">
+                        <div class="profile-section">
+                            <div class="profile-image">
+                                <img src="assets/images/profile.jpg" alt="Devaansh Kushwaha" class="profile-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <i class="fas fa-user-circle" style="display: none;"></i>
+                            </div>
+                            <div class="profile-info">
+                                <h3>Rising VFX Professional & Creative Leader</h3>
+                                <p class="intro-text">I'm Devaansh Kushwaha, currently pursuing my B.Tech degree at UPES Dehradun while serving as VFX Head at UPES ACM. I bring fresh creativity, modern techniques, and professional standards to every visual project, combining academic knowledge with hands-on leadership experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-details">
+                        <p>As VFX Head, I've managed video production for multiple university events, led creative teams, and developed a keen eye for visual storytelling. I'm passionate about helping clients bring their visions to life with high-quality, affordable VFX services that compete with industry standards while offering the innovation that comes with fresh talent.</p>
+                        
+                        <div class="experience-highlight">
+                            <h4><i class="fas fa-briefcase"></i> Professional Experience</h4>
+                            <div class="experience-item">
+                                <h5>VFX Head - UPES ACM Chapter</h5>
+                                <p>Leading visual effects and video production for university events</p>
+                                <span class="highlight-text">✨ Fresh perspective with professional execution</span>
+                            </div>
+                        </div>
+                        
+                        <div class="education">
+                            <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+                            <div class="education-item">
+                                <h5>Bachelor of Technology (B.Tech)</h5>
+                                <p>University of Petroleum and Energy Studies (UPES), Dehradun</p>
+                                <span class="year">Current</span>
+                            </div>
+                        </div>
+
+                        <div class="position">
+                            <h4><i class="fas fa-briefcase"></i> Current Position</h4>
+                            <div class="position-item">
+                                <h5>VFX Head</h5>
+                                <p>UPES ACM (Association for Computing Machinery)</p>
+                                <span class="description">Leading VFX projects, game development initiatives, and mentoring fellow students in creative technologies and interactive media.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="events-covered">7+</div>
+                        <div class="stat-label">Events</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="learning-hours">500+</div>
+                        <div class="stat-label">Learning Hours</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="availability-rate">98%</div>
+                        <div class="stat-label">Availability Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-content">
+                <div class="skills-category">
+                    <h3><i class="fas fa-video"></i> Video & VFX</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Video Editing</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">After Effects</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Premiere Pro</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Blender</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">DaVinci Resolve</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">C#</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Node.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3><i class="fas fa-palette"></i> Design</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Motion Graphics</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Adobe Photoshop</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Adobe Illustrator</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Color Grading</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me Section -->
+    <section id="why-choose" class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Fresh Talent?</h2>
+            <p class="section-subtitle">Get premium quality work with the innovation and dedication that comes with emerging professionals</p>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Student-Friendly Pricing</h3>
+                    <p>Professional quality at competitive rates. Get premium VFX services without breaking the bank.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Fresh Perspective</h3>
+                    <p>Latest techniques and modern trends. I bring current industry knowledge and innovative approaches.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Dedicated Attention</h3>
+                    <p>Every project gets personal focus. Your success is my portfolio - I'm invested in making you look amazing.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Quick Turnaround</h3>
+                    <p>Flexible schedule means faster delivery. University life allows me to prioritize your urgent projects.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Continuous Learning</h3>
+                    <p>Always updating skills with latest tools and techniques. You get the benefit of cutting-edge knowledge.</p>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Collaborative Approach</h3>
+                    <p>Open communication and feedback. I work with you, not just for you, to achieve the perfect result.</p>
+                </div>
+            </div>
+            
+            <div class="credibility-banner">
+                <div class="credibility-item">
+                    <i class="fas fa-award"></i>
+                    <span>VFX Head at UPES ACM</span>
+                </div>
+                <div class="credibility-item">
+                    <i class="fas fa-users"></i>
+                    <span>Team Leadership Experience</span>
+                </div>
+                <div class="credibility-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>Hackathon Participant</span>
+                </div>
+                <div class="credibility-item">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span>100% Commitment Guarantee</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">What Clients Say</h2>
+            <p class="section-subtitle">Feedback from my recent projects and collaborations</p>
+            
+            <!-- Scrollable Reviews Display -->
+            <div class="reviews-container">
+                <div class="reviews-scroll" id="reviewsScroll">
+                    <!-- Reviews will be dynamically loaded here -->
+                    <div class="empty-reviews" id="emptyReviews">
+                        <div class="empty-message">
+                            <i class="fas fa-star"></i>
+                            <h3>No reviews yet</h3>
+                            <p>Be the first to share your experience!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Scroll Navigation -->
+                <div class="scroll-navigation" id="scrollNavigation" style="display: none;">
+                    <button class="scroll-btn prev" onclick="scrollReviews('left')" id="scrollLeft">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="scroll-btn next" onclick="scrollReviews('right')" id="scrollRight">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add Review Form -->
+            <div class="add-review-section">
+                <h3>Share Your Experience</h3>
+                <p>Worked with me? I'd love to hear your feedback!</p>
+                
+                <form id="reviewForm" class="review-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reviewerName">Your Name *</label>
+                            <input type="text" id="reviewerName" name="reviewerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewerPosition">Your Position/Company</label>
+                            <input type="text" id="reviewerPosition" name="reviewerPosition" placeholder="e.g., Creative Director, ABC Studios">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewRating">Rating *</label>
+                        <div class="star-rating" id="starRating">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                        </div>
+                        <input type="hidden" id="reviewRating" name="reviewRating" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewText">Your Review *</label>
+                        <textarea id="reviewText" name="reviewText" rows="4" placeholder="Share your experience working with me..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewerEmail">Your Email (for verification)</label>
+                        <input type="email" id="reviewerEmail" name="reviewerEmail" placeholder="your.email@example.com">
+                        <small>Email will not be displayed publicly</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="section-subtitle">Ready to bring your creative vision to life? Get in touch!</p>
+            
+            <div class="contact-content">
+                <div class="contact-form-section">
+                    <div class="contact-form-container">
+                        <h3>Send Me a Message</h3>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone (Optional)</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="budget">Budget Range</label>
+                                    <select id="budget" name="budget">
+                                        <option value="">Select budget range</option>
+                                        <option value="under-1000">Under ₹1,000</option>
+                                        <option value="1000-5000">₹1,000 - ₹5,000</option>
+                                        <option value="5000-10000">₹5,000 - ₹10,000</option>
+                                        <option value="10000-plus">₹10,000+</option>
+                                        <option value="discuss">Let's discuss</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="service">Service Needed</label>
+                                <select id="service" name="service">
+                                    <option value="">Select service type</option>
+                                    <option value="video-editing">Video Editing</option>
+                                    <option value="motion-graphics">Motion Graphics</option>
+                                    <option value="vfx">Visual Effects</option>
+                                    <option value="3d-animation">3D Animation</option>
+                                    <option value="color-grading">Color Grading</option>
+                                    <option value="event-coverage">Event Coverage</option>
+                                    <option value="custom">Custom Project</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Project Details *</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, timeline, specific requirements, and any reference materials you have..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="timeline">Timeline</label>
+                                <select id="timeline" name="timeline">
+                                    <option value="">Select timeline</option>
+                                    <option value="asap">ASAP (Rush - within 24-48 hours)</option>
+                                    <option value="1-week">Within 1 week</option>
+                                    <option value="2-weeks">Within 2 weeks</option>
+                                    <option value="1-month">Within 1 month</option>
+                                    <option value="flexible">Flexible</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="contact-info-section">
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p><a href="mailto:devaanshkushwaha06@gmail.com">devaanshkushwaha06@gmail.com</a></p>
+                                <p><a href="mailto:devkush2006@outlook.com">Devkush2006@outlook.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+916265954576">+91 6265954576</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>UPES Dehradun, Uttarakhand, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>WhatsApp</h4>
+                                <p><a href="https://wa.me/+916265954576?text=Hi%20Devaansh!%20I%27m%20interested%20in%20your%20VFX%20services.%20Can%20we%20discuss%20my%20project?" target="_blank">Quick Chat</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="availability-info">
+                        <div class="availability-status horizontal">
+                            <div class="status-indicator online">
+                                <div class="status-dot"></div>
+                                <span class="status-text">Available for projects</span>
+                            </div>
+                            <div class="response-time">
+                                <i class="fas fa-clock"></i>
+                                <span>Responds within 24 hours</span>
+                            </div>
+                        </div>
+                        <div class="social-connect">
+                            <div class="social-links-horizontal">
+                                <a href="https://www.linkedin.com/in/devaansh-kushwaha-316340338" target="_blank" class="social-link-horizontal">
+                                    <i class="fab fa-linkedin"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://github.com/devaanshkushwaha06" target="_blank" class="social-link-horizontal">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="https://www.instagram.com/devaanshkushwaha06/" target="_blank" class="social-link-horizontal">
+                                    <i class="fab fa-instagram"></i>
+                                    <span>Instagram</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Devaansh Kushwaha. All rights reserved.</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/devaansh-kushwaha-316340338" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/devaanshkushwaha06" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/devaanshkushwaha06/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <script>
+        // Initialize page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            setupContactForm();
+            setupScrollAnimations();
+        });
+
+        // Contact form handling
+        function setupContactForm() {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', handleContactFormSubmission);
+            }
+        }
+
+        async function handleContactFormSubmission(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData);
+                
+                // Determine the API URL
+                const baseUrl = window.location.protocol === 'file:' ? 'http://localhost:3000' : '';
+                const apiUrl = `${baseUrl}/api/contact`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+                    e.target.reset();
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                let errorMessage = 'Failed to send message. ';
+                
+                if (error.message.includes('fetch')) {
+                    errorMessage += 'Server connection failed. Please make sure the server is running on http://localhost:3000';
+                } else {
+                    errorMessage += 'Please try again or contact me directly.';
+                }
+                
+                showNotification(errorMessage, 'error');
+            } finally {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Review functionality
+        function scrollReviews(direction) {
+            const reviewsScroll = document.getElementById('reviewsScroll');
+            const scrollAmount = 370; // width of review card + gap
+            
+            if (direction === 'left') {
+                reviewsScroll.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                reviewsScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // Star rating functionality
+        function initializeStarRating() {
+            const stars = document.querySelectorAll('.star-rating .star');
+            const ratingInput = document.getElementById('reviewRating');
+            let currentRating = 0;
+
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const rating = parseInt(this.dataset.rating);
+                    highlightStars(rating);
+                });
+
+                star.addEventListener('mouseout', function() {
+                    highlightStars(currentRating);
+                });
+
+                star.addEventListener('click', function() {
+                    currentRating = parseInt(this.dataset.rating);
+                    ratingInput.value = currentRating;
+                    highlightStars(currentRating);
+                });
+            });
+
+            function highlightStars(rating) {
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.classList.add('active');
+                    } else {
+                        star.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        // Handle review form submission
+        async function handleReviewSubmission(e) {
+            e.preventDefault();
+            
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData);
+                
+                // Validate rating
+                if (!data.reviewRating) {
+                    throw new Error('Please select a star rating');
+                }
+                
+                // Determine the API URL
+                const isLocalFile = window.location.protocol === 'file:';
+                const baseUrl = isLocalFile ? 'http://localhost:3000' : '';
+                const apiUrl = `${baseUrl}/api/reviews`;
+                
+                console.log('=== REVIEW SUBMISSION DEBUG ===');
+                console.log('Protocol:', window.location.protocol);
+                console.log('Host:', window.location.host);
+                console.log('Is local file:', isLocalFile);
+                console.log('API URL:', apiUrl);
+                console.log('Review data:', data);
+                
+                // Test server connection first
+                const healthUrl = `${baseUrl}/api/health`;
+                console.log('Testing connection to:', healthUrl);
+                
+                try {
+                    const healthResponse = await fetch(healthUrl);
+                    console.log('Health check status:', healthResponse.status);
+                    if (!healthResponse.ok) {
+                        throw new Error(`Health check failed: ${healthResponse.status}`);
+                    }
+                } catch (healthError) {
+                    console.error('Health check failed:', healthError);
+                    throw new Error('Cannot connect to server. Please ensure the server is running on http://localhost:3000');
+                }
+                
+                console.log('Server connection OK, submitting review...');
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                console.log('Review response status:', response.status);
+                console.log('Review response headers:', response.headers);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Server error response:', errorText);
+                    throw new Error(`Server error: ${response.status} - ${errorText}`);
+                }
+                
+                const result = await response.json();
+                console.log('Review submission result:', result);
+                
+                if (result.success) {
+                    showNotification('Thank you for your review! It will appear after approval.', 'success');
+                    e.target.reset();
+                    
+                    // Reset star rating
+                    document.querySelectorAll('.star-rating .star').forEach(star => {
+                        star.classList.remove('active');
+                    });
+                    document.getElementById('reviewRating').value = '';
+                    
+                    // Add the review to display immediately
+                    addReviewToDisplay(result.review);
+                    
+                } else {
+                    throw new Error(result.message || 'Failed to submit review');
+                }
+            } catch (error) {
+                console.error('=== REVIEW SUBMISSION ERROR ===');
+                console.error('Error type:', error.constructor.name);
+                console.error('Error message:', error.message);
+                console.error('Error stack:', error.stack);
+                
+                // Provide more specific error messages
+                let errorMessage = 'Failed to submit review. ';
+                
+                if (error.message.includes('fetch') || error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
+                    errorMessage = 'Cannot connect to server. Please make sure you are visiting http://localhost:3000/about.html and the server is running.';
+                } else if (error.message.includes('rating')) {
+                    errorMessage = error.message;
+                } else if (error.message.includes('Health check failed') || error.message.includes('Cannot connect to server')) {
+                    errorMessage = error.message;
+                } else {
+                    errorMessage += error.message || 'Please try again later.';
+                }
+                
+                showNotification(errorMessage, 'error');
+            } finally {
+                // Reset button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Add review to display (for immediate feedback)
+        function addReviewToDisplay(reviewData) {
+            const reviewsScroll = document.getElementById('reviewsScroll');
+            const emptyReviews = document.getElementById('emptyReviews');
+            const scrollNavigation = document.getElementById('scrollNavigation');
+            
+            // Hide empty state if it exists
+            if (emptyReviews) {
+                emptyReviews.style.display = 'none';
+            }
+            
+            // Show scroll navigation
+            scrollNavigation.style.display = 'flex';
+            
+            const reviewCard = document.createElement('div');
+            reviewCard.className = 'review-card';
+            
+            const starsHtml = Array(reviewData.rating).fill('<i class="fas fa-star"></i>').join('');
+            
+            reviewCard.innerHTML = `
+                <div class="review-content">
+                    <div class="stars">
+                        ${starsHtml}
+                    </div>
+                    <p>"${reviewData.text}"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-info">
+                            <h4>${reviewData.name}</h4>
+                            <span>${reviewData.position || 'Client'}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            reviewsScroll.appendChild(reviewCard);
+            
+            // Scroll to show the new review
+            reviewCard.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+        }
+
+        // Initialize review functionality when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setupContactForm();
+            setupSmoothScrolling();
+            initializeStarRating();
+            
+            // Setup review form
+            const reviewForm = document.getElementById('reviewForm');
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', handleReviewSubmission);
+            }
+            
+            // Test server connection
+            testServerConnection();
+        });
+
+        // Test server connection
+        async function testServerConnection() {
+            const statusIndicator = document.getElementById('serverStatus');
+            const statusText = document.getElementById('statusText');
+            
+            // Show status indicator
+            statusIndicator.style.display = 'flex';
+            statusText.textContent = 'Testing connection...';
+            
+            try {
+                const isLocalFile = window.location.protocol === 'file:';
+                const baseUrl = isLocalFile ? 'http://localhost:3000' : '';
+                const healthUrl = `${baseUrl}/api/health`;
+                
+                console.log('=== CONNECTION TEST ===');
+                console.log('Current URL:', window.location.href);
+                console.log('Protocol:', window.location.protocol);
+                console.log('Is local file:', isLocalFile);
+                console.log('Testing health endpoint:', healthUrl);
+                
+                const response = await fetch(healthUrl);
+                console.log('Health response status:', response.status);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Health response data:', data);
+                    console.log('✅ Server connection successful');
+                    
+                    statusIndicator.className = 'server-status online';
+                    statusText.textContent = 'Server Online';
+                    
+                    // Hide status after 3 seconds
+                    setTimeout(() => {
+                        statusIndicator.style.display = 'none';
+                    }, 3000);
+                } else {
+                    throw new Error(`Server responded with status: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('=== CONNECTION ERROR ===');
+                console.error('Error type:', error.constructor.name);
+                console.error('Error message:', error.message);
+                console.error('❌ Server connection error:', error);
+                
+                statusIndicator.className = 'server-status offline';
+                statusText.textContent = 'Server Offline';
+                
+                // Show instructions based on the URL
+                if (window.location.protocol === 'file:') {
+                    setTimeout(() => {
+                        showNotification('Please visit http://localhost:3000/about.html to use the review system', 'error');
+                    }, 1000);
+                } else {
+                    setTimeout(() => {
+                        showNotification('Server connection failed. Please start the backend server.', 'error');
+                    }, 1000);
+                }
+                
+                // Keep status visible longer if offline
+                setTimeout(() => {
+                    statusIndicator.style.display = 'none';
+                }, 10000);
+            }
+        }
+    </script>
+</body>
+</html>

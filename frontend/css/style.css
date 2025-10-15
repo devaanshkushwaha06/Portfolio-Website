@@ -783,6 +783,27 @@ html {
     /* Removed blinking animation and gradient background effects */
 }
 
+/* Typewriter Animation */
+.typewriter {
+    position: relative;
+}
+
+.typewriter::after {
+    content: '|';
+    color: var(--primary-gold);
+    animation: blink 1s infinite;
+    font-weight: 100;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
 .hero-buttons {
     display: flex;
     gap: 0.6rem;
@@ -3028,6 +3049,52 @@ section.about {
     font-size: 0.85rem;
 }
 
+.availability-status.horizontal {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Social Connect in Availability Section */
+.social-connect {
+    margin-top: 15px;
+}
+
+.social-links-horizontal {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-link-horizontal {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(162, 155, 254, 0.05));
+    border: 2px solid rgba(108, 92, 231, 0.3);
+    border-radius: 25px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.social-link-horizontal:hover {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.2), rgba(162, 155, 254, 0.1));
+    border-color: #6c5ce7;
+    color: #6c5ce7;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+.social-link-horizontal i {
+    font-size: 1.1rem;
+}
+
 .status-indicator {
     display: flex;
     align-items: center;
@@ -3488,6 +3555,25 @@ section.about {
         margin: 8px 0;
         gap: 4px;
         font-size: 0.75rem;
+    }
+    
+    .availability-status.horizontal {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .social-links-horizontal {
+        gap: 10px;
+    }
+    
+    .social-link-horizontal {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .social-link-horizontal i {
+        font-size: 1rem;
     }
     
     .status-dot {
