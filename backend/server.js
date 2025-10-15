@@ -119,6 +119,12 @@ const portfolioData = {
     }
 };
 
+// In-memory storage for reviews (in production, use a database)
+let reviewsStorage = [];
+
+// Simple admin authentication (in production, use proper auth)
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+
 // API Routes
 
 // Get portfolio projects
@@ -322,7 +328,7 @@ app.post('/api/reviews', contactLimiter, async (req, res) => {
             // Don't fail the entire request if email fails
         }
         
-        // Store review data (in a real app, you'd save to database)
+        // Store review data in memory
         const reviewData = {
             id: Date.now(),
             name: reviewerName,
@@ -334,7 +340,11 @@ app.post('/api/reviews', contactLimiter, async (req, res) => {
             approved: false // Reviews need approval before appearing
         };
         
+        // Add to storage
+        reviewsStorage.push(reviewData);
+        
         console.log('New review submitted:', reviewData);
+        console.log('Total reviews in storage:', reviewsStorage.length);
         
         res.json({ 
             success: true, 
@@ -404,6 +414,139 @@ app.get('/api/about', (req, res) => {
     };
     
     res.json({ success: true, about: aboutData });
+});
+
+// Admin Authentication Middleware
+function authenticateAdmin(req, res, next) {
+    const { password } = req.body;
+    if (password !== ADMIN_PASSWORD) {
+        return res.status(401).json({ 
+            success: false, 
+            message: 'Invalid admin password' 
+        });
+    }
+    next();
+}
+
+// Admin Routes
+
+// Get all reviews (admin only)
+app.post('/api/admin/reviews', authenticateAdmin, (req, res) => {
+    console.log('🔐 Admin accessing reviews');
+    res.json({ 
+        success: true, 
+        reviews: reviewsStorage.map(review => ({
+            ...review,
+            // Don't expose email in list view for privacy
+            email: review.email ? '***@***.***' : ''
+        }))
+    });
+});
+
+// Get single review with full details (admin only)
+app.post('/api/admin/reviews/:id', authenticateAdmin, (req, res) => {
+    const { id } = req.params;
+    const review = reviewsStorage.find(r => r.id === parseInt(id));
+    
+    if (!review) {
+        return res.status(404).json({ 
+            success: false, 
+            message: 'Review not found' 
+        });
+    }
+    
+    console.log('🔐 Admin viewing review:', id);
+    res.json({ success: true, review });
+});
+
+// Delete review (admin only)
+app.delete('/api/admin/reviews/:id', (req, res) => {
+    const { password } = req.body;
+    if (password !== ADMIN_PASSWORD) {
+        return res.status(401).json({ 
+            success: false, 
+            message: 'Invalid admin password' 
+        });
+    }
+    
+    const { id } = req.params;
+    const reviewIndex = reviewsStorage.findIndex(r => r.id === parseInt(id));
+    
+    if (reviewIndex === -1) {
+        return res.status(404).json({ 
+            success: false, 
+            message: 'Review not found' 
+        });
+    }
+    
+    const deletedReview = reviewsStorage.splice(reviewIndex, 1)[0];
+    console.log('🗑️ Admin deleted review:', deletedReview.id, 'by', deletedReview.name);
+    
+    res.json({ 
+        success: true, 
+        message: 'Review deleted successfully',
+        deletedReview: {
+            id: deletedReview.id,
+            name: deletedReview.name,
+            timestamp: deletedReview.timestamp
+        }
+    });
+});
+
+// Approve/Unapprove review (admin only)
+app.put('/api/admin/reviews/:id/approve', (req, res) => {
+    const { password, approved } = req.body;
+    if (password !== ADMIN_PASSWORD) {
+        return res.status(401).json({ 
+            success: false, 
+            message: 'Invalid admin password' 
+        });
+    }
+    
+    const { id } = req.params;
+    const review = reviewsStorage.find(r => r.id === parseInt(id));
+    
+    if (!review) {
+        return res.status(404).json({ 
+            success: false, 
+            message: 'Review not found' 
+        });
+    }
+    
+    review.approved = approved === true || approved === 'true';
+    console.log('✅ Admin', review.approved ? 'approved' : 'unapproved', 'review:', review.id);
+    
+    res.json({ 
+        success: true, 
+        message: `Review ${review.approved ? 'approved' : 'unapproved'} successfully`,
+        review: {
+            id: review.id,
+            name: review.name,
+            approved: review.approved
+        }
+    });
+});
+
+// Get approved reviews for public display
+app.get('/api/reviews/approved', (req, res) => {
+    const approvedReviews = reviewsStorage.filter(review => review.approved);
+    res.json({ 
+        success: true, 
+        reviews: approvedReviews.map(review => ({
+            id: review.id,
+            name: review.name,
+            position: review.position,
+            rating: review.rating,
+            text: review.text,
+            timestamp: review.timestamp
+            // Email is not included in public display
+        }))
+    });
+});
+
+// Serve the admin page
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/admin.html'));
 });
 
 // Serve the main HTML file for all non-API routes
