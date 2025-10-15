@@ -976,7 +976,23 @@ function setupReviewSystem() {
         submitReview();
     });
     
+    // Load approved reviews on page load
+    loadApprovedReviews();
+    
+    // Check for pending reviews and show admin notifications
+    checkPendingReviews();
+    
     console.log('Review system setup complete');
+}
+
+function checkPendingReviews() {
+    const pendingReviews = JSON.parse(localStorage.getItem('pendingReviews') || '[]');
+    if (pendingReviews.length > 0) {
+        // Show notification about pending reviews
+        setTimeout(() => {
+            showNotification(`You have ${pendingReviews.length} pending review(s) for approval`, 'info');
+        }, 2000);
+    }
 }
 
 function submitReview() {
@@ -1001,42 +1017,218 @@ function submitReview() {
     
     // Create review object
     const reviewData = {
+        id: 'review_' + Date.now(),
         name: formData.get('clientName'),
         company: formData.get('clientCompany') || '',
         website: formData.get('clientWebsite') || '',
         projectType: formData.get('projectType'),
         rating: parseInt(formData.get('rating')),
         reviewText: formData.get('reviewText'),
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString(),
+        timestamp: new Date().toISOString(),
+        status: 'pending',
+        approved: false
     };
     
-    // Add review to display
-    addReviewToDisplay(reviewData);
+    // Store in pending reviews
+    storePendingReview(reviewData);
+    
+    // Send email notification to admin
+    sendEmailNotification(reviewData);
     
     // Clear form
     form.reset();
     document.getElementById('rating').value = '';
     document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
     
-    // Show success message
-    alert('Thank you for your review! It has been added to the website.');
+    // Show success message to user
+    alert('Thank you for your review! It has been submitted for approval and will appear on the website once approved.');
     
-    // Scroll to reviews
-    document.getElementById('reviewsDisplay').scrollIntoView({ behavior: 'smooth' });
+    console.log('Review submitted for approval:', reviewData);
+}
+
+function storePendingReview(reviewData) {
+    // Store in localStorage for persistence
+    let pendingReviews = JSON.parse(localStorage.getItem('pendingReviews') || '[]');
+    pendingReviews.push(reviewData);
+    localStorage.setItem('pendingReviews', JSON.stringify(pendingReviews));
+    
+    // Store approved reviews separately
+    let approvedReviews = JSON.parse(localStorage.getItem('approvedReviews') || '[]');
+    localStorage.setItem('approvedReviews', JSON.stringify(approvedReviews));
+}
+
+function sendEmailNotification(reviewData) {
+    // Email notification using EmailJS or similar service
+    // For now, we'll use a mailto link as a fallback
+    const emailSubject = `New Review Submission - ${reviewData.name}`;
+    const emailBody = `
+New Review Received:
+
+Client: ${reviewData.name}
+Company: ${reviewData.company || 'Not provided'}
+Project Type: ${reviewData.projectType}
+Rating: ${reviewData.rating}/5 stars
+Website: ${reviewData.website || 'Not provided'}
+
+Review:
+"${reviewData.reviewText}"
+
+Submitted: ${reviewData.timestamp}
+
+To approve this review, visit your website admin panel.
+Review ID: ${reviewData.id}
+    `.trim();
+    
+    // Create email notification
+    console.log('Email notification would be sent:', {
+        to: 'devkush2006@outlook.com',
+        subject: emailSubject,
+        body: emailBody
+    });
+    
+    // For immediate implementation, create a notification for the admin
+    showAdminNotification(reviewData);
+}
+
+function showAdminNotification(reviewData) {
+    // Show notification in admin panel
+    const notification = document.createElement('div');
+    notification.className = 'admin-notification';
+    notification.innerHTML = `
+        <div class="notification-header">
+            <i class="fas fa-bell"></i>
+            <strong>New Review Pending Approval</strong>
+            <button onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+        <div class="notification-content">
+            <p><strong>${reviewData.name}</strong> - ${reviewData.rating}★</p>
+            <p>"${reviewData.reviewText.substring(0, 100)}${reviewData.reviewText.length > 100 ? '...' : ''}"</p>
+            <div class="notification-actions">
+                <button onclick="approveReview('${reviewData.id}')" class="btn approve-btn">
+                    <i class="fas fa-check"></i> Approve
+                </button>
+                <button onclick="rejectReview('${reviewData.id}')" class="btn reject-btn">
+                    <i class="fas fa-times"></i> Reject
+                </button>
+            </div>
+        </div>
+    `;
+    
+    // Add to admin controls or create notification area
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 30 seconds if no action taken
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 30000);
+}
+
+function approveReview(reviewId) {
+    let pendingReviews = JSON.parse(localStorage.getItem('pendingReviews') || '[]');
+    let approvedReviews = JSON.parse(localStorage.getItem('approvedReviews') || '[]');
+    
+    // Find the review
+    const reviewIndex = pendingReviews.findIndex(review => review.id === reviewId);
+    if (reviewIndex === -1) {
+        showNotification('Review not found', 'error');
+        return;
+    }
+    
+    const review = pendingReviews[reviewIndex];
+    review.approved = true;
+    review.approvedDate = new Date().toISOString();
+    
+    // Move to approved list
+    approvedReviews.push(review);
+    pendingReviews.splice(reviewIndex, 1);
+    
+    // Update storage
+    localStorage.setItem('pendingReviews', JSON.stringify(pendingReviews));
+    localStorage.setItem('approvedReviews', JSON.stringify(approvedReviews));
+    
+    // Add to display
+    addReviewToDisplay(review);
+    
+    // Remove notification
+    document.querySelectorAll('.admin-notification').forEach(notification => {
+        if (notification.innerHTML.includes(reviewId)) {
+            notification.remove();
+        }
+    });
+    
+    showNotification('Review approved and published', 'success');
+    console.log('Review approved:', reviewId);
+}
+
+function rejectReview(reviewId) {
+    if (!confirm('Are you sure you want to reject this review? It will be permanently deleted.')) {
+        return;
+    }
+    
+    let pendingReviews = JSON.parse(localStorage.getItem('pendingReviews') || '[]');
+    const reviewIndex = pendingReviews.findIndex(review => review.id === reviewId);
+    
+    if (reviewIndex === -1) {
+        showNotification('Review not found', 'error');
+        return;
+    }
+    
+    // Remove from pending
+    pendingReviews.splice(reviewIndex, 1);
+    localStorage.setItem('pendingReviews', JSON.stringify(pendingReviews));
+    
+    // Remove notification
+    document.querySelectorAll('.admin-notification').forEach(notification => {
+        if (notification.innerHTML.includes(reviewId)) {
+            notification.remove();
+        }
+    });
+    
+    showNotification('Review rejected and deleted', 'success');
+    console.log('Review rejected:', reviewId);
+}
+
+function loadApprovedReviews() {
+    // Load and display approved reviews on page load
+    const approvedReviews = JSON.parse(localStorage.getItem('approvedReviews') || '[]');
+    const reviewsDisplay = document.getElementById('reviewsDisplay');
+    
+    if (approvedReviews.length === 0) {
+        return; // Keep placeholder
+    }
+    
+    // Clear placeholder
+    reviewsDisplay.innerHTML = '';
+    
+    // Add each approved review
+    approvedReviews.forEach(review => {
+        addReviewToDisplay(review);
+    });
 }
 
 function addReviewToDisplay(reviewData) {
     const reviewsDisplay = document.getElementById('reviewsDisplay');
     const placeholder = reviewsDisplay.querySelector('.review-placeholder');
     
+    // Generate unique ID for this review
+    const reviewId = 'review_' + Date.now();
+    
     // Create star display
     const starsHtml = '★'.repeat(reviewData.rating) + '☆'.repeat(5 - reviewData.rating);
     
-    // Create review HTML
+    // Create review HTML with delete button
     const reviewHtml = `
-        <div class="review-item">
-            <div class="quote-icon">
-                <i class="fas fa-quote-left"></i>
+        <div class="review-item" id="${reviewId}">
+            <div class="review-header">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <button class="delete-review-btn" onclick="deleteReview('${reviewId}')" title="Delete this review">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             <div class="review-rating" style="color: #ffd700; font-size: 1.5rem; margin-bottom: 15px;">
                 ${starsHtml}
@@ -1065,4 +1257,128 @@ function addReviewToDisplay(reviewData) {
     }
     
     console.log('Review added to display:', reviewData);
+}
+
+// Review Management Functions
+function deleteReview(reviewId) {
+    // Confirm deletion
+    if (confirm('Are you sure you want to delete this review? This action cannot be undone.')) {
+        const reviewElement = document.getElementById(reviewId);
+        if (reviewElement) {
+            reviewElement.remove();
+            console.log('Review deleted:', reviewId);
+            
+            // Check if no reviews left, show placeholder
+            const reviewsDisplay = document.getElementById('reviewsDisplay');
+            const remainingReviews = reviewsDisplay.querySelectorAll('.review-item');
+            
+            if (remainingReviews.length === 0) {
+                showReviewPlaceholder();
+            }
+            
+            // Show success message
+            showNotification('Review deleted successfully', 'success');
+        }
+    }
+}
+
+function showReviewPlaceholder() {
+    const reviewsDisplay = document.getElementById('reviewsDisplay');
+    const placeholderHtml = `
+        <div class="review-placeholder">
+            <div class="quote-icon">
+                <i class="fas fa-quote-left"></i>
+            </div>
+            <h3>Be the First to Review!</h3>
+            <p>"Your feedback will be featured here. Share your experience working with me and help other clients make informed decisions."</p>
+            <div class="client-info">
+                <div class="client-avatar">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="client-details">
+                    <h4>Your Name Here</h4>
+                    <span>Your Project Type</span>
+                </div>
+            </div>
+        </div>
+    `;
+    reviewsDisplay.innerHTML = placeholderHtml;
+}
+
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+        <span>${message}</span>
+        <button onclick="this.parentElement.remove()">×</button>
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 3000);
+}
+
+// Admin Functions for Review Management
+function clearAllReviews() {
+    if (confirm('Are you sure you want to delete ALL reviews? This action cannot be undone.')) {
+        const reviewsDisplay = document.getElementById('reviewsDisplay');
+        showReviewPlaceholder();
+        showNotification('All reviews cleared', 'success');
+        console.log('All reviews cleared');
+    }
+}
+
+function exportReviews() {
+    const reviews = document.querySelectorAll('.review-item');
+    if (reviews.length === 0) {
+        showNotification('No reviews to export', 'info');
+        return;
+    }
+    
+    const reviewData = [];
+    
+    reviews.forEach(review => {
+        const name = review.querySelector('.client-details h4').textContent;
+        const content = review.querySelector('p').textContent.replace(/"/g, '');
+        const rating = review.querySelector('.review-rating').textContent.split('★').length - 1;
+        const projectInfo = review.querySelector('.client-details span').textContent;
+        const date = review.querySelector('.client-details div').textContent;
+        
+        reviewData.push({
+            name,
+            content,
+            rating,
+            projectInfo,
+            date
+        });
+    });
+    
+    const dataStr = JSON.stringify(reviewData, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(dataBlob);
+    link.download = 'website-reviews.json';
+    link.click();
+    
+    showNotification('Reviews exported successfully', 'success');
+}
+
+function toggleAdminPanel() {
+    const adminControls = document.getElementById('adminControls');
+    if (adminControls.style.display === 'none') {
+        adminControls.style.display = 'block';
+        showNotification('Admin panel activated', 'info');
+    } else {
+        adminControls.style.display = 'none';
+        showNotification('Admin panel hidden', 'info');
+    }
 }

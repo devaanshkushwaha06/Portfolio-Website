@@ -999,6 +999,29 @@
                 </div>
             </div>
             
+            <!-- Admin Controls (Hidden by default) -->
+            <div class="admin-controls" id="adminControls" style="display: none;">
+                <h4 style="color: #ffd700; text-align: center; margin-bottom: 20px;">
+                    <i class="fas fa-cog"></i> Review Management
+                </h4>
+                <div class="admin-buttons">
+                    <button onclick="exportReviews()" class="btn admin-btn">
+                        <i class="fas fa-download"></i> Export Reviews
+                    </button>
+                    <button onclick="clearAllReviews()" class="btn admin-btn danger">
+                        <i class="fas fa-trash"></i> Clear All Reviews
+                    </button>
+                    <button onclick="toggleAdminPanel()" class="btn admin-btn">
+                        <i class="fas fa-eye-slash"></i> Hide Admin Panel
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Admin Access (Double-click to reveal) -->
+            <div class="admin-access" ondblclick="toggleAdminPanel()" style="opacity: 0.1; text-align: center; padding: 10px; cursor: pointer;">
+                <small style="color: rgba(255,255,255,0.3);">Double-click for admin access</small>
+            </div>
+            
             <!-- Trust Indicators -->
             <div class="trust-indicators">
                 <h3>Why Clients Love Working With Me</h3>
