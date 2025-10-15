@@ -691,13 +691,28 @@
                 
                 // Determine the API URL
                 const isLocalFile = window.location.protocol === 'file:';
-                const baseUrl = isLocalFile ? 'http://localhost:3000' : '';
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                
+                let baseUrl = '';
+                if (isLocalFile) {
+                    baseUrl = 'http://localhost:3000';
+                } else if (isLocalhost) {
+                    baseUrl = `http://localhost:${window.location.port || '3000'}`;
+                } else {
+                    // For production/Vercel deployment, use the same domain
+                    baseUrl = window.location.origin;
+                }
+                
                 const apiUrl = `${baseUrl}/api/reviews`;
                 
                 console.log('=== REVIEW SUBMISSION DEBUG ===');
                 console.log('Protocol:', window.location.protocol);
-                console.log('Host:', window.location.host);
+                console.log('Hostname:', window.location.hostname);
+                console.log('Port:', window.location.port);
+                console.log('Origin:', window.location.origin);
                 console.log('Is local file:', isLocalFile);
+                console.log('Is localhost:', isLocalhost);
+                console.log('Base URL:', baseUrl);
                 console.log('API URL:', apiUrl);
                 console.log('Review data:', data);
                 
@@ -848,13 +863,29 @@
             
             try {
                 const isLocalFile = window.location.protocol === 'file:';
-                const baseUrl = isLocalFile ? 'http://localhost:3000' : '';
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                
+                let baseUrl = '';
+                if (isLocalFile) {
+                    baseUrl = 'http://localhost:3000';
+                } else if (isLocalhost) {
+                    baseUrl = `http://localhost:${window.location.port || '3000'}`;
+                } else {
+                    // For production/Vercel deployment, use the same domain
+                    baseUrl = window.location.origin;
+                }
+                
                 const healthUrl = `${baseUrl}/api/health`;
                 
                 console.log('=== CONNECTION TEST ===');
                 console.log('Current URL:', window.location.href);
                 console.log('Protocol:', window.location.protocol);
+                console.log('Hostname:', window.location.hostname);
+                console.log('Port:', window.location.port);
+                console.log('Origin:', window.location.origin);
                 console.log('Is local file:', isLocalFile);
+                console.log('Is localhost:', isLocalhost);
+                console.log('Base URL:', baseUrl);
                 console.log('Testing health endpoint:', healthUrl);
                 
                 const response = await fetch(healthUrl);

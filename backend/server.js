@@ -7,7 +7,7 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 // Security middleware
 app.use(helmet({
@@ -31,7 +31,15 @@ const contactLimiter = rateLimit({
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'file://'],
+    origin: [
+        'http://localhost:3000', 
+        'http://localhost:4000',
+        'http://127.0.0.1:3000',
+        'http://127.0.0.1:4000',
+        'file://',
+        'https://devaansh-kushwaha-portfolio-website.vercel.app',
+        'https://*.vercel.app'
+    ],
     credentials: true
 }));
 app.use(express.json());
@@ -200,8 +208,14 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
             replyTo: email
         };
         
-        // Send email
-        await transporter.sendMail(mailOptions);
+        // Send email (but don't fail if email fails)
+        try {
+            await transporter.sendMail(mailOptions);
+            console.log('Contact email sent successfully');
+        } catch (emailError) {
+            console.error('Email sending failed (continuing anyway):', emailError.message);
+            // Don't fail the entire request if email fails
+        }
         
         res.json({ 
             success: true, 
@@ -299,8 +313,14 @@ app.post('/api/reviews', contactLimiter, async (req, res) => {
             replyTo: reviewerEmail || process.env.EMAIL_USER
         };
         
-        // Send notification email
-        await transporter.sendMail(mailOptions);
+        // Send notification email (but don't fail if email fails)
+        try {
+            await transporter.sendMail(mailOptions);
+            console.log('Email notification sent successfully');
+        } catch (emailError) {
+            console.error('Email sending failed (continuing anyway):', emailError.message);
+            // Don't fail the entire request if email fails
+        }
         
         // Store review data (in a real app, you'd save to database)
         const reviewData = {
