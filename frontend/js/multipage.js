@@ -358,35 +358,122 @@ function setupModal() {
 
 function openVideoModal(videoId) {
     const modal = document.getElementById('video-modal');
-    const video = document.getElementById('modal-video');
-    const placeholder = document.querySelector('.video-placeholder');
+    const modalBody = document.querySelector('.modal-body');
     
-    if (modal) {
+    // Google Drive video links mapping
+    const googleDriveVideos = {
+        '21-days-of-code': {
+            driveLink: 'https://drive.google.com/file/d/1ms_g7NX6fCiV8KZba6Y52i_rBxXu_mfn/view?usp=drive_link',
+            title: '21 Days of Code',
+            subtitle: 'Coding Journey & Development Process',
+            gradient: 'linear-gradient(135deg, #00ff88 0%, #00b4db 50%, #0083b0 100%)',
+            glow: 'rgba(0, 255, 136, 0.4)'
+        },
+        'treasure-hunt': {
+            driveLink: 'https://drive.google.com/file/d/1NUD5HSXHSATJi2B4u-qqCQxGZgGLRyZ7/view?usp=drive_link',
+            title: 'Treasure Hunt',
+            subtitle: 'Adventure Quest & Visual Effects',
+            gradient: 'linear-gradient(135deg, #d4af37 0%, #f4e99b 50%, #d4af37 100%)',
+            glow: 'rgba(212, 175, 55, 0.4)'
+        },
+        'odyssey-event': {
+            driveLink: 'https://drive.google.com/file/d/1HKUJKu2R4FIOmBKfyCac-0oiObhsOJtv/view?usp=drive_link',
+            title: 'ODYSSEY - 7 Events',
+            subtitle: '7 Events Competition Coverage',
+            gradient: 'linear-gradient(135deg, #4a4af0 0%, #8a2be2 50%, #00bfff 100%)',
+            glow: 'rgba(74, 74, 240, 0.4)'
+        }
+    };
+    
+    if (modal && modalBody) {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
         
-        // Try to load the video
-        const videoSource = `assets/videos/${videoId}.mp4`;
-        if (video) {
-            video.style.display = 'none';
-            video.src = videoSource;
+        // Check if it's a Google Drive video
+        if (googleDriveVideos[videoId]) {
+            const videoData = googleDriveVideos[videoId];
             
-            video.addEventListener('loadeddata', function() {
-                video.style.display = 'block';
-                if (placeholder) placeholder.style.display = 'none';
-            });
+            // Create styled Google Drive link interface
+            const thumbnailStyle = `
+                background: ${videoData.gradient};
+                width: 100%;
+                height: 350px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 1.5rem;
+                font-weight: bold;
+                text-align: center;
+                border-radius: 15px;
+                position: relative;
+                cursor: pointer;
+                margin-bottom: 1rem;
+                box-shadow: 
+                    0 10px 30px rgba(0, 0, 0, 0.5),
+                    0 0 50px ${videoData.glow};
+                transition: all 0.3s ease;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+            `;
             
-            video.addEventListener('error', function() {
-                video.style.display = 'none';
-                if (placeholder) {
-                    placeholder.style.display = 'block';
-                    placeholder.innerHTML = `
-                        <i class="fas fa-video"></i>
-                        <p>Video Coming Soon</p>
-                        <small>This video is being prepared and will be available shortly.</small>
-                    `;
-                }
-            });
+            modalBody.innerHTML = `
+                <div style="${thumbnailStyle}"
+                     onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(0, 0, 0, 0.6), 0 0 70px ${videoData.glow}';"
+                     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 30px rgba(0, 0, 0, 0.5), 0 0 50px ${videoData.glow}';">
+                    <div style="text-align: center;">
+                        <div style="
+                            background: rgba(255, 255, 255, 0.2);
+                            border-radius: 50%;
+                            width: 100px;
+                            height: 100px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 1.5rem auto;
+                            backdrop-filter: blur(10px);
+                            border: 2px solid rgba(255, 255, 255, 0.3);
+                        ">
+                            <i class="fas fa-external-link-alt" style="font-size: 2.5rem; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);"></i>
+                        </div>
+                        <div style="font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);">
+                            ${videoData.title}
+                        </div>
+                        <button onclick="window.open('${videoData.driveLink}', '_blank')" style="
+                            background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #ea4335 100%);
+                            color: white;
+                            border: none;
+                            padding: 15px 30px;
+                            border-radius: 50px;
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+                        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.4)';" 
+                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.3)';">
+                            <i class="fas fa-external-link-alt" style="margin-right: 8px;"></i>
+                            Open Video in Google Drive
+                        </button>
+                        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);">
+                            Video will open in a new tab
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Fallback for non-Google Drive videos
+            modalBody.innerHTML = `
+                <video id="modal-video" controls>
+                    <source src="assets/videos/${videoId}.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-placeholder">
+                    <i class="fas fa-video"></i>
+                    <p>Video Coming Soon</p>
+                    <small>This video is being prepared and will be available shortly.</small>
+                </div>
+            `;
         }
     }
 }
@@ -394,6 +481,7 @@ function openVideoModal(videoId) {
 function closeModal() {
     const modal = document.getElementById('video-modal');
     const video = document.getElementById('modal-video');
+    const modalBody = document.querySelector('.modal-body');
     
     if (modal) {
         modal.style.display = 'none';
@@ -402,6 +490,21 @@ function closeModal() {
         if (video) {
             video.pause();
             video.src = '';
+        }
+        
+        // Reset modal body to original video structure for future use
+        if (modalBody) {
+            modalBody.innerHTML = `
+                <video id="modal-video" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-placeholder">
+                    <i class="fas fa-video"></i>
+                    <p>Video Coming Soon</p>
+                    <small>This video is being prepared and will be available shortly.</small>
+                </div>
+            `;
         }
     }
 }

@@ -296,7 +296,7 @@ function openVideoModal(videoId) {
         },
         'treasure-hunt': {
             type: 'drive',
-            driveLink: 'https://drive.google.com/file/d/1NUD5HSXHSATJi2B4u-qqCQxGZgGLRyZ7/view?usp=sharing',
+            driveLink: 'https://drive.google.com/file/d/1NUD5HSXHSATJi2B4u-qqCQxGZgGLRyZ7/view?usp=drive_link',
             title: 'Treasure Hunt',
             subtitle: 'Adventure Quest & Visual Effects',
             gradient: 'linear-gradient(135deg, #d4af37 0%, #f4e99b 50%, #d4af37 100%)',
@@ -304,8 +304,8 @@ function openVideoModal(videoId) {
         },
         'odyssey-event': {
             type: 'drive',
-            driveLink: 'https://drive.google.com/file/d/1HKUJKu2R4FIOmBKfyCac-0oiObhsOJtv/view?usp=sharing',
-            title: 'ODYSSEY',
+            driveLink: 'https://drive.google.com/file/d/1HKUJKu2R4FIOmBKfyCac-0oiObhsOJtv/view?usp=drive_link',
+            title: 'ODYSSEY - 7 Events',
             subtitle: '7 Events Competition Coverage',
             gradient: 'linear-gradient(135deg, #4a4af0 0%, #8a2be2 50%, #00bfff 100%)',
             glow: 'rgba(74, 74, 240, 0.4)'
