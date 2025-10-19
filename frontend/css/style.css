@@ -35,6 +35,99 @@ body {
     background: var(--dark-bg);
     margin: 0;
     padding: 0;
+    /* Improved fluid typography */
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+}
+
+/* Global Responsive Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Improved Container Responsiveness */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+    width: 100%;
+}
+
+/* Responsive Typography Scale */
+h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    line-height: 1.4;
+}
+
+h4 {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    line-height: 1.4;
+}
+
+p {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    line-height: clamp(1.5, 2vw, 1.7);
+    margin-bottom: 1rem;
+}
+
+/* Responsive Button Improvements */
+.btn {
+    padding: clamp(0.7rem, 2vw, 1rem) clamp(1.2rem, 4vw, 2rem);
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    border-radius: clamp(8px, 2vw, 12px);
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    min-width: clamp(120px, 20vw, 160px);
+}
+
+/* Touch-friendly Interface */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .nav-link,
+    .filter-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid currentColor;
+    }
+    
+    .nav-link {
+        border-bottom: 1px solid transparent;
+    }
+    
+    .nav-link:hover,
+    .nav-link:focus {
+        border-bottom-color: currentColor;
+    }
 }
 
 /* Ensure no gaps between sections */
@@ -135,18 +228,82 @@ html {
 
 /* Tablet Optimizations */
 @media (max-width: 1024px) and (min-width: 769px) {
+    /* Tablet Navigation */
+    .nav-container {
+        padding: 0 15px;
+    }
+    
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    .nav-link {
+        padding: 6px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .nav-logo a {
+        font-size: 1.1rem;
+        max-width: 140px;
+    }
+    
+    /* Tablet Layout */
     .hero-content {
         grid-template-columns: 1fr 1fr;
         gap: 3rem;
         padding: 0 30px;
+        align-items: center;
+        text-align: left;
     }
     
     .hero-text h1 {
         font-size: 3rem;
+        line-height: 1.1;
     }
     
     .hero-text h2 {
         font-size: 1.6rem;
+        line-height: 1.2;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: flex-start;
+    }
+    
+    .hero-buttons .btn {
+        flex: 0 1 auto;
+        min-width: 150px;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .hero-image {
+        justify-self: center;
+        max-width: 350px;
+    }
+    
+    .availability-status {
+        flex-direction: row;
+        gap: 1.5rem;
+        align-items: center;
+        margin: 1.5rem 0;
+    }
+    
+    /* Portfolio Grid for Tablet */
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .portfolio-item {
+        height: 320px;
     }
     
     .container {
@@ -167,6 +324,54 @@ html {
     
     .visible-mobile {
         display: block;
+    }
+    
+    /* Mobile Navigation */
+    .nav-container {
+        padding: 0 15px;
+        height: 60px;
+    }
+    
+    .nav-logo a {
+        font-size: 1.1rem;
+        max-width: 120px;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 60px;
+        flex-direction: column;
+        background: rgba(26, 26, 46, 0.98);
+        backdrop-filter: blur(20px);
+        width: 100%;
+        height: calc(100vh - 60px);
+        text-align: center;
+        transition: 0.3s ease;
+        border-top: 2px solid rgba(255, 215, 0, 0.3);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        gap: 0;
+        padding-top: 2rem;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-link {
+        display: block;
+        padding: 1.5rem 2rem;
+        margin: 0 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .hamburger {
+        display: flex;
+        z-index: 1001;
     }
     
     /* Better touch targets for mobile */
@@ -206,6 +411,41 @@ html {
     body {
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
+    }
+}
+
+/* Small Phone Navigation */
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 10px;
+        height: 55px;
+    }
+    
+    .nav-logo a {
+        font-size: 1rem;
+        max-width: 100px;
+    }
+    
+    .nav-menu {
+        top: 55px;
+        height: calc(100vh - 55px);
+        padding-top: 1.5rem;
+    }
+    
+    .nav-link {
+        padding: 1.2rem 1.5rem;
+        margin: 0 0.5rem;
+        font-size: 1rem;
+    }
+    
+    .hamburger {
+        width: 20px;
+    }
+    
+    .bar {
+        width: 20px;
+        height: 2px;
+        margin: 2px 0;
     }
 }
 
@@ -865,6 +1105,22 @@ html {
     box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4);
 }
 
+.btn-outline {
+    background: transparent;
+    color: var(--primary-gold);
+    border: 2px solid var(--primary-gold);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+}
+
+.btn-outline:hover {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4);
+}
+
 .hero-image {
     display: flex;
     justify-content: center;
@@ -1301,8 +1557,53 @@ section.about {
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    padding: 0;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Large Desktop Optimization */
+@media (min-width: 1400px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .hero-content {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 4.5rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        max-width: 1300px;
+        padding: 0 2rem;
+    }
+}
+
+/* Desktop Optimization */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 4rem;
+    }
 }
 
 .portfolio-item {
@@ -1312,6 +1613,8 @@ section.about {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     position: relative;
+    width: 100%;
+    max-width: 100%;
 }
 
 .portfolio-item:hover {
@@ -1409,14 +1712,26 @@ section.about {
     font-size: 3.5rem;
     font-weight: bold;
     margin-bottom: 5px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 
+        0 0 20px rgba(0, 0, 0, 0.9),
+        0 4px 8px rgba(0, 0, 0, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    letter-spacing: 2px;
 }
 
 .thumbnail-subtitle {
     font-size: 1rem;
     font-weight: 500;
-    opacity: 0.9;
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    opacity: 0.95;
+    text-shadow: 
+        0 0 15px rgba(0, 0, 0, 0.9),
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        1px 1px 2px rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
 .play-overlay {
@@ -1893,6 +2208,8 @@ section.about {
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s ease;
     height: 350px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .hackathon-item:hover {
@@ -1938,6 +2255,28 @@ section.about {
     animation: gamepadSpin 10s linear infinite;
 }
 
+.bubble-labyrinth-custom .thumbnail-title {
+    color: #fff;
+    text-shadow: 
+        0 0 30px rgba(0, 0, 0, 0.9),
+        0 0 25px rgba(102, 126, 234, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.bubble-labyrinth-custom .thumbnail-subtitle {
+    color: #fff;
+    text-shadow: 
+        0 0 25px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(240, 147, 251, 0.8),
+        0 3px 6px rgba(0, 0, 0, 0.8),
+        1px 1px 2px rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
 .skillchain-custom {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     height: 100%;
@@ -1974,8 +2313,10 @@ section.about {
 .skillchain-custom .thumbnail-title {
     color: #fff;
     text-shadow: 
+        0 0 30px rgba(0, 0, 0, 0.9),
         0 0 25px rgba(240, 147, 251, 0.8),
-        0 2px 4px rgba(0, 0, 0, 0.7);
+        0 4px 8px rgba(0, 0, 0, 0.8),
+        2px 2px 4px rgba(0, 0, 0, 0.7);
     animation: skillGlow 5s ease-in-out infinite;
     font-weight: 900;
     letter-spacing: 3px;
@@ -1985,8 +2326,10 @@ section.about {
 .skillchain-custom .thumbnail-subtitle {
     color: #fff;
     text-shadow: 
+        0 0 25px rgba(0, 0, 0, 0.9),
         0 0 20px rgba(102, 126, 234, 0.8),
-        0 2px 4px rgba(0, 0, 0, 0.7);
+        0 3px 6px rgba(0, 0, 0, 0.8),
+        1px 1px 2px rgba(0, 0, 0, 0.7);
     font-weight: 600;
     letter-spacing: 1.5px;
     animation: subtitleGlow 4s ease-in-out infinite alternate;
@@ -2096,6 +2439,10 @@ section.about {
     backdrop-filter: blur(15px);
     z-index: 20;
     pointer-events: none;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
 }
 
 .hackathon-item:hover .hackathon-overlay {
@@ -2108,6 +2455,10 @@ section.about {
     margin-bottom: 1rem;
     color: #f093fb;
     font-weight: 700;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.2;
 }
 
 .hackathon-details {
@@ -2119,18 +2470,33 @@ section.about {
     align-items: center;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    flex-wrap: wrap;
 }
 
 .hackathon-details i {
     margin-right: 8px;
     color: #667eea;
     width: 16px;
+    flex-shrink: 0;
+}
+
+.hackathon-details > div span {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
 }
 
 .hackathon-overlay p {
     line-height: 1.6;
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-align: justify;
 }
 
 .hackathon-tech {
@@ -2141,13 +2507,15 @@ section.about {
 }
 
 .tech-tag {
-    background: rgba(102, 126, 234, 0.2);
-    color: #667eea;
+    background: rgba(102, 126, 234, 0.3);
+    color: #ffffff;
     padding: 4px 8px;
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: 500;
-    border: 1px solid rgba(102, 126, 234, 0.3);
+    border: 1px solid rgba(102, 126, 234, 0.5);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .hackathon-buttons {
@@ -4206,8 +4574,20 @@ section.about {
     }
     
     .portfolio-filters {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        border-radius: 20px;
+        flex: 0 1 auto;
+        min-width: 80px;
+        text-align: center;
     }
     
     .about-stats {
@@ -4394,13 +4774,17 @@ section.about {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    font-weight: 700;
 }
 
 .service-card p {
     font-size: 1rem;
-    opacity: 0.9;
+    opacity: 0.95;
     margin-bottom: 25px;
     line-height: 1.6;
+    color: #f5f5f5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .pricing {
@@ -4428,9 +4812,10 @@ section.about {
 
 .price-note {
     font-size: 0.9rem;
-    opacity: 0.9;
+    opacity: 0.95;
     font-style: italic;
     color: #f0c674;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .service-features {
@@ -4445,6 +4830,8 @@ section.about {
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    color: #f0f0f0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .service-features li:last-child {
@@ -4576,6 +4963,7 @@ section.about {
     .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
+        padding: 0 1rem;
     }
     
     .contact-grid {
@@ -4659,6 +5047,46 @@ section.about {
         gap: 1.5rem;
     }
     
+    /* Hackathon Section - Tablet */
+    .hackathons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .hackathon-item {
+        height: 320px;
+        overflow: hidden;
+    }
+    
+    .hackathon-overlay h4 {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.2;
+    }
+    
+    .hackathon-overlay p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .hackathon-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .hackathon-buttons .view-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
     /* Mobile Contact Items Improvements */
     .contact-item {
         padding: 1.5rem 1rem;
@@ -4696,13 +5124,16 @@ section.about {
     .hero {
         height: 100vh;
         padding: 0;
+        /* Reduce animations on mobile for performance */
     }
     
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
-        padding: 2rem 0;
+        padding: 2rem 1rem;
+        max-width: 90%;
+        margin: 0 auto;
     }
     
     .hero-text h1 {
@@ -4714,17 +5145,48 @@ section.about {
     .hero-text h2 {
         font-size: 1.4rem;
         margin-bottom: 1rem;
+        line-height: 1.3;
     }
     
     .hero-text p {
         font-size: 1rem;
         margin-bottom: 2rem;
+        line-height: 1.5;
     }
     
     .hero-buttons {
         flex-direction: column;
         gap: 1rem;
         align-items: center;
+        width: 100%;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .availability-status {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+        margin: 1.5rem 0;
+    }
+    
+    .hero-image {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    /* Reduce particle effects on mobile */
+    .floating-particle {
+        display: none;
+    }
+    
+    .cosmic-dust {
+        opacity: 0.3;
     }
     
     .hero-buttons .btn {
@@ -4791,6 +5253,78 @@ section.about {
     
     .modal-body {
         padding: 0 1rem 1.5rem 1rem;
+    }
+    
+    /* Hackathon Section - Mobile */
+    .hackathons-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .hackathon-item {
+        height: auto;
+        min-height: 280px;
+        overflow: hidden;
+    }
+    
+    .hackathon-overlay {
+        position: static;
+        opacity: 1;
+        background: transparent;
+        padding: 1.5rem;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    
+    .hackathon-overlay h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+        color: var(--primary-gold);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.2;
+    }
+    
+    .hackathon-overlay p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        text-align: justify;
+    }
+    
+    .hackathon-buttons {
+        flex-direction: row;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .hackathon-buttons .view-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .hackathon-details {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hackathon-tech {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .tech-tag {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
     }
 }
 
@@ -4910,11 +5444,30 @@ section.about {
     
     /* Portfolio */
     .portfolio-grid {
+        grid-template-columns: 1fr;
         gap: 1rem;
+        padding: 0;
     }
     
     .portfolio-item {
         height: 250px;
+        margin-bottom: 1rem;
+    }
+    
+    .portfolio-filters {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        border-radius: 15px;
+        min-width: 70px;
+        margin: 0 2px;
     }
     
     .thumbnail-overlay h3 {
@@ -4923,13 +5476,26 @@ section.about {
     }
     
     .thumbnail-overlay p {
-        font-size: 0.8rem;
-        margin-bottom: 1rem;
+        font-size: 0.75rem;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
     }
     
     .view-btn {
         padding: 8px 16px;
         font-size: 0.8rem;
+        border-radius: 15px;
+    }
+    
+    .thumbnail-title {
+        font-size: 2rem !important;
+        letter-spacing: 1px !important;
+        line-height: 1.1 !important;
+    }
+    
+    .thumbnail-subtitle {
+        font-size: 0.7rem !important;
+        letter-spacing: 0.5px !important;
     }
     
     /* About Section */
@@ -5144,6 +5710,134 @@ section.about {
     
     .modal-title {
         font-size: 1.3rem;
+    }
+}
+
+/* Ultra Small Devices (320px and below) */
+@media (max-width: 320px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .nav-container {
+        padding: 0 0.5rem;
+        height: 50px;
+    }
+    
+    .nav-logo a {
+        font-size: 0.9rem;
+        max-width: 80px;
+    }
+    
+    .hero-content {
+        padding: 0.5rem;
+        gap: 1rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 1.2rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .hero-text h2 {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+    
+    .hero-text p {
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .hero-buttons .btn {
+        max-width: 140px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+    }
+    
+    .portfolio-item {
+        height: 200px;
+    }
+    
+    .filter-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        min-width: 60px;
+    }
+    
+    .project-card {
+        padding: 1rem;
+        min-height: 350px;
+    }
+    
+    .project-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .project-content p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    .thumbnail-title {
+        font-size: 1.8rem !important;
+        letter-spacing: 0.5px !important;
+    }
+    
+    .thumbnail-subtitle {
+        font-size: 0.6rem !important;
+        letter-spacing: 0.3px !important;
+    }
+    
+    .contact-form-section {
+        padding: 0.8rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.8rem;
+        padding: 0.6rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        min-width: 100px;
+    }
+    
+    .hackathon-item {
+        min-height: 250px;
+        overflow: hidden;
+    }
+    
+    .hackathon-overlay {
+        padding: 1rem;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    
+    .hackathon-overlay h4 {
+        font-size: 1rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        line-height: 1.2;
+    }
+    
+    .hackathon-overlay p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        text-align: justify;
+    }
+    
+    .hackathon-buttons .view-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.7rem;
+        min-width: 100px;
     }
 }
 

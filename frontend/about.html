@@ -877,8 +877,10 @@
                 const response = await fetch(reviewsUrl);
                 
                 if (response.ok) {
-                    const approvedReviews = await response.json();
-                    console.log('Loaded approved reviews:', approvedReviews);
+                    const data = await response.json();
+                    console.log('Loaded approved reviews response:', data);
+                    
+                    const approvedReviews = data.reviews || [];
                     
                     // Display each approved review
                     approvedReviews.forEach(review => {
