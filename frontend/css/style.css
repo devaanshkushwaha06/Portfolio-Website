@@ -2912,6 +2912,11 @@ section.about {
     font-size: 1.1rem;
     transition: all 0.3s ease;
     border: 2px solid #1a1a2e;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    min-width: 200px;
+    text-align: center;
 }
 
 .btn-offer:hover {
@@ -2919,6 +2924,45 @@ section.about {
     color: #1a1a2e;
     border-color: #1a1a2e;
     transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(26, 26, 46, 0.3);
+}
+
+.btn-offer:active {
+    transform: translateY(-1px);
+}
+
+.btn-offer i {
+    margin-right: 8px;
+}
+
+.btn-offer:hover {
+    background: transparent;
+    color: #1a1a2e;
+    border-color: #1a1a2e;
+    transform: translateY(-3px);
+}
+
+.offer-note {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: rgba(26, 26, 46, 0.8);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.offer-note i {
+    margin-right: 5px;
+    color: #ffd700;
+}
+
+.offer-note a {
+    color: #1a1a2e;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.offer-note a:hover {
+    color: #ffd700;
 }
 
 /* Experience Highlight Styles */

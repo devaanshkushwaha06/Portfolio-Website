@@ -252,7 +252,20 @@
                         <li><i class="fas fa-handshake"></i> 100% satisfaction guarantee</li>
                     </ul>
                     <div class="offer-cta">
-                        <a href="about.html#contact" class="btn-offer">Claim Your Special Offer</a>
+                        <a href="https://wa.me/916265954576?text=Hi%20Devaansh!%20I'd%20like%20to%20claim%20your%20New%20Freelancer%20Special%20Offer%20for%20my%20VFX%20project.%20Can%20we%20discuss%20the%20details?" target="_blank" rel="noopener noreferrer" class="btn-offer">
+                            <i class="fab fa-whatsapp"></i>
+                            Claim Your Special Offer
+                        </a>
+                        <br><br>
+                        <!-- Backup button for testing -->
+                        <button onclick="openWhatsAppOffer()" class="btn-offer" style="border: none; cursor: pointer;">
+                            <i class="fab fa-whatsapp"></i>
+                            Alternative: Click Here
+                        </button>
+                        <p class="offer-note">
+                            <i class="fas fa-info-circle"></i>
+                            Or <a href="about.html#contact" style="color: #333; text-decoration: underline;">fill out our contact form</a> and mention "Special Offer" in your message
+                        </p>
                     </div>
                 </div>
             </div>
@@ -586,7 +599,43 @@
             
             const message = `Hi Devaansh! I'd like to get a detailed quote for a VFX project. Based on the calculator, the estimate is ${totalPrice} with delivery in ${deliveryTime}. Can we discuss the details?`;
             
-            window.open(`https://wa.me/+916265954576?text=${encodeURIComponent(message)}`, '_blank');
+            window.open(`https://wa.me/916265954576?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function handleOfferClick(event) {
+            console.log('Offer button clicked!'); // Debug log
+            
+            // Prevent default action temporarily for debugging
+            event.preventDefault();
+            
+            const message = "Hi Devaansh! I'd like to claim your New Freelancer Special Offer for my VFX project. Can we discuss the details?";
+            const whatsappUrl = `https://wa.me/916265954576?text=${encodeURIComponent(message)}`;
+            
+            console.log('Opening WhatsApp URL:', whatsappUrl); // Debug log
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            return false;
+        }
+
+        function openWhatsAppOffer() {
+            console.log('Alternative button clicked!'); // Debug log
+            
+            const message = "Hi Devaansh! I'd like to claim your New Freelancer Special Offer for my VFX project. Can we discuss the details?";
+            const whatsappUrl = `https://wa.me/916265954576?text=${encodeURIComponent(message)}`;
+            
+            console.log('Opening WhatsApp URL:', whatsappUrl); // Debug log
+            
+            // Try multiple approaches
+            try {
+                window.open(whatsappUrl, '_blank');
+                console.log('WhatsApp opened successfully');
+            } catch (error) {
+                console.error('Error opening WhatsApp:', error);
+                // Fallback: direct navigation
+                window.location.href = whatsappUrl;
+            }
         }
     </script>
 </body>
