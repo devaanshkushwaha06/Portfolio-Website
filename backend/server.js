@@ -123,13 +123,20 @@ const portfolioData = {
 let reviewsStorage = [];
 
 // Simple admin authentication (in production, use proper auth)
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+let ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 // Validate that admin password is set
 if (!ADMIN_PASSWORD) {
     console.error('❌ ADMIN_PASSWORD environment variable is not set!');
-    console.error('Please set ADMIN_PASSWORD in your .env file');
-    process.exit(1);
+    
+    // Temporary fallback for Vercel deployment (REMOVE AFTER SETTING ENV VARS)
+    if (process.env.VERCEL) {
+        console.warn('⚠️  Using temporary fallback password for Vercel - PLEASE SET ADMIN_PASSWORD ENV VAR');
+        ADMIN_PASSWORD = 'review0829m'; // TEMPORARY - Please set environment variable
+    } else {
+        console.error('Please set ADMIN_PASSWORD in your .env file');
+        process.exit(1);
+    }
 }
 
 // API Routes
