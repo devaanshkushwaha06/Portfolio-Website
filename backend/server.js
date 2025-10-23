@@ -123,7 +123,14 @@ const portfolioData = {
 let reviewsStorage = [];
 
 // Simple admin authentication (in production, use proper auth)
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+// Validate that admin password is set
+if (!ADMIN_PASSWORD) {
+    console.error('❌ ADMIN_PASSWORD environment variable is not set!');
+    console.error('Please set ADMIN_PASSWORD in your .env file');
+    process.exit(1);
+}
 
 // API Routes
 
