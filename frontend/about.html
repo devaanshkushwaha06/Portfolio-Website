@@ -6,31 +6,19 @@
     <title>Devaansh K. | About & Contact</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/multipage.css">
+    <link rel="stylesheet" href="css/TargetCursor.css">
+    <link rel="stylesheet" href="css/PillNav.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/multipage.js"></script>
+    <script src="js/TargetCursor.js"></script>
+    <script src="js/PillNav.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">Devaansh K.</a>
-            </div>
-            <div class="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="vfx.html" class="nav-link">VFX</a>
-                <a href="technical.html" class="nav-link">Technical</a>
-            </div>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation Container -->
+    <div id="pill-nav-container"></div>
 
     <!-- Server Status Indicator -->
     <div id="serverStatus" class="server-status">
@@ -325,10 +313,10 @@
                 
                 <!-- Scroll Navigation -->
                 <div class="scroll-navigation" id="scrollNavigation" style="display: none;">
-                    <button class="scroll-btn prev" onclick="scrollReviews('left')" id="scrollLeft">
+                    <button class="scroll-btn prev cursor-target" onclick="scrollReviews('left')" id="scrollLeft">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="scroll-btn next" onclick="scrollReviews('right')" id="scrollRight">
+                    <button class="scroll-btn next cursor-target" onclick="scrollReviews('right')" id="scrollRight">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
@@ -374,7 +362,7 @@
                         <small>Email will not be displayed publicly</small>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary cursor-target">
                         <i class="fas fa-paper-plane"></i>
                         Submit Review
                     </button>
@@ -977,6 +965,45 @@
                 }, 10000);
             }
         }
+    </script>
+
+    <!-- Initialize Custom Cursor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize PillNav
+            const pillNav = new PillNav({
+                logo: 'assets/images/logo.svg',
+                logoAlt: 'Devaansh K.',
+                items: [
+                    { label: 'Home', href: 'index.html' },
+                    { label: 'About', href: 'about.html' },
+                    { label: 'VFX', href: 'vfx.html' },
+                    { label: 'Technical', href: 'technical.html' }
+                ],
+                activeHref: 'about.html',
+                className: 'custom-nav',
+                ease: 'power2.easeOut',
+                baseColor: '#1a1a2e',
+                pillColor: '#ffd700',
+                hoveredPillTextColor: '#ffd700',
+                pillTextColor: '#1a1a2e'
+            });
+
+            pillNav.render('#pill-nav-container');
+
+            // Initialize the custom cursor with gold theme
+            const cursor = new TargetCursor({
+                targetSelector: '.cursor-target',
+                spinDuration: 3,
+                hideDefaultCursor: true
+            });
+
+            // Add gold theme class for better integration
+            const cursorElement = document.querySelector('.target-cursor-wrapper');
+            if (cursorElement) {
+                cursorElement.classList.add('theme-gold');
+            }
+        });
     </script>
 </body>
 </html>

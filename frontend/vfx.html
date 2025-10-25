@@ -6,31 +6,19 @@
     <title>Devaansh K. | VFX Portfolio & Services</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/multipage.css">
+    <link rel="stylesheet" href="css/TargetCursor.css">
+    <link rel="stylesheet" href="css/PillNav.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/multipage.js"></script>
+    <script src="js/TargetCursor.js"></script>
+    <script src="js/PillNav.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">Devaansh K.</a>
-            </div>
-            <div class="nav-menu">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="vfx.html" class="nav-link">VFX</a>
-                <a href="technical.html" class="nav-link">Technical</a>
-            </div>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation Container -->
+    <div id="pill-nav-container"></div>
 
     <!-- Page Header -->
     <section class="page-header services-header">
@@ -63,9 +51,9 @@
             <p class="section-subtitle">Explore my creative journey through visual effects and digital artistry</p>
             
             <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="motion-graphics">Motion Graphics</button>
-                <button class="filter-btn" data-filter="3d-animation">3D Animation</button>
+                <button class="filter-btn active cursor-target" data-filter="all">All</button>
+                <button class="filter-btn cursor-target" data-filter="motion-graphics">Motion Graphics</button>
+                <button class="filter-btn cursor-target" data-filter="3d-animation">3D Animation</button>
             </div>
 
             <div class="portfolio-grid">
@@ -133,8 +121,8 @@
                 <h3>Ready to create something amazing?</h3>
                 <p>Let's discuss your project and bring your vision to life</p>
                 <div class="cta-buttons">
-                    <a href="#services" class="btn btn-primary">View Services</a>
-                    <a href="about.html#contact" class="btn btn-secondary">Get In Touch</a>
+                    <a href="#services" class="btn btn-primary cursor-target">View Services</a>
+                    <a href="about.html#contact" class="btn btn-secondary cursor-target">Get In Touch</a>
                 </div>
             </div>
         </div>
@@ -637,6 +625,45 @@
                 window.location.href = whatsappUrl;
             }
         }
+    </script>
+
+    <!-- Initialize Custom Cursor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize PillNav
+            const pillNav = new PillNav({
+                logo: 'assets/images/logo.svg',
+                logoAlt: 'Devaansh K.',
+                items: [
+                    { label: 'Home', href: 'index.html' },
+                    { label: 'About', href: 'about.html' },
+                    { label: 'VFX', href: 'vfx.html' },
+                    { label: 'Technical', href: 'technical.html' }
+                ],
+                activeHref: 'vfx.html',
+                className: 'custom-nav',
+                ease: 'power2.easeOut',
+                baseColor: '#1a1a2e',
+                pillColor: '#ffd700',
+                hoveredPillTextColor: '#ffd700',
+                pillTextColor: '#1a1a2e'
+            });
+
+            pillNav.render('#pill-nav-container');
+
+            // Initialize the custom cursor with gold theme
+            const cursor = new TargetCursor({
+                targetSelector: '.cursor-target',
+                spinDuration: 3,
+                hideDefaultCursor: true
+            });
+
+            // Add gold theme class for better integration
+            const cursorElement = document.querySelector('.target-cursor-wrapper');
+            if (cursorElement) {
+                cursorElement.classList.add('theme-gold');
+            }
+        });
     </script>
 </body>
 </html>
