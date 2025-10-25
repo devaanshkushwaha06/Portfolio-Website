@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Ether Demo - Devaansh K.</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/LiquidEther.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/LiquidEther.js"></script>
+    <style>
+        .demo-container {
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .demo-card {
+            background: rgba(26, 26, 46, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 40px;
+            max-width: 800px;
+            margin: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 
+                0 12px 48px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+        
+        .demo-title {
+            color: var(--primary-gold);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+        
+        .demo-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .control-btn {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
+            color: var(--dark-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .control-btn.active {
+            background: linear-gradient(135deg, var(--accent-gold), var(--secondary-gold));
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+        
+        .demo-info {
+            color: var(--text-light);
+            line-height: 1.6;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+        
+        .feature-list li {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-gold);
+            color: var(--text-light);
+        }
+        
+        .feature-list li i {
+            color: var(--primary-gold);
+            margin-right: 10px;
+        }
+        
+        .performance-indicator {
+            background: rgba(0, 210, 211, 0.2);
+            border: 1px solid rgba(0, 210, 211, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            color: var(--cyan-accent);
+        }
+    </style>
+</head>
+<body data-liquid-ether data-liquid-ether-theme="gold" data-liquid-ether-intensity="high">
+    <div class="demo-container">
+        <div class="demo-card">
+            <h1 class="demo-title">🌊 Liquid Ether Effects</h1>
+            
+            <p class="demo-info">
+                Experience the next generation of fluid background animations. 
+                Move your mouse around to see the interactive effects!
+            </p>
+            
+            <div class="demo-controls">
+                <button class="control-btn active" onclick="setTheme('gold')">Gold Theme</button>
+                <button class="control-btn" onclick="setTheme('cyan')">Cyan Theme</button>
+                <button class="control-btn" onclick="setTheme('purple')">Purple Theme</button>
+            </div>
+            
+            <div class="demo-controls">
+                <button class="control-btn" onclick="setIntensity('low')">Low Intensity</button>
+                <button class="control-btn active" onclick="setIntensity('medium')">Medium Intensity</button>
+                <button class="control-btn" onclick="setIntensity('high')">High Intensity</button>
+            </div>
+            
+            <ul class="feature-list">
+                <li><i class="fas fa-magic"></i> Morphing liquid blobs with dynamic movement</li>
+                <li><i class="fas fa-stars"></i> Interactive particle systems that respond to mouse</li>
+                <li><i class="fas fa-palette"></i> Multiple color themes (Gold, Cyan, Purple)</li>
+                <li><i class="fas fa-tachometer-alt"></i> Performance-optimized animations</li>
+                <li><i class="fas fa-mobile-alt"></i> Touch-friendly interactions</li>
+                <li><i class="fas fa-eye"></i> Accessibility features (reduced motion support)</li>
+            </ul>
+            
+            <div class="performance-indicator">
+                <i class="fas fa-chart-line"></i>
+                Performance Level: <span id="perf-level">Detecting...</span>
+            </div>
+            
+            <div class="demo-controls">
+                <button class="control-btn" onclick="toggleInteractivity()">Toggle Interactivity</button>
+                <button class="control-btn" onclick="window.location.href='index.html'">
+                    <i class="fas fa-home"></i> Back to Portfolio
+                </button>
+            </div>
+        </div>
+        
+        <div class="demo-card">
+            <h2 style="color: var(--primary-gold); text-align: center; margin-bottom: 20px;">
+                <i class="fas fa-code"></i> Integration Guide
+            </h2>
+            
+            <pre style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; color: var(--text-light); overflow-x: auto;">
+<code>// Initialize Liquid Ether
+const liquidEther = new LiquidEther({
+    container: 'body',
+    colorTheme: 'gold',
+    intensity: 'medium',
+    interactivity: true,
+    particleCount: 60
+});
+
+// Change themes dynamically
+liquidEther.setTheme('cyan');
+liquidEther.setIntensity('high');</code>
+            </pre>
+            
+            <p class="demo-info">
+                Simple HTML data attributes for auto-initialization:
+            </p>
+            
+            <pre style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; color: var(--text-light); overflow-x: auto;">
+<code>&lt;body data-liquid-ether 
+      data-liquid-ether-theme="gold" 
+      data-liquid-ether-intensity="medium"&gt;</code>
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        // Demo controls
+        function setTheme(theme) {
+            if (window.liquidEther) {
+                window.liquidEther.setTheme(theme);
+            }
+            
+            // Update active button
+            document.querySelectorAll('.demo-controls button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function setIntensity(intensity) {
+            if (window.liquidEther) {
+                window.liquidEther.setIntensity(intensity);
+            }
+            
+            // Update active button in intensity group
+            const intensityButtons = document.querySelectorAll('.demo-controls:nth-of-type(2) button');
+            intensityButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function toggleInteractivity() {
+            if (window.liquidEther) {
+                window.liquidEther.toggleInteractivity();
+                event.target.textContent = window.liquidEther.options.interactivity ? 
+                    'Disable Interactivity' : 'Enable Interactivity';
+            }
+        }
+        
+        // Update performance indicator
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.liquidEther) {
+                    const perfLevel = window.liquidEther.getPerformanceLevel();
+                    document.getElementById('perf-level').textContent = 
+                        perfLevel.charAt(0).toUpperCase() + perfLevel.slice(1);
+                }
+            }, 1000);
+        });
+        
+        // Add some visual feedback for interactions
+        document.addEventListener('mousemove', function(e) {
+            const cards = document.querySelectorAll('.demo-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                
+                if (x >= 0 && x <= 1 && y >= 0 && y <= 1) {
+                    const moveX = (x - 0.5) * 10;
+                    const moveY = (y - 0.5) * 10;
+                    card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                } else {
+                    card.style.transform = 'translate(0, 0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

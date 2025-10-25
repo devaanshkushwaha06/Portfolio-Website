@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/multipage.css">
     <link rel="stylesheet" href="css/TargetCursor.css">
     <link rel="stylesheet" href="css/PillNav.css">
+    <link rel="stylesheet" href="css/LiquidEther.css">
+    <link rel="stylesheet" href="css/LiquidEtherEnhancements.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -15,50 +17,15 @@
     <script src="js/multipage.js"></script>
     <script src="js/TargetCursor.js"></script>
     <script src="js/PillNav.js"></script>
+    <script src="js/LiquidEther.js"></script>
+    <script src="js/LiquidEtherEnhancements.js"></script>
 </head>
-<body>
+<<body data-liquid-ether data-liquid-ether-theme="gold" data-liquid-ether-intensity="medium">
     <!-- Navigation Container -->
     <div id="pill-nav-container"></div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        
-        <!-- Enhanced Background Elements -->
-        <div class="orbit-ring orbit-ring-1"></div>
-        <div class="orbit-ring orbit-ring-2"></div>
-        <div class="orbit-ring orbit-ring-3"></div>
-        
-        <!-- Energy Orbs -->
-        <div class="energy-orb orb-1"></div>
-        <div class="energy-orb orb-2"></div>
-        <div class="energy-orb orb-3"></div>
-        <div class="energy-orb orb-4"></div>
-        
-        <!-- Subtle Pulse Waves -->
-        <div class="pulse-wave wave-1"></div>
-        <div class="pulse-wave wave-2"></div>
-        
-        <div class="floating-particle"></div>
-        <div class="floating-particle"></div>
-        <div class="floating-particle"></div>
-        <div class="floating-particle"></div>
-        <div class="floating-particle"></div>
-        <div class="floating-particle"></div>
-        <div class="floating-particle"></div>
-        <div class="floating-particle"></div>
-        
-        <!-- Cosmic Dust -->
-        <div class="cosmic-dust" style="left: 5%; animation-delay: 0s;"></div>
-        <div class="cosmic-dust" style="left: 15%; animation-delay: 1s;"></div>
-        <div class="cosmic-dust" style="left: 25%; animation-delay: 2s;"></div>
-        <div class="cosmic-dust" style="left: 35%; animation-delay: 3s;"></div>
-        <div class="cosmic-dust" style="left: 45%; animation-delay: 4s;"></div>
-        <div class="cosmic-dust" style="left: 55%; animation-delay: 5s;"></div>
-        <div class="cosmic-dust" style="left: 65%; animation-delay: 1.5s;"></div>
-        <div class="cosmic-dust" style="left: 75%; animation-delay: 2.5s;"></div>
-        <div class="cosmic-dust" style="left: 85%; animation-delay: 3.5s;"></div>
-        <div class="cosmic-dust" style="left: 95%; animation-delay: 4.5s;"></div>
-        
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Hi, I'm <span class="highlight typewriter" id="typewriter-name">Devaansh Kushwaha</span></h1>
@@ -155,6 +122,16 @@
     <!-- Initialize Custom Cursor -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Liquid Ether Background
+            window.liquidEther = new LiquidEther({
+                container: 'body',
+                colorTheme: 'gold',
+                intensity: 'medium',
+                interactivity: true,
+                particleCount: 60,
+                performance: 'auto'
+            });
+
             // Initialize PillNav
             const pillNav = new PillNav({
                 logo: 'assets/images/logo.svg',
@@ -188,6 +165,22 @@
             if (cursorElement) {
                 cursorElement.classList.add('theme-gold');
             }
+
+            // Enhanced interaction with liquid ether
+            const heroButtons = document.querySelectorAll('.hero-buttons .btn');
+            heroButtons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    if (window.liquidEther) {
+                        window.liquidEther.setIntensity('high');
+                    }
+                });
+                
+                button.addEventListener('mouseleave', () => {
+                    if (window.liquidEther) {
+                        window.liquidEther.setIntensity('medium');
+                    }
+                });
+            });
         });
     </script>
 </body>

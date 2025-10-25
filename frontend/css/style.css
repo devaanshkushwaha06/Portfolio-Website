@@ -643,9 +643,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: 
-        radial-gradient(ellipse at top, #1e3c72 0%, #2a5298 20%, #1a237e 40%, #0d1421 70%, #000000 100%),
-        linear-gradient(135deg, #0f0f23 0%, #1a1a2e 30%, #16213e 60%, #0f3460 100%);
+    background: transparent; /* Let liquid ether handle the background */
     color: white;
     position: relative;
     overflow: hidden;
@@ -657,19 +655,26 @@ html {
     transform: none !important;
 }
 
-/* Perfect Space Sky - No Blinking */
+/* Enhanced glass morphism overlay for better text readability */
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><defs><radialGradient id="star1"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.9"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient><radialGradient id="star2"><stop offset="0%" stop-color="%23ffd700" stop-opacity="0.6"/><stop offset="100%" stop-color="%23ffd700" stop-opacity="0"/></radialGradient></defs><circle cx="100" cy="80" r="0.8" fill="url(%23star1)"/><circle cx="250" cy="50" r="0.5" fill="url(%23star2)"/><circle cx="450" cy="120" r="0.7" fill="url(%23star1)"/><circle cx="650" cy="90" r="0.4" fill="url(%23star2)"/><circle cx="150" cy="200" r="0.6" fill="url(%23star1)"/><circle cx="380" cy="180" r="0.5" fill="url(%23star2)"/><circle cx="580" cy="220" r="0.8" fill="url(%23star1)"/><circle cx="80" cy="300" r="0.4" fill="url(%23star2)"/><circle cx="320" cy="280" r="0.6" fill="url(%23star1)"/><circle cx="520" cy="320" r="0.5" fill="url(%23star2)"/><circle cx="720" cy="280" r="0.7" fill="url(%23star1)"/><circle cx="180" cy="400" r="0.4" fill="url(%23star2)"/><circle cx="420" cy="420" r="0.6" fill="url(%23star1)"/><circle cx="620" cy="380" r="0.5" fill="url(%23star2)"/><circle cx="50" cy="500" r="0.8" fill="url(%23star1)"/><circle cx="300" cy="480" r="0.4" fill="url(%23star2)"/><circle cx="500" cy="520" r="0.6" fill="url(%23star1)"/><circle cx="700" cy="460" r="0.5" fill="url(%23star2)"/></svg>') repeat;
-    opacity: 0.4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 80%;
+    background: rgba(26, 26, 46, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    z-index: -1;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Cinematic Animated Energy Waves */
+/* Subtle golden glow overlay */
 .hero::after {
     content: '';
     position: absolute;
@@ -678,34 +683,20 @@ html {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(600px 400px at 20% 30%, rgba(255, 215, 0, 0.08), transparent),
-        radial-gradient(500px 500px at 80% 20%, rgba(255, 140, 0, 0.06), transparent),
-        radial-gradient(700px 300px at 60% 70%, rgba(255, 215, 0, 0.05), transparent),
-        radial-gradient(400px 600px at 30% 80%, rgba(218, 165, 32, 0.07), transparent);
-    opacity: 0.9;
-    animation: cinematicWaves 12s ease-in-out infinite;
+        radial-gradient(600px 400px at 50% 50%, rgba(255, 215, 0, 0.05), transparent);
+    opacity: 0.8;
+    animation: subtleGlow 8s ease-in-out infinite;
+    z-index: -1;
 }
 
-@keyframes cinematicWaves {
-    0% { 
-        transform: translateY(0) scale(1);
-        opacity: 0.7;
-    }
-    25% { 
-        transform: translateY(-10px) scale(1.02);
-        opacity: 0.9;
+@keyframes subtleGlow {
+    0%, 100% { 
+        opacity: 0.6;
+        transform: scale(1);
     }
     50% { 
-        transform: translateY(5px) scale(0.98);
-        opacity: 0.8;
-    }
-    75% { 
-        transform: translateY(-5px) scale(1.01);
-        opacity: 0.95;
-    }
-    100% { 
-        transform: translateY(0) scale(1);
-        opacity: 0.7;
+        opacity: 0.9;
+        transform: scale(1.02);
     }
 }
 
@@ -986,9 +977,26 @@ html {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 40px;
     position: relative;
     z-index: 10;
+    /* Enhanced glass morphism effect */
+    background: rgba(26, 26, 46, 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.hero-content:hover {
+    background: rgba(26, 26, 46, 0.25);
+    border-color: rgba(255, 215, 0, 0.25);
+    box-shadow: 
+        0 12px 48px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* Removed the glowing background effect behind text */
@@ -998,7 +1006,8 @@ html {
     font-weight: 700;
     margin-bottom: 0.6rem;
     line-height: 1.05;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6);
+    color: var(--text-light);
 }
 
 .hero-text h2 {
@@ -1007,14 +1016,16 @@ html {
     margin-bottom: 0.6rem;
     opacity: 0.9;
     color: var(--text-gold);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .hero-text p {
     font-size: 0.9rem;
     margin-bottom: 1.2rem;
-    opacity: 0.8;
+    opacity: 0.9;
     color: var(--text-light);
     line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .highlight {
