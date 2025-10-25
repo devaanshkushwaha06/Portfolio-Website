@@ -92,7 +92,7 @@
   }
 
   .liquid-orb {
-    @apply absolute w-15 h-15 rounded-full opacity-60;
+    @apply absolute w-16 h-16 rounded-full opacity-60;
     background: radial-gradient(circle, #ffd700 0%, transparent 70%);
     filter: blur(8px);
     animation: orb-pulse 6s ease-in-out infinite;

@@ -13,7 +13,7 @@ const Hero = () => {
           {/* Text Content */}
           <motion.div
             className="text-center lg:text-left"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 1, x: 0 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
@@ -22,6 +22,7 @@ const Hero = () => {
               delay={100}
               animateBy="words"
               direction="top"
+              threshold={0}
               onAnimationComplete={handleAnimationComplete}
               className="text-4xl lg:text-6xl font-bold mb-6 text-text-light text-shadow-lg"
             />
@@ -31,6 +32,7 @@ const Hero = () => {
               delay={150}
               animateBy="words"
               direction="top"
+              threshold={0}
               className="text-xl lg:text-2xl text-text-gold mb-6 text-shadow"
             />
             
@@ -39,15 +41,27 @@ const Hero = () => {
               delay={80}
               animateBy="words"
               direction="top"
-              className="text-lg text-text-light opacity-90 mb-8 text-shadow leading-relaxed"
+              threshold={0}
+              className="text-lg text-text-light opacity-90 mb-6 text-shadow leading-relaxed"
+            />
+
+            {/* Your requested BlurText example */}
+            <BlurText
+              text="Isn't this so cool?!"
+              delay={150}
+              animateBy="words"
+              direction="top"
+              threshold={0}
+              onAnimationComplete={handleAnimationComplete}
+              className="text-2xl mb-8 text-primary-gold text-glow font-semibold"
             />
 
             {/* Availability Status */}
             <motion.div
               className="glass-card inline-block p-4 mb-8"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.5 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
@@ -64,9 +78,9 @@ const Hero = () => {
             {/* Action Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 2 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
             >
               <motion.button
                 className="btn-primary"
@@ -103,9 +117,9 @@ const Hero = () => {
           {/* Profile Image */}
           <motion.div
             className="flex justify-center lg:justify-end"
-            initial={{ opacity: 0, x: 50, scale: 0.8 }}
+            initial={{ opacity: 1, x: 0, scale: 1 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative">
               <motion.div
@@ -153,9 +167,9 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 1, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 2.5 }}
+        transition={{ duration: 0.6, delay: 1 }}
       >
         <motion.div
           className="flex flex-col items-center text-text-light"

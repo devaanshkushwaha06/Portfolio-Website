@@ -30,6 +30,13 @@ const BlurText = ({
   const ref = useRef(null);
 
   useEffect(() => {
+    // For homepage, start animation immediately
+    // For other sections, use intersection observer
+    if (threshold === 0) {
+      setInView(true);
+      return;
+    }
+    
     if (!ref.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {

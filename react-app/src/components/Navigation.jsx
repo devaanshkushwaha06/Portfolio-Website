@@ -32,7 +32,7 @@ const Navigation = ({ activeSection = 'home' }) => {
       className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
         isScrolled ? 'backdrop-blur-md' : ''
       }`}
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: 0, opacity: 1 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
