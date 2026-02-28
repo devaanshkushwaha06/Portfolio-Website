@@ -1,187 +1,261 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devaansh K. | Creative Technologist & Designer - Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/multipage.css">
-    <link rel="stylesheet" href="css/TargetCursor.css">
-    <link rel="stylesheet" href="css/PillNav.css">
-    <link rel="stylesheet" href="css/LiquidEther.css">
-    <link rel="stylesheet" href="css/LiquidEtherEnhancements.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/multipage.js"></script>
-    <script src="js/TargetCursor.js"></script>
-    <script src="js/PillNav.js"></script>
-    <script src="js/LiquidEther.js"></script>
-    <script src="js/LiquidEtherEnhancements.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Devaansh Kushwaha - Portfolio</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#06f957",
+          "primary-dark": "#04c946",
+          "background-light": "#f5f8f6",
+          "background-dark": "#050505",
+          "surface-dark": "#0f1410",
+          "border-dark": "#1f2923",
+        },
+        fontFamily: {
+          "display": ["Space Grotesk", "sans-serif"],
+          "mono": ["Courier New", "monospace"],
+        },
+        animation: {
+          'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          'blink': 'blink 1s step-end infinite',
+        },
+        keyframes: {
+          blink: {
+            '0%, 100%': { opacity: '1' },
+            '50%': { opacity: '0' },
+          }
+        }
+      },
+    },
+  }
+</script>
+<style>
+  .scanline-overlay {
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 50;
+  }
+  .glitch-text { position: relative; }
+  .glitch-text::before, .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #050505;
+  }
+  .glitch-text::before {
+    left: 2px;
+    text-shadow: -1px 0 #06f957;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  }
+  .glitch-text::after {
+    left: -2px;
+    text-shadow: -1px 0 #ff00c1;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+  }
+  @keyframes glitch-anim {
+    0% { clip: rect(10px, 9999px, 31px, 0); }
+    20% { clip: rect(65px, 9999px, 89px, 0); }
+    40% { clip: rect(19px, 9999px, 5px, 0); }
+    60% { clip: rect(83px, 9999px, 95px, 0); }
+    80% { clip: rect(4px, 9999px, 66px, 0); }
+    100% { clip: rect(35px, 9999px, 12px, 0); }
+  }
+  @keyframes glitch-anim-2 {
+    0% { clip: rect(66px, 9999px, 98px, 0); }
+    20% { clip: rect(8px, 9999px, 13px, 0); }
+    40% { clip: rect(45px, 9999px, 86px, 0); }
+    60% { clip: rect(27px, 9999px, 34px, 0); }
+    80% { clip: rect(93px, 9999px, 7px, 0); }
+    100% { clip: rect(15px, 9999px, 55px, 0); }
+  }
+</style>
 </head>
-<<body data-liquid-ether data-liquid-ether-theme="gold" data-liquid-ether-intensity="medium">
-    <!-- Navigation Container -->
-    <div id="pill-nav-container"></div>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Hi, I'm <span class="highlight typewriter" id="typewriter-name">Devaansh Kushwaha</span></h1>
-                <h2>VFX Head & Emerging Creative Professional</h2>
-                <p>B.Tech Student at UPES Dehradun | VFX Head at UPES ACM | Ready to bring your vision to life with fresh creativity and professional standards</p>
-                
-                <!-- Availability Status -->
-                <div class="availability-status">
-                    <div class="status-indicator online">
-                        <div class="status-dot"></div>
-                        <span class="status-text">Available for projects</span>
-                    </div>
-                    <div class="response-time">
-                        <i class="fas fa-clock"></i>
-                        <span>Under 24 hours</span>
-                    </div>
-                </div>
-                
-                <div class="hero-buttons">
-                    <a href="about.html" class="btn btn-primary cursor-target">Learn About Me</a>
-                    <a href="vfx.html" class="btn btn-secondary cursor-target">View My VFX Work</a>
-                    <a href="https://wa.me/+916265954576?text=Hi%20Devaansh!%20I%27m%20interested%20in%20your%20VFX%20services.%20Can%20we%20discuss%20my%20project?" target="_blank" class="btn btn-whatsapp cursor-target">
-                        <i class="fab fa-whatsapp"></i> Quick Chat
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-avatar">
-                    <img src="assets/images/profile.jpg" alt="Devaansh Kushwaha" class="profile-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fas fa-user-circle" style="display: none;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow">
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Modal -->
-    <div id="video-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close" onclick="closeModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <video id="modal-video" controls>
-                    <source src="" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-placeholder">
-                    <i class="fas fa-video"></i>
-                    <p>Video Coming Soon</p>
-                    <small>This video is being prepared and will be available shortly.</small>
-                </div>
-            </div>
-        </div>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark">
+<!-- Scanline Overlay -->
+<div class="fixed inset-0 scanline-overlay"></div>
+<!-- Navigation -->
+<header class="sticky top-0 z-40 w-full border-b border-border-dark bg-background-dark/90 backdrop-blur-sm">
+<div class="container mx-auto px-4 h-16 flex items-center justify-between">
+  <div class="flex items-center gap-3 group">
+    <span class="material-symbols-outlined text-primary animate-pulse-slow">terminal</span>
+    <div class="flex flex-col">
+      <span class="text-xs text-primary/70 tracking-widest font-mono">SYSTEM_ID: DK_V1.0</span>
+      <span class="text-sm font-bold text-white tracking-wide group-hover:text-primary transition-colors duration-300">ROOT_ACCESS</span>
     </div>
-
-    <!-- Notification Container -->
-    <div id="notification-container"></div>
-
-    <script>
-        // Initialize home page functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            setupModal();
-            setupSmoothScrolling();
-            
-            // Typewriter animation
-            const typewriterElement = document.getElementById('typewriter-name');
-            const text = 'Devaansh Kushwaha';
-            typewriterElement.textContent = '';
-            
-            function typeWriter(text, element, speed = 100) {
-                let i = 0;
-                function type() {
-                    if (i < text.length) {
-                        element.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    }
-                }
-                type();
-            }
-            
-            // Start typewriter animation after a small delay
-            setTimeout(() => {
-                typeWriter(text, typewriterElement, 120);
-            }, 1000);
-        });
-    </script>
-
-    <!-- Initialize Custom Cursor -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Liquid Ether Background
-            window.liquidEther = new LiquidEther({
-                container: 'body',
-                colorTheme: 'gold',
-                intensity: 'medium',
-                interactivity: true,
-                particleCount: 60,
-                performance: 'auto'
-            });
-
-            // Initialize PillNav
-            const pillNav = new PillNav({
-                logo: 'assets/images/logo.svg',
-                logoAlt: 'Devaansh K.',
-                items: [
-                    { label: 'Home', href: 'index.html' },
-                    { label: 'About', href: 'about.html' },
-                    { label: 'VFX', href: 'vfx.html' },
-                    { label: 'Technical', href: 'technical.html' }
-                ],
-                activeHref: 'index.html',
-                className: 'custom-nav',
-                ease: 'power2.easeOut',
-                baseColor: '#1a1a2e',
-                pillColor: '#ffd700',
-                hoveredPillTextColor: '#ffd700',
-                pillTextColor: '#1a1a2e'
-            });
-
-            pillNav.render('#pill-nav-container');
-
-            // Initialize the custom cursor with gold theme
-            const cursor = new TargetCursor({
-                targetSelector: '.cursor-target',
-                spinDuration: 3,
-                hideDefaultCursor: true
-            });
-
-            // Add gold theme class for better integration
-            const cursorElement = document.querySelector('.target-cursor-wrapper');
-            if (cursorElement) {
-                cursorElement.classList.add('theme-gold');
-            }
-
-            // Enhanced interaction with liquid ether
-            const heroButtons = document.querySelectorAll('.hero-buttons .btn');
-            heroButtons.forEach(button => {
-                button.addEventListener('mouseenter', () => {
-                    if (window.liquidEther) {
-                        window.liquidEther.setIntensity('high');
-                    }
-                });
-                
-                button.addEventListener('mouseleave', () => {
-                    if (window.liquidEther) {
-                        window.liquidEther.setIntensity('medium');
-                    }
-                });
-            });
-        });
-    </script>
+  </div>
+  <nav class="hidden md:flex items-center gap-1">
+    <a class="px-4 py-2 text-sm text-primary bg-primary/10 border border-primary/20 rounded font-bold flex items-center gap-2" href="index.html">
+      <span class="text-primary text-[10px] font-mono">00</span> HOME
+    </a>
+    <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20" href="technical.html">
+      <span class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">01</span> PROJECTS
+    </a>
+    <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20" href="about.html">
+      <span class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">02</span> ABOUT
+    </a>
+    <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20" href="certifications.html">
+      <span class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">03</span> CERTIFICATIONS
+    </a>
+    <a class="ml-4 px-4 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/40 text-primary text-sm font-bold rounded flex items-center gap-2 transition-all" href="about.html#contact">
+      <span class="material-symbols-outlined text-[18px]">lock_open</span> CONTACT
+    </a>
+  </nav>
+  <button class="md:hidden text-white hover:text-primary transition-colors" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden bg-background-dark border-t border-border-dark px-4 py-3 flex flex-col gap-2">
+  <a class="text-primary font-bold py-2 font-mono text-sm" href="index.html">00 // HOME</a>
+  <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="technical.html">01 // PROJECTS</a>
+  <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="about.html">02 // ABOUT</a>
+  <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="certifications.html">03 // CERTIFICATIONS</a>
+  <a class="text-primary border border-primary/40 py-2 px-3 rounded font-mono text-sm mt-1" href="about.html#contact">CONTACT</a>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col justify-center relative container mx-auto px-4 py-12 lg:py-20">
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: radial-gradient(#1f2923 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+  <!-- Left Column: Avatar -->
+  <div class="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-1">
+    <div class="relative group w-full max-w-[400px] aspect-square">
+      <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary z-20 transition-all duration-500 group-hover:w-16 group-hover:h-16"></div>
+      <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary z-20 transition-all duration-500 group-hover:w-16 group-hover:h-16"></div>
+      <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary z-20 transition-all duration-500 group-hover:w-16 group-hover:h-16"></div>
+      <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary z-20 transition-all duration-500 group-hover:w-16 group-hover:h-16"></div>
+      <div class="relative w-full h-full bg-surface-dark rounded border border-border-dark overflow-hidden">
+        <img alt="Devaansh Kushwaha" class="w-full h-full object-cover opacity-60 filter blur-md grayscale transition-all duration-700 group-hover:blur-sm scale-110 group-hover:scale-100" src="assets/images/profile.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuApKEOiXGdr0terDBn_ArMwNhr0YckDpBz_4JG_V24b3uKu6eUy4DtdRmHiw9ESoCW4H8-U7lMI0g9nQyxOFIYBKRyq66KcYBcBFZdAT9vF3Aj6ZvP9mmKA8dReLZ-IxByyEOpXGLxRXJkiq-tcRBAvp69HzxmArMfxH8z-4t2YYSIIqTchIfwxFJbG-16FZ5aht8o_VaZ6beiaygRag9VjULXQr1tAlgGbMNNCoOtl8xzb1dHL-RieDDVTPVVnAyaFQ9nHKHgc1w'"/>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-300 pointer-events-none"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-[2px] transition-all duration-300 group-hover:bg-black/20 group-hover:backdrop-blur-none">
+          <span class="material-symbols-outlined text-primary text-5xl mb-2">fingerprint</span>
+          <div class="px-3 py-1 bg-primary/10 border border-primary/50 text-primary text-xs font-mono font-bold tracking-widest rounded group-hover:hidden">
+            IDENTITY ENCRYPTED
+          </div>
+          <div class="hidden group-hover:flex flex-col items-center gap-2">
+            <span class="text-primary font-bold text-sm tracking-widest bg-black/80 px-2 py-1 rounded border border-primary">SUDO REVEAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Right Column: Content -->
+  <div class="lg:col-span-7 flex flex-col gap-6 lg:pl-10 order-2 lg:order-2">
+    <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-primary/60">
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> STATUS: ACTIVE</span>
+      <span class="hidden sm:inline text-slate-700">|</span>
+      <span>LOC: UPES_CAMPUS</span>
+      <span class="hidden sm:inline text-slate-700">|</span>
+      <span>MODE: AVAILABLE</span>
+    </div>
+    <div class="relative">
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9] glitch-text" data-text="DEVAANSH KUSHWAHA">
+        DEVAANSH <br/>KUSHWAHA
+      </h1>
+    </div>
+    <div class="bg-surface-dark border border-border-dark rounded p-5 font-mono text-sm md:text-base text-slate-300 shadow-xl relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-1 h-full bg-primary/50"></div>
+      <div class="space-y-2">
+        <p class="flex gap-2">
+          <span class="text-primary font-bold select-none">&gt;</span>
+          <span class="text-slate-400">ROLE:</span>
+          <span class="text-white">VFX HEAD &amp; CREATIVE TECHNOLOGIST @ UPES</span>
+        </p>
+        <p class="flex gap-2">
+          <span class="text-primary font-bold select-none">&gt;</span>
+          <span class="text-slate-400">SPECIALTY:</span>
+          <span class="text-primary">GAME_DEV // BLOCKCHAIN // VFX</span>
+        </p>
+        <p class="flex gap-2">
+          <span class="text-primary font-bold select-none">&gt;</span>
+          <span class="text-slate-400">CURRENT_MISSION:</span>
+          <span class="text-white">B.TECH @ UPES DEHRADUN</span>
+          <span class="w-2.5 h-5 bg-primary inline-block animate-blink ml-1 align-middle"></span>
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+      <a href="technical.html" class="relative overflow-hidden group bg-primary text-background-dark font-bold text-lg px-8 py-3 rounded hover:shadow-[0_0_20px_rgba(6,249,87,0.4)] transition-all duration-300 text-center">
+        <span class="relative z-10 flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined">folder_open</span> VIEW PROJECTS
+        </span>
+        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 skew-y-12 origin-bottom"></div>
+      </a>
+      <a href="about.html" class="px-8 py-3 rounded border border-border-dark text-white hover:bg-white/5 hover:border-primary/50 transition-all duration-300 font-mono text-sm flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-primary text-base">person</span> ABOUT_ME
+      </a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-border-dark mt-4">
+      <div class="flex flex-col">
+        <span class="text-2xl font-bold text-white">3+</span>
+        <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Projects</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-2xl font-bold text-white">2+</span>
+        <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Hackathons</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-2xl font-bold text-white">04</span>
+        <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Years UPES</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-2xl font-bold text-white">100%</span>
+        <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Commitment</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Expertise Cards -->
+<div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+  <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
+    <div class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
+      <span class="material-symbols-outlined text-primary group-hover:text-black">gamepad</span>
+    </div>
+    <h3 class="text-white text-lg font-bold mb-2">Game Development</h3>
+    <p class="text-sm text-slate-400 leading-relaxed">Unity engine, C#, 3D modeling &amp; game design in 48-hour jams.</p>
+  </div>
+  <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
+    <div class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
+      <span class="material-symbols-outlined text-primary group-hover:text-black">link</span>
+    </div>
+    <h3 class="text-white text-lg font-bold mb-2">Blockchain & Web3</h3>
+    <p class="text-sm text-slate-400 leading-relaxed">Smart contracts, DApps &amp; decentralized solutions. WCHL qualified.</p>
+  </div>
+  <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
+    <div class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
+      <span class="material-symbols-outlined text-primary group-hover:text-black">movie</span>
+    </div>
+    <h3 class="text-white text-lg font-bold mb-2">VFX & Motion Graphics</h3>
+    <p class="text-sm text-slate-400 leading-relaxed">Event coverage, cinematic editing &amp; visual effects for UPES ACM.</p>
+  </div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-border-dark bg-background-dark py-4 px-4 text-center md:text-left">
+<div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-mono">
+  <div>© 2025 DEVAANSH KUSHWAHA | ALL RIGHTS RESERVED</div>
+  <div class="flex gap-4 mt-2 md:mt-0">
+    <a href="https://github.com/devaanshkushwaha06" target="_blank" class="hover:text-primary transition-colors">GITHUB</a>
+    <span class="text-primary">STATUS: ONLINE</span>
+  </div>
+</div>
+</footer>
 </body>
 </html>

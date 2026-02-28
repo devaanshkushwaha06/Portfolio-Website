@@ -1,1009 +1,450 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devaansh K. | About & Contact</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/multipage.css">
-    <link rel="stylesheet" href="css/TargetCursor.css">
-    <link rel="stylesheet" href="css/PillNav.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/multipage.js"></script>
-    <script src="js/TargetCursor.js"></script>
-    <script src="js/PillNav.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Classified Personnel Dossier - Devaansh Kushwaha</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#06f957",
+          "primary-dim": "#04c243",
+          "background-light": "#f5f8f6",
+          "background-dark": "#0b120d",
+          "panel-dark": "#111813",
+          "border-dark": "#273a2d",
+        },
+        fontFamily: {
+          "display": ["Space Grotesk", "sans-serif"],
+          "mono": ["JetBrains Mono", "monospace"],
+        },
+        backgroundImage: {
+          'grid-pattern': "linear-gradient(to right, #1f2e23 1px, transparent 1px), linear-gradient(to bottom, #1f2e23 1px, transparent 1px)",
+        }
+      },
+    },
+  }
+</script>
+<style>
+  .glitch-effect:hover {
+    animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+  }
+  @keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+  }
+  .scanline {
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+    background-size: 100% 4px;
+  }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #0f2316; }
+  ::-webkit-scrollbar-thumb { background: #273a2d; }
+  ::-webkit-scrollbar-thumb:hover { background: #06f957; }
+  @keyframes shimmer { 0% { left: -50%; } 100% { left: 150%; } }
+  @keyframes loading { 0% { left: -33%; } 100% { left: 100%; } }
+</style>
 </head>
-<body>
-    <!-- Navigation Container -->
-    <div id="pill-nav-container"></div>
+<body class="bg-background-dark min-h-screen font-display text-slate-100 flex flex-col overflow-x-hidden selection:bg-primary selection:text-black">
 
-    <!-- Server Status Indicator -->
-    <div id="serverStatus" class="server-status">
-        <div class="status-dot"></div>
-        <span id="statusText">Checking connection...</span>
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-background-dark/95 backdrop-blur-sm border-b border-primary/20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex items-center justify-between h-14">
+    <div class="flex items-center gap-4">
+      <span class="material-symbols-outlined text-primary animate-pulse">encrypted</span>
+      <h1 class="font-mono text-sm tracking-widest text-primary font-bold">
+        <span class="hidden sm:inline">SYSTEM.ROOT // </span>DK-DOSSIER_V2.4
+      </h1>
     </div>
+    <div class="hidden md:flex items-center gap-2 px-3 py-1 bg-primary/10 rounded border border-primary/20">
+      <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+      <span class="text-xs font-mono text-primary tracking-wider">SECURE CONNECTION ESTABLISHED</span>
+    </div>
+    <nav class="flex gap-4 md:gap-6">
+      <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group" href="index.html">
+        <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span> HOME
+      </a>
+      <a class="text-xs font-mono text-primary font-bold flex items-center gap-1" href="about.html">
+        <span class="w-2 text-primary">&gt;</span> INTEL
+      </a>
+      <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group" href="technical.html">
+        <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span> PROJECTS
+      </a>
+      <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group" href="certifications.html">
+        <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span> CERTS
+      </a>
+    </nav>
+  </div>
+</div>
+<div class="h-[1px] w-full bg-primary/20 relative overflow-hidden">
+  <div class="absolute inset-y-0 left-0 bg-primary w-1/3" style="animation: loading 2s ease-in-out infinite;"></div>
+</div>
+</header>
 
-    <!-- Page Header -->
-    <section class="page-header about-header">
-        <div class="container">
-            <div class="header-content">
-                <h1>About Me & Contact</h1>
-                <p>Learn more about my journey and get in touch for your next project</p>
-            </div>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 relative">
+<div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-[0.03] pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+
+  <!-- Left Column: Main Dossier (8 cols) -->
+  <div class="lg:col-span-8 space-y-12">
+
+    <!-- Profile Header -->
+    <section class="relative border border-primary/20 bg-panel-dark/50 p-6 sm:p-8 rounded-lg overflow-hidden group" id="about">
+      <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
+        <span class="material-symbols-outlined text-9xl text-primary transform -rotate-12">fingerprint</span>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+        <div class="relative shrink-0">
+          <div class="w-32 h-32 sm:w-40 sm:h-40 relative rounded border border-primary/40 overflow-hidden">
+            <div class="absolute inset-0 bg-primary/20 z-10 mix-blend-overlay"></div>
+            <div class="absolute inset-0 scanline z-20 pointer-events-none opacity-50"></div>
+            <img alt="Devaansh Kushwaha" class="w-full h-full object-cover grayscale contrast-125" src="assets/images/profile.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCvQm_zTh4463pkhc0HZwey7UxeOlc5PvwpRwipDQCC75ptC3rVGx41687hPQIecXr88_Juhy51tOVkgvKqdqikVI70h8rOEN1bOJ2gMuS4m4fVYxmR2csLS8G1EjbsqoHkzmuwp6X67i29dfb96LmcIeFbH_6vpDC3GJEEHLPHGHIrhcCTFcKn5phXWOSSn_sZ_TJHRxvnBMsK-7icfl9iKn0wTu4ZHw3oshqEN7GQJ8AZfHKV18IgP38j2BlJsEvgzVuo0FKB-w'"/>
+            <div class="absolute top-1 left-1 w-2 h-2 border-t-2 border-l-2 border-primary"></div>
+            <div class="absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 border-primary"></div>
+            <div class="absolute bottom-1 left-1 w-2 h-2 border-b-2 border-l-2 border-primary"></div>
+            <div class="absolute bottom-1 right-1 w-2 h-2 border-b-2 border-r-2 border-primary"></div>
+          </div>
+          <div class="mt-2 text-center">
+            <span class="bg-primary text-black text-[10px] font-bold px-2 py-0.5 rounded tracking-widest font-mono">VERIFIED</span>
+          </div>
         </div>
+        <div class="flex-1 space-y-4">
+          <div>
+            <h2 class="text-3xl font-display font-bold text-white tracking-tight uppercase glitch-effect cursor-default">Subject: Devaansh Kushwaha</h2>
+            <p class="text-primary font-mono text-sm mt-1 tracking-wider opacity-80">VFX Head &amp; Creative Technologist | UPES Dehradun</p>
+          </div>
+          <div class="relative border-l-2 border-primary/30 pl-4 py-1">
+            <h3 class="text-xs font-mono text-slate-400 mb-2 uppercase tracking-widest">[PROFILE] MISSION SUMMARY</h3>
+            <p class="text-slate-300 font-mono text-sm leading-relaxed">
+              VFX Head at UPES ACM with expertise in visual effects, game development, and blockchain technology. Currently pursuing B.Tech at UPES Dehradun with hands-on experience leading creative teams and building technical projects across multiple domains.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <div class="about-intro">
-                        <div class="profile-section">
-                            <div class="profile-image">
-                                <img src="assets/images/profile.jpg" alt="Devaansh Kushwaha" class="profile-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                                <i class="fas fa-user-circle" style="display: none;"></i>
-                            </div>
-                            <div class="profile-info">
-                                <h3>Rising VFX Professional & Creative Leader</h3>
-                                <p class="intro-text">I'm Devaansh Kushwaha, currently pursuing my B.Tech degree at UPES Dehradun while serving as VFX Head at UPES ACM. I bring fresh creativity, modern techniques, and professional standards to every visual project, combining academic knowledge with hands-on leadership experience.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="about-details">
-                        <p>As VFX Head, I've managed video production for multiple university events, led creative teams, and developed a keen eye for visual storytelling. I'm passionate about helping clients bring their visions to life with high-quality, affordable VFX services that compete with industry standards while offering the innovation that comes with fresh talent.</p>
-                        
-                        <div class="experience-highlight">
-                            <h4><i class="fas fa-briefcase"></i> Professional Experience</h4>
-                            <div class="experience-item">
-                                <h5>VFX Head - UPES ACM Chapter</h5>
-                                <p>Leading visual effects and video production for university events</p>
-                                <span class="highlight-text">✨ Fresh perspective with professional execution</span>
-                            </div>
-                        </div>
-                        
-                        <div class="education">
-                            <h4><i class="fas fa-graduation-cap"></i> Education</h4>
-                            <div class="education-item">
-                                <h5>Bachelor of Technology (B.Tech)</h5>
-                                <p>University of Petroleum and Energy Studies (UPES), Dehradun</p>
-                                <span class="year">Current</span>
-                            </div>
-                        </div>
-
-                        <div class="position">
-                            <h4><i class="fas fa-briefcase"></i> Current Position</h4>
-                            <div class="position-item">
-                                <h5>VFX Head</h5>
-                                <p>UPES ACM (Association for Computing Machinery)</p>
-                                <span class="description">Leading VFX projects, game development initiatives, and mentoring fellow students in creative technologies and interactive media.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number" id="events-covered">7+</div>
-                        <div class="stat-label">Events</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="learning-hours">500+</div>
-                        <div class="stat-label">Learning Hours</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="availability-rate">98%</div>
-                        <div class="stat-label">Availability Rate</div>
-                    </div>
-                </div>
+    <!-- Core Competencies Grid -->
+    <section>
+      <div class="flex items-center justify-between mb-6 border-b border-primary/20 pb-2">
+        <h3 class="text-xl font-display font-bold text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">terminal</span> TACTICAL CAPABILITIES
+        </h3>
+        <span class="text-xs font-mono text-primary/50 border border-primary/30 px-2 py-1 rounded">Auth: LEVEL 3</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- VFX & Video -->
+        <div class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-purple-900/20 text-purple-400 rounded border border-purple-900/40">
+              <span class="material-symbols-outlined text-lg">movie</span>
             </div>
+            <h4 class="font-mono text-slate-200 font-bold">VFX &amp; MOTION</h4>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">After Effects</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Premiere Pro</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Blender</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">DaVinci Resolve</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Photoshop</span>
+          </div>
         </div>
+        <!-- Game Dev -->
+        <div class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-green-900/20 text-green-400 rounded border border-green-900/40">
+              <span class="material-symbols-outlined text-lg">gamepad</span>
+            </div>
+            <h4 class="font-mono text-slate-200 font-bold">GAME DEV OPS</h4>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Unity</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">C#</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">3D Modeling</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Game Design</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Level Design</span>
+          </div>
+        </div>
+        <!-- Programming -->
+        <div class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-yellow-900/20 text-yellow-500 rounded border border-yellow-900/40">
+              <span class="material-symbols-outlined text-lg">code</span>
+            </div>
+            <h4 class="font-mono text-slate-200 font-bold">PROGRAMMING &amp; WEB3</h4>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Python</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">JavaScript</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">HTML/CSS</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Node.js</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Blockchain</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Smart Contracts</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Web3</span>
+            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Git</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Expertise</h2>
-            <div class="skills-content">
-                <div class="skills-category">
-                    <h3><i class="fas fa-video"></i> Video & VFX</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span class="skill-name">Video Editing</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">After Effects</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Premiere Pro</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Blender</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">DaVinci Resolve</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Chronological Timeline -->
+    <section class="relative">
+      <div class="absolute -top-6 -right-6 text-slate-700/10 text-8xl font-black select-none pointer-events-none rotate-12">HISTORY</div>
+      <div class="flex items-center justify-between mb-8 border-b border-primary/20 pb-2 relative z-10">
+        <h3 class="text-xl font-display font-bold text-white flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">history</span> CHRONOLOGICAL INTEL
+        </h3>
+        <div class="transform -rotate-12 border-2 border-primary/30 px-2 py-0.5 rounded text-primary/50 text-xs font-black uppercase opacity-70">CONFIDENTIAL</div>
+      </div>
+      <div class="relative pl-6 sm:pl-10 space-y-12 before:content-[''] before:absolute before:left-[11px] sm:before:left-[19px] before:top-2 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-primary before:via-primary/30 before:to-transparent">
 
-                <div class="skills-category">
-                    <h3><i class="fas fa-code"></i> Programming</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span class="skill-name">C#</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">HTML/CSS</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Node.js</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skills-category">
-                    <h3><i class="fas fa-palette"></i> Design</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <span class="skill-name">Motion Graphics</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Adobe Photoshop</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Adobe Illustrator</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Color Grading</span>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Item 1: VFX Head -->
+        <div class="relative group">
+          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary shadow-[0_0_10px_#06f957]"></span>
+          </span>
+          <div class="bg-panel-dark/40 border-l-4 border-primary/20 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+              <h4 class="text-white font-bold font-display text-lg">VFX Head - UPES ACM</h4>
+              <span class="font-mono text-primary text-xs bg-primary/10 px-2 py-0.5 rounded">PRESENT // ACTIVE</span>
             </div>
+            <p class="text-slate-400 font-mono text-sm mb-2">University of Petroleum &amp; Energy Studies, Dehradun</p>
+            <p class="text-slate-300 text-sm leading-relaxed">Leading visual effects and video production for university events. Managing creative teams, event coverage, motion graphics, and 3D animation projects for UPES ACM chapter activities.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Why Choose Me Section -->
-    <section id="why-choose" class="why-choose">
-        <div class="container">
-            <h2 class="section-title">Why Choose Fresh Talent?</h2>
-            <p class="section-subtitle">Get premium quality work with the innovation and dedication that comes with emerging professionals</p>
-            
-            <div class="advantages-grid">
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <h3>Student-Friendly Pricing</h3>
-                    <p>Professional quality at competitive rates. Get premium VFX services without breaking the bank.</p>
-                </div>
-                
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Fresh Perspective</h3>
-                    <p>Latest techniques and modern trends. I bring current industry knowledge and innovative approaches.</p>
-                </div>
-                
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Dedicated Attention</h3>
-                    <p>Every project gets personal focus. Your success is my portfolio - I'm invested in making you look amazing.</p>
-                </div>
-                
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Quick Turnaround</h3>
-                    <p>Flexible schedule means faster delivery. University life allows me to prioritize your urgent projects.</p>
-                </div>
-                
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Continuous Learning</h3>
-                    <p>Always updating skills with latest tools and techniques. You get the benefit of cutting-edge knowledge.</p>
-                </div>
-                
-                <div class="advantage-card">
-                    <div class="advantage-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Collaborative Approach</h3>
-                    <p>Open communication and feedback. I work with you, not just for you, to achieve the perfect result.</p>
-                </div>
+        <!-- Item 2: WCHL 2025 -->
+        <div class="relative group">
+          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
+          </span>
+          <div class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+              <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">Skill Chain - WCHL 2025</h4>
+              <span class="font-mono text-slate-500 text-xs">2025</span>
             </div>
-            
-            <div class="credibility-banner">
-                <div class="credibility-item">
-                    <i class="fas fa-award"></i>
-                    <span>VFX Head at UPES ACM</span>
-                </div>
-                <div class="credibility-item">
-                    <i class="fas fa-users"></i>
-                    <span>Team Leadership Experience</span>
-                </div>
-                <div class="credibility-item">
-                    <i class="fas fa-trophy"></i>
-                    <span>Hackathon Participant</span>
-                </div>
-                <div class="credibility-item">
-                    <i class="fas fa-thumbs-up"></i>
-                    <span>100% Commitment Guarantee</span>
-                </div>
-            </div>
+            <p class="text-slate-400 font-mono text-sm mb-2">World Championship of Hackathons &amp; Labs — Regional Round Qualifier</p>
+            <p class="text-slate-300 text-sm leading-relaxed">Built an innovative blockchain-based solution for skills verification using smart contracts and Web3. Successfully qualified for regional round. Tech: Blockchain, Smart Contracts, Web3, DApps.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Reviews Section -->
-    <section id="reviews" class="reviews">
-        <div class="container">
-            <h2 class="section-title">What Clients Say</h2>
-            <p class="section-subtitle">Feedback from my recent projects and collaborations</p>
-            
-            <!-- Scrollable Reviews Display -->
-            <div class="reviews-container">
-                <div class="reviews-scroll" id="reviewsScroll">
-                    <!-- Reviews will be dynamically loaded here -->
-                    <div class="empty-reviews" id="emptyReviews">
-                        <div class="empty-message">
-                            <i class="fas fa-star"></i>
-                            <h3>No reviews yet</h3>
-                            <p>Be the first to share your experience!</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Scroll Navigation -->
-                <div class="scroll-navigation" id="scrollNavigation" style="display: none;">
-                    <button class="scroll-btn prev cursor-target" onclick="scrollReviews('left')" id="scrollLeft">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="scroll-btn next cursor-target" onclick="scrollReviews('right')" id="scrollRight">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+        <!-- Item 3: Global Game Jam 2025 -->
+        <div class="relative group">
+          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
+          </span>
+          <div class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+              <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">Bubble Labyrinth - Global Game Jam 2025</h4>
+              <span class="font-mono text-slate-500 text-xs">Jan 2025</span>
             </div>
-
-            <!-- Add Review Form -->
-            <div class="add-review-section">
-                <h3>Share Your Experience</h3>
-                <p>Worked with me? I'd love to hear your feedback!</p>
-                
-                <form id="reviewForm" class="review-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="reviewerName">Your Name *</label>
-                            <input type="text" id="reviewerName" name="reviewerName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="reviewerPosition">Your Position/Company</label>
-                            <input type="text" id="reviewerPosition" name="reviewerPosition" placeholder="e.g., Creative Director, ABC Studios">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reviewRating">Rating *</label>
-                        <div class="star-rating" id="starRating">
-                            <span class="star" data-rating="1">★</span>
-                            <span class="star" data-rating="2">★</span>
-                            <span class="star" data-rating="3">★</span>
-                            <span class="star" data-rating="4">★</span>
-                            <span class="star" data-rating="5">★</span>
-                        </div>
-                        <input type="hidden" id="reviewRating" name="reviewRating" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reviewText">Your Review *</label>
-                        <textarea id="reviewText" name="reviewText" rows="4" placeholder="Share your experience working with me..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="reviewerEmail">Your Email (for verification)</label>
-                        <input type="email" id="reviewerEmail" name="reviewerEmail" placeholder="your.email@example.com">
-                        <small>Email will not be displayed publicly</small>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary cursor-target">
-                        <i class="fas fa-paper-plane"></i>
-                        Submit Review
-                    </button>
-                </form>
-            </div>
+            <p class="text-slate-400 font-mono text-sm mb-2">Dehradun, Uttarakhand</p>
+            <p class="text-slate-300 text-sm leading-relaxed">Developed a 48-hour escape room puzzle game with psychological elements using Unity. Roles included 3D Art, Game Design, Game Development, and QA. Published on Global Game Jam platform.</p>
+          </div>
         </div>
+
+        <!-- Item 4: B.Tech UPES -->
+        <div class="relative group">
+          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
+          </span>
+          <div class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+              <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">B.Tech - UPES Dehradun</h4>
+              <span class="font-mono text-slate-500 text-xs">2021 - 2025</span>
+            </div>
+            <p class="text-slate-400 font-mono text-sm mb-2">University of Petroleum and Energy Studies</p>
+            <p class="text-slate-300 text-sm leading-relaxed">Pursuing Bachelor of Technology with a focus on technical skills, creative technology, and hands-on project work. Active in UPES ACM chapter, hackathons, and game jams throughout the program.</p>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Work Together</h2>
-            <p class="section-subtitle">Ready to bring your creative vision to life? Get in touch!</p>
-            
-            <div class="contact-content">
-                <div class="contact-form-section">
-                    <div class="contact-form-container">
-                        <h3>Send Me a Message</h3>
-                        <form id="contactForm" class="contact-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="name">Name *</label>
-                                    <input type="text" id="name" name="name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email *</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="phone">Phone (Optional)</label>
-                                    <input type="tel" id="phone" name="phone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="budget">Budget Range</label>
-                                    <select id="budget" name="budget">
-                                        <option value="">Select budget range</option>
-                                        <option value="under-1000">Under ₹1,000</option>
-                                        <option value="1000-5000">₹1,000 - ₹5,000</option>
-                                        <option value="5000-10000">₹5,000 - ₹10,000</option>
-                                        <option value="10000-plus">₹10,000+</option>
-                                        <option value="discuss">Let's discuss</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="service">Service Needed</label>
-                                <select id="service" name="service">
-                                    <option value="">Select service type</option>
-                                    <option value="special-offer">🌟 New Freelancer Special Offer</option>
-                                    <option value="video-editing">Video Editing</option>
-                                    <option value="motion-graphics">Motion Graphics</option>
-                                    <option value="vfx">Visual Effects</option>
-                                    <option value="3d-animation">3D Animation</option>
-                                    <option value="color-grading">Color Grading</option>
-                                    <option value="event-coverage">Event Coverage</option>
-                                    <option value="custom">Custom Project</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Project Details *</label>
-                                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, timeline, specific requirements, and any reference materials you have..." required></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="timeline">Timeline</label>
-                                <select id="timeline" name="timeline">
-                                    <option value="">Select timeline</option>
-                                    <option value="asap">ASAP (Rush - within 24-48 hours)</option>
-                                    <option value="1-week">Within 1 week</option>
-                                    <option value="2-weeks">Within 2 weeks</option>
-                                    <option value="1-month">Within 1 month</option>
-                                    <option value="flexible">Flexible</option>
-                                </select>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary submit-btn">
-                                <i class="fas fa-paper-plane"></i>
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                
-                <div class="contact-info-section">
-                    <div class="contact-grid">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <p><a href="mailto:devaanshkushwaha06@gmail.com">devaanshkushwaha06@gmail.com</a></p>
-                                <p><a href="mailto:devkush2006@outlook.com">Devkush2006@outlook.com</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Phone</h4>
-                                <p><a href="tel:+916265954576">+91 6265954576</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Location</h4>
-                                <p>UPES Dehradun, Uttarakhand, India</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>WhatsApp</h4>
-                                <p><a href="https://wa.me/+916265954576?text=Hi%20Devaansh!%20I%27m%20interested%20in%20your%20VFX%20services.%20Can%20we%20discuss%20my%20project?" target="_blank">Quick Chat</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="availability-info">
-                        <div class="availability-status horizontal">
-                            <div class="status-indicator online">
-                                <div class="status-dot"></div>
-                                <span class="status-text">Available for projects</span>
-                            </div>
-                            <div class="response-time">
-                                <i class="fas fa-clock"></i>
-                                <span>Responds within 24 hours</span>
-                            </div>
-                        </div>
-                        <div class="social-connect">
-                            <div class="social-links-horizontal">
-                                <a href="https://www.linkedin.com/in/devaansh-kushwaha-316340338" target="_blank" class="social-link-horizontal">
-                                    <i class="fab fa-linkedin"></i>
-                                    <span>LinkedIn</span>
-                                </a>
-                                <a href="https://github.com/devaanshkushwaha06" target="_blank" class="social-link-horizontal">
-                                    <i class="fab fa-github"></i>
-                                    <span>GitHub</span>
-                                </a>
-                                <a href="https://www.instagram.com/devaanshkushwaha06/" target="_blank" class="social-link-horizontal">
-                                    <i class="fab fa-instagram"></i>
-                                    <span>Instagram</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="border border-primary/20 bg-panel-dark/50 p-6 sm:p-8 rounded-lg" id="contact">
+      <div class="flex items-center gap-2 mb-6 border-b border-primary/20 pb-3">
+        <span class="material-symbols-outlined text-primary">contact_mail</span>
+        <h3 class="text-xl font-display font-bold text-white">ESTABLISH CONTACT</h3>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="https://wa.me/+916265954576" target="_blank" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+          <div class="w-10 h-10 bg-green-900/30 rounded flex items-center justify-center border border-green-900/50 group-hover:border-primary/40">
+            <span class="material-symbols-outlined text-green-400">chat</span>
+          </div>
+          <div>
+            <p class="text-white text-sm font-bold">WhatsApp</p>
+            <p class="text-slate-400 text-xs font-mono">+91 6265954576</p>
+          </div>
+        </a>
+        <a href="https://github.com/devaanshkushwaha06" target="_blank" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+          <div class="w-10 h-10 bg-slate-700/30 rounded flex items-center justify-center border border-slate-600/50 group-hover:border-primary/40">
+            <span class="material-symbols-outlined text-slate-300">hub</span>
+          </div>
+          <div>
+            <p class="text-white text-sm font-bold">GitHub</p>
+            <p class="text-slate-400 text-xs font-mono">devaanshkushwaha06</p>
+          </div>
+        </a>
+        <a href="https://globalgamejam.org/users/devaansh-kushwaha" target="_blank" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+          <div class="w-10 h-10 bg-blue-900/30 rounded flex items-center justify-center border border-blue-900/50 group-hover:border-primary/40">
+            <span class="material-symbols-outlined text-blue-400">gamepad</span>
+          </div>
+          <div>
+            <p class="text-white text-sm font-bold">Global Game Jam</p>
+            <p class="text-slate-400 text-xs font-mono">devaansh-kushwaha</p>
+          </div>
+        </a>
+        <a href="mailto:devaanshkushwaha@gmail.com" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+          <div class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center border border-primary/20 group-hover:border-primary/40">
+            <span class="material-symbols-outlined text-primary">alternate_email</span>
+          </div>
+          <div>
+            <p class="text-white text-sm font-bold">Email</p>
+            <p class="text-slate-400 text-xs font-mono">devaanshkushwaha@gmail.com</p>
+          </div>
+        </a>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; 2025 Devaansh Kushwaha. All rights reserved. | <a href="/admin" style="color: #ffd700; text-decoration: none;" title="Admin Access">🛡️</a></p>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/devaansh-kushwaha-316340338" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/devaanshkushwaha06" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/devaanshkushwaha06/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+  </div><!-- end left col -->
+
+  <!-- Right Column: Metadata Sidebar (4 cols) -->
+  <aside class="lg:col-span-4 space-y-6">
+
+    <!-- Status Panel -->
+    <div class="bg-panel-dark border border-primary/20 rounded-lg p-5 relative overflow-hidden">
+      <div class="absolute inset-x-0 top-0 h-1 bg-primary/50"></div>
+      <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Current Status</h3>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-3 h-3 rounded-full bg-primary animate-ping"></div>
+        <span class="text-primary font-bold font-display tracking-wider text-xl">OPERATIONAL</span>
+      </div>
+      <div class="space-y-3 font-mono text-sm">
+        <div class="flex justify-between border-b border-slate-800 pb-2">
+          <span class="text-slate-500">Role:</span>
+          <span class="text-white font-bold">VFX HEAD</span>
         </div>
-    </footer>
+        <div class="flex justify-between border-b border-slate-800 pb-2">
+          <span class="text-slate-500">Location:</span>
+          <span class="text-primary">UPES // DEHRADUN</span>
+        </div>
+        <div class="flex justify-between border-b border-slate-800 pb-2">
+          <span class="text-slate-500">Unit:</span>
+          <span class="text-white">UPES ACM</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Response:</span>
+          <span class="text-primary">&lt; 24 HOURS</span>
+        </div>
+      </div>
+    </div>
 
-    <!-- Notification Container -->
-    <div id="notification-container"></div>
+    <!-- Skills Stats -->
+    <div class="bg-panel-dark border border-slate-800 rounded-lg p-5">
+      <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Skill Proficiency</h3>
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between text-xs font-mono mb-1">
+            <span class="text-slate-300">After Effects</span>
+            <span class="text-primary">90%</span>
+          </div>
+          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-primary h-full w-[90%]"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-mono mb-1">
+            <span class="text-slate-300">Motion Graphics</span>
+            <span class="text-primary">95%</span>
+          </div>
+          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-primary h-full w-[95%]"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-mono mb-1">
+            <span class="text-slate-300">Python</span>
+            <span class="text-primary">85%</span>
+          </div>
+          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-primary h-full w-[85%]"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-mono mb-1">
+            <span class="text-slate-300">Unity / C#</span>
+            <span class="text-primary">75%</span>
+          </div>
+          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-primary h-full w-[75%]"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-mono mb-1">
+            <span class="text-slate-300">JavaScript</span>
+            <span class="text-primary">80%</span>
+          </div>
+          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-primary h-full w-[80%]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <script>
-        // Initialize page functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            setupContactForm();
-            setupScrollAnimations();
-        });
+    <!-- Quick Stats -->
+    <div class="bg-panel-dark border border-slate-800 rounded-lg p-5">
+      <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Operational Stats</h3>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-black/30 rounded p-3 border border-slate-800">
+          <p class="text-2xl font-bold text-white">7+</p>
+          <p class="text-xs text-primary font-mono">Events Covered</p>
+        </div>
+        <div class="bg-black/30 rounded p-3 border border-slate-800">
+          <p class="text-2xl font-bold text-white">2+</p>
+          <p class="text-xs text-primary font-mono">Hackathons</p>
+        </div>
+        <div class="bg-black/30 rounded p-3 border border-slate-800">
+          <p class="text-2xl font-bold text-white">500+</p>
+          <p class="text-xs text-primary font-mono">Learning Hrs</p>
+        </div>
+        <div class="bg-black/30 rounded p-3 border border-slate-800">
+          <p class="text-2xl font-bold text-white">100%</p>
+          <p class="text-xs text-primary font-mono">Commitment</p>
+        </div>
+      </div>
+    </div>
 
-        // Contact form handling
-        function setupContactForm() {
-            const form = document.getElementById('contactForm');
-            if (form) {
-                form.addEventListener('submit', handleContactFormSubmission);
-            }
-        }
+    <!-- Download Resume -->
+    <a href="#contact" class="w-full group relative overflow-hidden bg-primary/10 hover:bg-primary/20 border border-primary text-primary font-mono text-sm py-3 px-4 rounded transition-all flex items-center justify-center gap-2">
+      <span class="material-symbols-outlined text-lg">download</span>
+      <span class="font-bold tracking-wider">DOWNLOAD_RESUME</span>
+    </a>
 
-        async function handleContactFormSubmission(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                const formData = new FormData(e.target);
-                const data = Object.fromEntries(formData);
-                
-                // Determine the API URL
-                const baseUrl = window.location.protocol === 'file:' ? 'http://localhost:3000' : '';
-                const apiUrl = `${baseUrl}/api/contact`;
-                
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                if (response.ok) {
-                    showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-                    e.target.reset();
-                } else {
-                    throw new Error('Failed to send message');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                let errorMessage = 'Failed to send message. ';
-                
-                if (error.message.includes('fetch')) {
-                    errorMessage += 'Server connection failed. Please make sure the server is running on http://localhost:3000';
-                } else {
-                    errorMessage += 'Please try again or contact me directly.';
-                }
-                
-                showNotification(errorMessage, 'error');
-            } finally {
-                // Reset button state
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        }
+  </aside>
 
-        // Review functionality
-        function scrollReviews(direction) {
-            const reviewsScroll = document.getElementById('reviewsScroll');
-            const scrollAmount = 370; // width of review card + gap
-            
-            if (direction === 'left') {
-                reviewsScroll.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            } else {
-                reviewsScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            }
-        }
+</div>
+</main>
 
-        // Star rating functionality
-        function initializeStarRating() {
-            const stars = document.querySelectorAll('.star-rating .star');
-            const ratingInput = document.getElementById('reviewRating');
-            let currentRating = 0;
+<!-- Footer -->
+<footer class="mt-12 border-t border-primary/10 bg-background-dark py-6">
+<div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-slate-600">
+  <p>CLASSIFIED MATERIAL // EYES ONLY</p>
+  <p class="mt-2 md:mt-0">© 2025 DEVAANSH KUSHWAHA. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
 
-            stars.forEach(star => {
-                star.addEventListener('mouseover', function() {
-                    const rating = parseInt(this.dataset.rating);
-                    highlightStars(rating);
-                });
-
-                star.addEventListener('mouseout', function() {
-                    highlightStars(currentRating);
-                });
-
-                star.addEventListener('click', function() {
-                    currentRating = parseInt(this.dataset.rating);
-                    ratingInput.value = currentRating;
-                    highlightStars(currentRating);
-                });
-            });
-
-            function highlightStars(rating) {
-                stars.forEach((star, index) => {
-                    if (index < rating) {
-                        star.classList.add('active');
-                    } else {
-                        star.classList.remove('active');
-                    }
-                });
-            }
-        }
-
-        // Handle review form submission
-        async function handleReviewSubmission(e) {
-            e.preventDefault();
-            
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-            submitBtn.disabled = true;
-            
-            try {
-                const formData = new FormData(e.target);
-                const data = Object.fromEntries(formData);
-                
-                // Validate rating
-                if (!data.reviewRating) {
-                    throw new Error('Please select a star rating');
-                }
-                
-                // Determine the API URL
-                const isLocalFile = window.location.protocol === 'file:';
-                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-                
-                let baseUrl = '';
-                if (isLocalFile) {
-                    baseUrl = 'http://localhost:3000';
-                } else if (isLocalhost) {
-                    baseUrl = `http://localhost:${window.location.port || '3000'}`;
-                } else {
-                    // For production/Vercel deployment, use the same domain
-                    baseUrl = window.location.origin;
-                }
-                
-                const apiUrl = `${baseUrl}/api/reviews`;
-                
-                console.log('=== REVIEW SUBMISSION DEBUG ===');
-                console.log('Protocol:', window.location.protocol);
-                console.log('Hostname:', window.location.hostname);
-                console.log('Port:', window.location.port);
-                console.log('Origin:', window.location.origin);
-                console.log('Is local file:', isLocalFile);
-                console.log('Is localhost:', isLocalhost);
-                console.log('Base URL:', baseUrl);
-                console.log('API URL:', apiUrl);
-                console.log('Review data:', data);
-                
-                // Test server connection first
-                const healthUrl = `${baseUrl}/api/health`;
-                console.log('Testing connection to:', healthUrl);
-                
-                try {
-                    const healthResponse = await fetch(healthUrl);
-                    console.log('Health check status:', healthResponse.status);
-                    if (!healthResponse.ok) {
-                        throw new Error(`Health check failed: ${healthResponse.status}`);
-                    }
-                } catch (healthError) {
-                    console.error('Health check failed:', healthError);
-                    throw new Error('Cannot connect to server. Please ensure the server is running on http://localhost:3000');
-                }
-                
-                console.log('Server connection OK, submitting review...');
-                
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                console.log('Review response status:', response.status);
-                console.log('Review response headers:', response.headers);
-                
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error('Server error response:', errorText);
-                    throw new Error(`Server error: ${response.status} - ${errorText}`);
-                }
-                
-                const result = await response.json();
-                console.log('Review submission result:', result);
-                
-                if (result.success) {
-                    showNotification('Thank you for your review! It is now under review and will appear on the website once approved by our team.', 'success');
-                    e.target.reset();
-                    
-                    // Reset star rating
-                    document.querySelectorAll('.star-rating .star').forEach(star => {
-                        star.classList.remove('active');
-                    });
-                    document.getElementById('reviewRating').value = '';
-                    
-                    // Add the review to display immediately
-                    addReviewToDisplay(result.review);
-                    
-                } else {
-                    throw new Error(result.message || 'Failed to submit review');
-                }
-            } catch (error) {
-                console.error('=== REVIEW SUBMISSION ERROR ===');
-                console.error('Error type:', error.constructor.name);
-                console.error('Error message:', error.message);
-                console.error('Error stack:', error.stack);
-                
-                // Provide more specific error messages
-                let errorMessage = 'Failed to submit review. ';
-                
-                if (error.message.includes('fetch') || error.message.includes('NetworkError') || error.message.includes('Failed to fetch')) {
-                    errorMessage = 'Cannot connect to server. Please make sure you are visiting http://localhost:3000/about.html and the server is running.';
-                } else if (error.message.includes('rating')) {
-                    errorMessage = error.message;
-                } else if (error.message.includes('Health check failed') || error.message.includes('Cannot connect to server')) {
-                    errorMessage = error.message;
-                } else {
-                    errorMessage += error.message || 'Please try again later.';
-                }
-                
-                showNotification(errorMessage, 'error');
-            } finally {
-                // Reset button state
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        }
-
-        // Add review to display (for immediate feedback)
-        function addReviewToDisplay(reviewData) {
-            const reviewsScroll = document.getElementById('reviewsScroll');
-            const emptyReviews = document.getElementById('emptyReviews');
-            const scrollNavigation = document.getElementById('scrollNavigation');
-            
-            // Hide empty state if it exists
-            if (emptyReviews) {
-                emptyReviews.style.display = 'none';
-            }
-            
-            // Show scroll navigation
-            scrollNavigation.style.display = 'flex';
-            
-            const reviewCard = document.createElement('div');
-            reviewCard.className = 'review-card';
-            
-            const starsHtml = Array(reviewData.rating).fill('<i class="fas fa-star"></i>').join('');
-            
-            reviewCard.innerHTML = `
-                <div class="review-content">
-                    <div class="stars">
-                        ${starsHtml}
-                    </div>
-                    <p>"${reviewData.text}"</p>
-                    <div class="reviewer">
-                        <div class="reviewer-info">
-                            <h4>${reviewData.name}</h4>
-                            <span>${reviewData.position || 'Client'}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            reviewsScroll.appendChild(reviewCard);
-            
-            // Scroll to show the new review
-            reviewCard.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-        }
-
-        // Initialize review functionality when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            setupContactForm();
-            setupSmoothScrolling();
-            initializeStarRating();
-            
-            // Setup review form
-            const reviewForm = document.getElementById('reviewForm');
-            if (reviewForm) {
-                reviewForm.addEventListener('submit', handleReviewSubmission);
-            }
-            
-            // Test server connection
-            testServerConnection();
-            
-            // Load approved reviews
-            loadApprovedReviews();
-        });
-
-        // Load approved reviews for public display
-        async function loadApprovedReviews() {
-            try {
-                const isLocalFile = window.location.protocol === 'file:';
-                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-                
-                let baseUrl = '';
-                if (isLocalFile) {
-                    baseUrl = 'http://localhost:4000'; // Updated to use port 4000
-                } else if (isLocalhost) {
-                    baseUrl = `http://localhost:${window.location.port || '4000'}`;
-                } else {
-                    baseUrl = window.location.origin;
-                }
-                
-                const reviewsUrl = `${baseUrl}/api/reviews/approved`;
-                
-                console.log('Loading approved reviews from:', reviewsUrl);
-                
-                const response = await fetch(reviewsUrl);
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Loaded approved reviews response:', data);
-                    
-                    const approvedReviews = data.reviews || [];
-                    
-                    // Display each approved review
-                    approvedReviews.forEach(review => {
-                        addReviewToDisplay(review);
-                    });
-                    
-                    console.log(`✅ Loaded ${approvedReviews.length} approved reviews`);
-                } else {
-                    console.log('No approved reviews found or server error');
-                }
-            } catch (error) {
-                console.error('Error loading approved reviews:', error);
-            }
-        }
-
-        // Test server connection
-        async function testServerConnection() {
-            const statusIndicator = document.getElementById('serverStatus');
-            const statusText = document.getElementById('statusText');
-            
-            // Show status indicator
-            statusIndicator.style.display = 'flex';
-            statusText.textContent = 'Testing connection...';
-            
-            try {
-                const isLocalFile = window.location.protocol === 'file:';
-                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-                
-                let baseUrl = '';
-                if (isLocalFile) {
-                    baseUrl = 'http://localhost:3000';
-                } else if (isLocalhost) {
-                    baseUrl = `http://localhost:${window.location.port || '3000'}`;
-                } else {
-                    // For production/Vercel deployment, use the same domain
-                    baseUrl = window.location.origin;
-                }
-                
-                const healthUrl = `${baseUrl}/api/health`;
-                
-                console.log('=== CONNECTION TEST ===');
-                console.log('Current URL:', window.location.href);
-                console.log('Protocol:', window.location.protocol);
-                console.log('Hostname:', window.location.hostname);
-                console.log('Port:', window.location.port);
-                console.log('Origin:', window.location.origin);
-                console.log('Is local file:', isLocalFile);
-                console.log('Is localhost:', isLocalhost);
-                console.log('Base URL:', baseUrl);
-                console.log('Testing health endpoint:', healthUrl);
-                
-                const response = await fetch(healthUrl);
-                console.log('Health response status:', response.status);
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Health response data:', data);
-                    console.log('✅ Server connection successful');
-                    
-                    statusIndicator.className = 'server-status online';
-                    statusText.textContent = 'Server Online';
-                    
-                    // Hide status after 3 seconds
-                    setTimeout(() => {
-                        statusIndicator.style.display = 'none';
-                    }, 3000);
-                } else {
-                    throw new Error(`Server responded with status: ${response.status}`);
-                }
-            } catch (error) {
-                console.error('=== CONNECTION ERROR ===');
-                console.error('Error type:', error.constructor.name);
-                console.error('Error message:', error.message);
-                console.error('❌ Server connection error:', error);
-                
-                statusIndicator.className = 'server-status offline';
-                statusText.textContent = 'Server Offline';
-                
-                // Show instructions based on the URL
-                if (window.location.protocol === 'file:') {
-                    setTimeout(() => {
-                        showNotification('Please visit http://localhost:3000/about.html to use the review system', 'error');
-                    }, 1000);
-                } else {
-                    setTimeout(() => {
-                        showNotification('Server connection failed. Please start the backend server.', 'error');
-                    }, 1000);
-                }
-                
-                // Keep status visible longer if offline
-                setTimeout(() => {
-                    statusIndicator.style.display = 'none';
-                }, 10000);
-            }
-        }
-    </script>
-
-    <!-- Initialize Custom Cursor -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize PillNav
-            const pillNav = new PillNav({
-                logo: 'assets/images/logo.svg',
-                logoAlt: 'Devaansh K.',
-                items: [
-                    { label: 'Home', href: 'index.html' },
-                    { label: 'About', href: 'about.html' },
-                    { label: 'VFX', href: 'vfx.html' },
-                    { label: 'Technical', href: 'technical.html' }
-                ],
-                activeHref: 'about.html',
-                className: 'custom-nav',
-                ease: 'power2.easeOut',
-                baseColor: '#1a1a2e',
-                pillColor: '#ffd700',
-                hoveredPillTextColor: '#ffd700',
-                pillTextColor: '#1a1a2e'
-            });
-
-            pillNav.render('#pill-nav-container');
-
-            // Initialize the custom cursor with gold theme
-            const cursor = new TargetCursor({
-                targetSelector: '.cursor-target',
-                spinDuration: 3,
-                hideDefaultCursor: true
-            });
-
-            // Add gold theme class for better integration
-            const cursorElement = document.querySelector('.target-cursor-wrapper');
-            if (cursorElement) {
-                cursorElement.classList.add('theme-gold');
-            }
-        });
-    </script>
 </body>
 </html>
