@@ -1,259 +1,146 @@
-# Devaansh Kushwaha - VFX Portfolio Website
+# DK_SECURE_PORTFOLIO — Devaansh Kushwaha
 
-A modern, responsive portfolio website showcasing VFX work, skills, and achievements. Built with HTML5, CSS3, JavaScript, and Node.js.
+A cyberpunk-themed personal portfolio website for Devaansh Kushwaha — B.Tech CSE (Cybersecurity) student at UPES Dehradun, VFX Head at UPES ACM, game developer, and cybersecurity researcher.
 
-## 🎨 Features
+## 🌐 Live Site
 
-- **Responsive Design** - Works perfectly on desktop, tablet, and mobile
-- **Modern UI/UX** - Clean, professional design with smooth animations
-- **VFX Portfolio Showcase** - Dedicated sections for different types of VFX work
-- **Contact Form** - Working contact form with email integration
-- **Skills Visualization** - Animated skill bars and progress indicators
-- **Fast & Secure** - Optimized performance with security best practices
+Deployed on **Vercel** — [devaansh-portfolio.vercel.app](https://devaansh-portfolio.vercel.app)
+
+---
+
+## 📄 Pages
+
+| Page | File | Description |
+|------|------|-------------|
+| Home | `frontend/index.html` | Landing page with hero, skills, and quick stats |
+| About Me | `frontend/about.html` | Full bio, experience timeline, skills, contact section |
+| Projects Log | `frontend/technical.html` | Technical projects — cybersecurity, VFX, game dev, Web3 |
+| Credential Vault | `frontend/certifications.html` | Certifications, academic credentials, and roles |
+
+---
 
 ## 🚀 Tech Stack
 
 ### Frontend
-- HTML5, CSS3, JavaScript (ES6+)
-- Font Awesome Icons
-- Google Fonts (Poppins)
-- CSS Grid & Flexbox
-- Responsive Design
+- HTML5, Tailwind CSS (CDN), Vanilla JavaScript
+- Google Material Symbols (icons)
+- Google Fonts — Space Grotesk, JetBrains Mono
+- Responsive — mobile, tablet, desktop
 
 ### Backend
-- Node.js with Express.js
-- Nodemailer for email functionality
-- Helmet for security
-- Rate limiting
-- CORS enabled
+- Node.js + Express.js
+- Nodemailer (contact form email)
+- Helmet (security headers)
+- Rate limiting + CORS
+
+---
 
 ## 📁 Project Structure
 
 ```
-website/
-├── frontend/                 # Client-side files
-│   ├── css/
-│   │   └── style.css        # Main stylesheet
-│   ├── js/
-│   │   └── script.js        # JavaScript functionality
-│   ├── assets/
-│   │   ├── images/          # Image assets
-│   │   └── videos/          # VFX video files
-│   └── index.html           # Main HTML file
+website-clean/
+├── frontend/
+│   ├── index.html              # Home / landing page
+│   ├── about.html              # About Me page
+│   ├── technical.html          # Projects Log page
+│   ├── certifications.html     # Credential Vault page
+│   └── assets/
+│       ├── images/             # Profile photo, thumbnails
+│       ├── videos/             # VFX showcase videos
+│       └── Devaansh_Kushwaha_CV.pdf  # Downloadable resume
 ├── backend/
-│   └── server.js            # Express server
-├── package.json             # Dependencies and scripts
-├── .env.example             # Environment variables template
-├── .gitignore              # Git ignore file
-└── README.md               # This file
+│   ├── server.js               # Main Express server
+│   ├── server-new.js           # Updated server variant
+│   ├── test-contact.js         # Email test script
+│   └── test-server.js          # Server test script
+├── package.json
+├── vercel.json                 # Vercel deployment config
+├── Procfile                    # Heroku config
+└── README.md
 ```
-
-## 🛠️ Setup Instructions
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-- Git
-
-### Installation
-
-1. **Clone or download the project**
-   ```bash
-   cd "d:\Devaansh Kushwaha\website"
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Configure environment variables**
-   ```bash
-   cp .env.example .env
-   ```
-   
-   Edit `.env` file and add your email credentials:
-   ```env
-   EMAIL_USER=devaanshkushwaha06@gmail.com
-   EMAIL_PASS=your-gmail-app-password-here
-   ```
-
-4. **Add your VFX content**
-   - Place your VFX videos in `frontend/assets/videos/`
-   - Add thumbnail images in `frontend/assets/images/`
-   - Update portfolio data in `backend/server.js` if needed
-
-5. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-   
-   Or for production:
-   ```bash
-   npm start
-   ```
-
-6. **Open your browser**
-   Visit `http://localhost:3000`
-
-## 📧 Email Setup (Gmail)
-
-To enable the contact form email functionality:
-
-1. **Enable 2-Factor Authentication** on your Google account
-2. **Generate an App Password**:
-   - Go to Google Account Settings
-   - Security → 2-Step Verification → App passwords
-   - Generate a password for "Mail"
-3. **Update .env file** with the app password
-
-## 🎬 Adding Your VFX Content
-
-### Videos
-1. Place your VFX videos in `frontend/assets/videos/`
-2. Recommended filenames:
-   - `demo-reel.mp4` - Your main demo reel
-   - `acm-intro.mp4` - UPES ACM intro video
-   - `compositing-work.mp4` - Compositing showcase
-   - `3d-character.mp4` - 3D animation work
-
-### Images
-1. Add thumbnails in `frontend/assets/images/`
-2. Recommended files:
-   - `demo-reel-thumb.jpg`
-   - `acm-intro-thumb.jpg` 
-   - `compositing-thumb.jpg`
-   - `3d-animation-thumb.jpg`
-   - `profile.jpg` - Your profile photo
-
-### Update Portfolio Data
-Edit `backend/server.js` to update:
-- Project descriptions
-- Technology lists
-- Skills and percentages
-- Personal information
-
-## 🌐 Deployment
-
-### Deploy to Heroku
-1. Install Heroku CLI
-2. Create a Heroku app:
-   ```bash
-   heroku create devaansh-portfolio
-   ```
-3. Set environment variables:
-   ```bash
-   heroku config:set EMAIL_USER=devaanshkushwaha06@gmail.com
-   heroku config:set EMAIL_PASS=your-app-password
-   ```
-4. Deploy:
-   ```bash
-   git push heroku main
-   ```
-
-### Deploy to Netlify (Frontend only)
-1. Build the frontend:
-   ```bash
-   npm run build
-   ```
-2. Deploy the `frontend` folder to Netlify
-3. For contact form, use Netlify Forms or integrate with a service like Formspree
-
-### Deploy to Vercel
-1. Install Vercel CLI:
-   ```bash
-   npm i -g vercel
-   ```
-2. Deploy:
-   ```bash
-   vercel
-   ```
-
-## 📱 Available Scripts
-
-- `npm start` - Start production server
-- `npm run dev` - Start development server with nodemon
-- `npm run install-backend` - Install backend dependencies only
-
-## 🎨 Customization
-
-### Colors
-Update CSS custom properties in `frontend/css/style.css`:
-```css
-:root {
-  --primary-color: #6c5ce7;
-  --secondary-color: #a29bfe;
-  --accent-color: #ffeaa7;
-}
-```
-
-### Content
-- Update personal information in HTML
-- Modify skills and experience in backend data
-- Add/remove portfolio categories
-- Customize contact information
-
-## 🔧 API Endpoints
-
-- `GET /api/health` - Server health check
-- `GET /api/portfolio` - Get portfolio projects
-- `GET /api/portfolio/:id` - Get specific project
-- `GET /api/skills` - Get skills data
-- `GET /api/about` - Get about information
-- `POST /api/contact` - Submit contact form
-
-## 📋 To-Do List
-
-- [ ] Add your actual VFX videos
-- [ ] Update portfolio project descriptions
-- [ ] Add your profile photo
-- [ ] Configure email settings
-- [ ] Test contact form
-- [ ] Add social media links
-- [ ] Optimize images for web
-- [ ] Set up analytics (Google Analytics)
-
-## 🤝 Contact Information
-
-- **Email**: devaanshkushwaha06@gmail.com
-- **Backup Email**: Devkush2006@outlook.com
-- **Phone**: +91 6265954576
-- **Institution**: UPES Dehradun
-- **Position**: VFX Head at UPES ACM
-- **LinkedIn**: https://www.linkedin.com/in/devaansh-kushwaha-316340338
-- **GitHub**: https://github.com/devaanshkushwaha06
-- **Instagram**: https://www.instagram.com/devaanshkushwaha06/
-
-## 📄 License
-
-This project is created for Devaansh Kushwaha's personal portfolio. Feel free to use it as inspiration for your own portfolio.
-
-## 🐛 Troubleshooting
-
-### Common Issues:
-
-1. **Port already in use**
-   ```bash
-   PORT=3001 npm start
-   ```
-
-2. **Email not sending**
-   - Check Gmail app password
-   - Verify .env file configuration
-   - Check spam folder
-
-3. **Videos not loading**
-   - Ensure video files are in correct directory
-   - Check file names match exactly
-   - Verify video format is supported
-
-4. **CSS not loading**
-   - Clear browser cache
-   - Check file paths
-   - Verify server is serving static files
-
-For additional help, check the browser console for error messages.
 
 ---
 
-**Built with ❤️ for showcasing amazing VFX work!**
+## 🛠️ Local Setup
+
+### Prerequisites
+- Node.js v14+
+- npm
+
+### Install & Run
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server (with nodemon)
+npm run dev
+
+# Start production server
+npm start
+```
+
+Visit `http://localhost:3000`
+
+### Environment Variables
+
+Create a `.env` file in the root:
+
+```env
+EMAIL_USER=devaanshkushwaha@gmail.com
+EMAIL_PASS=your-gmail-app-password
+PORT=3000
+```
+
+---
+
+## 🌍 Deployment
+
+### Vercel (Primary)
+```bash
+vercel --prod
+```
+
+The `vercel.json` is already configured — frontend served as static, backend `/api/*` routes handled by Node.
+
+### Heroku (Alternative)
+```bash
+git push heroku main
+heroku config:set EMAIL_USER=devaanshkushwaha@gmail.com
+heroku config:set EMAIL_PASS=your-app-password
+```
+
+---
+
+## 📦 Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start production server |
+| `npm run dev` | Start dev server with nodemon |
+| `npm run test-email` | Test email/contact form |
+| `npm run deploy:vercel` | Deploy to Vercel (prod) |
+
+---
+
+## 🔧 API Endpoints
+
+- `GET /api/health` — Server health check
+- `POST /api/contact` — Submit contact form (sends email)
+
+---
+
+## 📬 Contact
+
+| Platform | Details |
+|----------|---------|
+| Email (Gmail) | devaanshkushwaha@gmail.com |
+| Email (Outlook) | devkush2006@outlook.com |
+| Phone / WhatsApp | +91 6265954576 |
+| GitHub | [devaanshkushwaha06](https://github.com/devaanshkushwaha06) |
+| LinkedIn | [devaansh-kushwaha](https://www.linkedin.com/in/devaansh-kushwaha-316340338) |
+| Institution | UPES Dehradun — B.Tech CSE (Cybersecurity), Batch 2024–2028 |
+
+---
+
+**Built by Devaansh Kushwaha**
