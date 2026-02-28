@@ -321,22 +321,30 @@ function startReveal() {
     }, delay);
   });
 
-  // After last line + small pause — reveal photo
+  // After last line + small pause — fade terminal, then reveal photo
   const revealAt = revealLines[revealLines.length - 1].delay + 600;
   setTimeout(() => {
     // Flash terminal green
     terminal.classList.add('bg-primary/10');
     setTimeout(() => terminal.classList.remove('bg-primary/10'), 200);
 
-    // Fade out overlay, reveal photo
+    // Fade out terminal first
     setTimeout(() => {
-      overlay.classList.add('opacity-0', 'pointer-events-none');
-      overlay.style.transition = 'opacity 0.8s';
-      img.classList.remove('blur-md', 'grayscale', 'opacity-60', 'scale-110');
-      img.classList.add('opacity-100', 'scale-100');
-      img.style.filter = 'none';
-      revealed = true;
-    }, 400);
+      terminal.style.transition = 'opacity 0.6s';
+      terminal.style.opacity = '0';
+
+      // After terminal fades, reveal photo and hide everything
+      setTimeout(() => {
+        terminal.classList.add('hidden');
+        terminal.style.opacity = '';
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+        overlay.style.transition = 'opacity 0.8s';
+        img.classList.remove('blur-md', 'grayscale', 'opacity-60', 'scale-110');
+        img.classList.add('opacity-100', 'scale-100');
+        img.style.filter = 'none';
+        revealed = true;
+      }, 650);
+    }, 300);
   }, revealAt);
 }
 
