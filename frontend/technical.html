@@ -51,6 +51,8 @@
   }
   .typing-cursor::after { content: '▋'; animation: blink 1s step-start infinite; }
   @keyframes blink { 50% { opacity: 0; } }
+  /* Page transition: start invisible so no flash on entry */
+  body { opacity: 0; transition: opacity 0.65s ease; }
 </style>
 </head>
 <body class="bg-background-dark text-slate-100 font-display selection:bg-primary selection:text-black overflow-hidden flex flex-col h-screen">
@@ -501,10 +503,11 @@
     runTransition(dest);
   });
 
-  window.addEventListener('pageshow', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.4s ease';
-    setTimeout(() => { document.body.style.opacity = '1'; }, 40);
+  // Smooth entry: body starts at opacity:0 via CSS, fade+slide in on DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.body.style.opacity = '1';
+    }));
   });
 })();
 </script>

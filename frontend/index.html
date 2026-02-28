@@ -85,6 +85,8 @@
     80% { clip: rect(93px, 9999px, 7px, 0); }
     100% { clip: rect(15px, 9999px, 55px, 0); }
   }
+  /* Page transition: start invisible so no flash on entry */
+  body { opacity: 0; transition: opacity 0.65s ease; }
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark">
@@ -521,10 +523,11 @@ function typeText(el, text, speed) {
   });
 
   // Page entrance: fade in from black on load
-  window.addEventListener('pageshow', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.4s ease';
-    setTimeout(() => { document.body.style.opacity = '1'; }, 40);
+  // Smooth entry: body starts at opacity:0 via CSS, fade+slide in on DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.body.style.opacity = '1';
+    }));
   });
 })();
 </script>

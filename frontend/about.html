@@ -53,6 +53,8 @@
   ::-webkit-scrollbar-thumb:hover { background: #06f957; }
   @keyframes shimmer { 0% { left: -50%; } 100% { left: 150%; } }
   @keyframes loading { 0% { left: -33%; } 100% { left: 100%; } }
+  /* Page transition: start invisible so no flash on entry */
+  body { opacity: 0; transition: opacity 0.65s ease; }
 </style>
 </head>
 <body class="bg-background-dark min-h-screen font-display text-slate-100 flex flex-col overflow-x-hidden selection:bg-primary selection:text-black">
@@ -610,10 +612,11 @@
     runTransition(dest);
   });
 
-  window.addEventListener('pageshow', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.4s ease';
-    setTimeout(() => { document.body.style.opacity = '1'; }, 40);
+  // Smooth entry: body starts at opacity:0 via CSS, fade+slide in on DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.body.style.opacity = '1';
+    }));
   });
 })();
 </script>
