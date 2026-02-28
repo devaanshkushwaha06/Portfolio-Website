@@ -136,22 +136,45 @@
 <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
   <!-- Left Column: Avatar -->
   <div class="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-1">
-    <div class="relative group w-full max-w-[400px] aspect-square">
-      <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary z-20 transition-all duration-500 group-hover:w-16 group-hover:h-16"></div>
-      <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary z-20 transition-all duration-500 group-hover:w-16 group-hover:h-16"></div>
-      <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary z-20 transition-all duration-500 group-hover:w-16 group-hover:h-16"></div>
-      <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary z-20 transition-all duration-500 group-hover:w-16 group-hover:h-16"></div>
-      <div class="relative w-full h-full bg-surface-dark rounded border border-border-dark overflow-hidden">
-        <img alt="Devaansh Kushwaha" class="w-full h-full object-cover opacity-60 filter blur-md grayscale transition-all duration-700 group-hover:blur-sm scale-110 group-hover:scale-100" src="assets/images/profile.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuApKEOiXGdr0terDBn_ArMwNhr0YckDpBz_4JG_V24b3uKu6eUy4DtdRmHiw9ESoCW4H8-U7lMI0g9nQyxOFIYBKRyq66KcYBcBFZdAT9vF3Aj6ZvP9mmKA8dReLZ-IxByyEOpXGLxRXJkiq-tcRBAvp69HzxmArMfxH8z-4t2YYSIIqTchIfwxFJbG-16FZ5aht8o_VaZ6beiaygRag9VjULXQr1tAlgGbMNNCoOtl8xzb1dHL-RieDDVTPVVnAyaFQ9nHKHgc1w'"/>
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-300 pointer-events-none"></div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-[2px] transition-all duration-300 group-hover:bg-black/20 group-hover:backdrop-blur-none">
-          <span class="material-symbols-outlined text-primary text-5xl mb-2">fingerprint</span>
-          <div class="px-3 py-1 bg-primary/10 border border-primary/50 text-primary text-xs font-mono font-bold tracking-widest rounded group-hover:hidden">
+    <div class="relative w-full max-w-[400px]">
+      <!-- Corner brackets -->
+      <div id="corner-tl" class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary z-20 transition-all duration-500"></div>
+      <div id="corner-tr" class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary z-20 transition-all duration-500"></div>
+      <div id="corner-bl" class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary z-20 transition-all duration-500"></div>
+      <div id="corner-br" class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary z-20 transition-all duration-500"></div>
+
+      <!-- Photo container -->
+      <div class="relative w-full aspect-square bg-surface-dark rounded border border-border-dark overflow-hidden">
+        <img id="profile-img" alt="Devaansh Kushwaha"
+          class="w-full h-full object-cover opacity-60 filter blur-md grayscale scale-110 transition-all duration-1000"
+          src="assets/images/profile.jpg"/>
+        <!-- Encrypted overlay -->
+        <div id="encrypt-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/50 backdrop-blur-[2px] transition-all duration-500">
+          <span id="fp-icon" class="material-symbols-outlined text-primary text-5xl mb-3 transition-all duration-300">fingerprint</span>
+          <div id="encrypt-label" class="px-3 py-1 bg-primary/10 border border-primary/50 text-primary text-xs font-mono font-bold tracking-widest rounded mb-4">
             IDENTITY ENCRYPTED
           </div>
-          <div class="hidden group-hover:flex flex-col items-center gap-2">
-            <span class="text-primary font-bold text-sm tracking-widest bg-black/80 px-2 py-1 rounded border border-primary">SUDO REVEAL</span>
+          <button id="sudo-btn"
+            onclick="startReveal()"
+            class="flex items-center gap-2 px-5 py-2 bg-primary/10 border border-primary text-primary text-sm font-mono font-bold tracking-widest rounded
+                   hover:bg-primary hover:text-black active:scale-95 transition-all duration-200 cursor-pointer shadow-[0_0_10px_rgba(6,249,87,0.3)]
+                   hover:shadow-[0_0_20px_rgba(6,249,87,0.6)]">
+            <span class="material-symbols-outlined text-[18px]">terminal</span>
+            SUDO REVEAL
+          </button>
+        </div>
+
+        <!-- Terminal overlay (hidden initially) -->
+        <div id="terminal-overlay" class="absolute inset-0 bg-black/90 flex flex-col hidden z-30 p-4">
+          <!-- Terminal title bar -->
+          <div class="flex items-center gap-2 mb-3 pb-2 border-b border-primary/30">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-primary"></div>
+            <span class="text-primary text-[11px] font-mono ml-2 tracking-widest">root@dk-system: ~</span>
           </div>
+          <!-- Terminal output -->
+          <div id="terminal-output" class="flex-1 font-mono text-[11px] leading-relaxed overflow-hidden space-y-[2px]"></div>
         </div>
       </div>
     </div>
@@ -247,6 +270,92 @@
   </div>
 </div>
 </main>
+<script>
+const revealLines = [
+  { text: '$ sudo decrypt --target=identity.enc', delay: 0, color: 'text-primary' },
+  { text: '[*] Initializing decryption protocol...', delay: 320, color: 'text-slate-400' },
+  { text: '[*] Loading AES-256 cipher keys...', delay: 640, color: 'text-slate-400' },
+  { text: '[OK] Cipher keys loaded successfully', delay: 960, color: 'text-green-400' },
+  { text: '[*] Bypassing biometric lock...', delay: 1240, color: 'text-slate-400' },
+  { text: '[OK] Biometric hash matched: DK_V1.0', delay: 1560, color: 'text-green-400' },
+  { text: '[*] Decrypting subject data...', delay: 1820, color: 'text-slate-400' },
+  { text: '[OK] Encryption layer 1 removed', delay: 2080, color: 'text-green-400' },
+  { text: '[OK] Encryption layer 2 removed', delay: 2240, color: 'text-green-400' },
+  { text: '[OK] Encryption layer 3 removed', delay: 2380, color: 'text-green-400' },
+  { text: '>>> ACCESS GRANTED <<<', delay: 2600, color: 'text-primary font-bold' },
+  { text: '[SYS] Identity decryption complete.', delay: 2800, color: 'text-slate-300' },
+];
+
+let revealed = false;
+
+function startReveal() {
+  if (revealed) return;
+
+  const btn = document.getElementById('sudo-btn');
+  const encLabel = document.getElementById('encrypt-label');
+  const terminal = document.getElementById('terminal-overlay');
+  const output = document.getElementById('terminal-output');
+  const img = document.getElementById('profile-img');
+  const overlay = document.getElementById('encrypt-overlay');
+
+  // Animate corners
+  ['corner-tl','corner-tr','corner-bl','corner-br'].forEach(id => {
+    document.getElementById(id).classList.add('w-16','h-16');
+  });
+
+  // Hide button & label, show terminal
+  btn.classList.add('opacity-0','pointer-events-none');
+  encLabel.classList.add('hidden');
+  terminal.classList.remove('hidden');
+  output.innerHTML = '';
+
+  // Type each line with delay
+  revealLines.forEach(({ text, delay, color }) => {
+    setTimeout(() => {
+      const line = document.createElement('div');
+      line.className = color + ' flex items-start gap-1';
+      line.innerHTML = `<span class="select-none opacity-50 shrink-0">&gt;</span><span class="terminal-type"></span>`;
+      output.appendChild(line);
+      typeText(line.querySelector('.terminal-type'), text, 18);
+      output.scrollTop = output.scrollHeight;
+    }, delay);
+  });
+
+  // After last line + small pause — reveal photo
+  const revealAt = revealLines[revealLines.length - 1].delay + 600;
+  setTimeout(() => {
+    // Flash terminal green
+    terminal.classList.add('bg-primary/10');
+    setTimeout(() => terminal.classList.remove('bg-primary/10'), 200);
+
+    // Fade out overlay, reveal photo
+    setTimeout(() => {
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      overlay.style.transition = 'opacity 0.8s';
+      img.classList.remove('blur-md', 'grayscale', 'opacity-60', 'scale-110');
+      img.classList.add('opacity-100', 'scale-100');
+      img.style.filter = 'none';
+      revealed = true;
+    }, 400);
+  }, revealAt);
+}
+
+function typeText(el, text, speed) {
+  let i = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'inline-block w-1.5 h-3 bg-primary align-middle ml-0.5 animate-blink';
+  el.appendChild(cursor);
+  const iv = setInterval(() => {
+    if (i < text.length) {
+      el.insertBefore(document.createTextNode(text[i]), cursor);
+      i++;
+    } else {
+      clearInterval(iv);
+      cursor.remove();
+    }
+  }, speed);
+}
+</script>
 <!-- Footer -->
 <footer class="border-t border-border-dark bg-background-dark py-4 px-4 text-center md:text-left">
 <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-mono">
