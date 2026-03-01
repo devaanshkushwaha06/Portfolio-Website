@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -112,8 +112,10 @@
 </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark">
+<!-- Cybersecurity Breach Background Canvas -->
+<canvas id="breach-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
 <!-- Scanline Overlay -->
-<div class="fixed inset-0 scanline-overlay"></div>
+<div class="fixed inset-0 scanline-overlay" style="z-index:1;"></div>
 <!-- Navigation -->
 <header class="sticky top-0 z-40 w-full border-b border-border-dark bg-background-dark/90 backdrop-blur-sm">
 <div class="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -155,8 +157,8 @@
 </div>
 </header>
 <!-- Main Content Area -->
-<main class="flex-grow flex flex-col justify-center relative container mx-auto px-4 py-12 lg:py-20">
-<div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: radial-gradient(#1f2923 1px, transparent 1px); background-size: 32px 32px;"></div>
+<main class="flex-grow flex flex-col justify-center relative container mx-auto px-4 py-12 lg:py-20" style="position:relative;z-index:2;">
+<div class="absolute inset-0 z-0 pointer-events-none opacity-0" style="background-image: radial-gradient(#1f2923 1px, transparent 1px); background-size: 32px 32px;"></div>
 <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
   <!-- Left Column: Avatar -->
   <div class="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-1">
@@ -427,7 +429,7 @@ function typeText(el, text, speed) {
 }
 </script>
 <!-- Footer -->
-<footer class="border-t border-border-dark bg-background-dark py-4 px-4 text-center md:text-left">
+<footer class="border-t border-border-dark bg-background-dark py-4 px-4 text-center md:text-left" style="position:relative;z-index:2;">
 <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-mono">
   <div>© 2025 DEVAANSH KUSHWAHA | ALL RIGHTS RESERVED</div>
   <div class="flex gap-4 mt-2 md:mt-0">
@@ -552,6 +554,136 @@ function typeText(el, text, speed) {
       document.body.style.opacity = '1';
     }));
   });
+})();
+</script>
+
+<!-- Cybersecurity Breach Canvas Animation -->
+<script>
+(function() {
+  const canvas = document.getElementById('breach-canvas');
+  const ctx = canvas.getContext('2d');
+
+  const HEX   = '0123456789ABCDEF';
+  const BIN   = '01';
+  const SYM   = '{}[]<>/\\|;:@#$%^&*!?~';
+  const WORDS = ['BREACH','ACCESS','DENIED','EXPLOIT','INJECT','SCAN','FUZZ','PAYLOAD','ROOT','SHELL','0x00','NULL','OVERFLOW','CIPHER','HASH','XOR','NMAP','SSH','RSA','AES'];
+
+  let cols = [], drops = [], types = [], speeds = [], timers = [], wordIdx = [];
+  const FONT_SIZE = 13;
+  const COLORS = [
+    'rgba(6,249,87,',   // primary green
+    'rgba(4,201,70,',   // darker green
+    'rgba(0,255,180,',  // cyan-green
+    'rgba(0,200,255,',  // blue accent (rare)
+  ];
+
+  function randomChar(type) {
+    if (type === 0) return HEX[Math.random() * HEX.length | 0];
+    if (type === 1) return BIN[Math.random() * BIN.length | 0];
+    if (type === 2) return SYM[Math.random() * SYM.length | 0];
+    return HEX[Math.random() * HEX.length | 0];
+  }
+
+  function init() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const numCols = Math.floor(canvas.width / FONT_SIZE);
+    cols    = [];
+    drops   = [];
+    types   = [];
+    speeds  = [];
+    timers  = [];
+    wordIdx = [];
+    for (let i = 0; i < numCols; i++) {
+      drops[i]   = Math.random() * -canvas.height / FONT_SIZE | 0;
+      types[i]   = Math.random() < 0.5 ? 0 : Math.random() < 0.5 ? 1 : 2;
+      speeds[i]  = 0.3 + Math.random() * 0.7;
+      timers[i]  = Math.random() * 60 | 0;
+      wordIdx[i] = Math.random() < 0.08 ? Math.random() * WORDS.length | 0 : -1;
+    }
+  }
+
+  // Per-column character streams
+  const streams = [];
+  function getStream(col, rows) {
+    if (!streams[col] || streams[col].length !== rows) {
+      streams[col] = Array.from({length: rows}, () => randomChar(types[col]));
+    }
+    return streams[col];
+  }
+
+  let frame = 0;
+  function draw() {
+    // Fade trail
+    ctx.fillStyle = 'rgba(5,5,5,0.18)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = FONT_SIZE + 'px "Courier New", monospace';
+
+    const rows = Math.ceil(canvas.height / FONT_SIZE) + 2;
+
+    for (let i = 0; i < drops.length; i++) {
+      const stream = getStream(i, rows);
+      const x = i * FONT_SIZE;
+
+      // Occasionally mutate a char in the stream
+      if (frame % 3 === 0) {
+        const mutIdx = Math.random() * rows | 0;
+        stream[mutIdx] = randomChar(types[i]);
+      }
+
+      const drop = drops[i] | 0;
+
+      // Draw column characters
+      for (let r = Math.max(0, drop - 18); r <= drop && r < rows; r++) {
+        const age = drop - r;  // 0 = head
+        let alpha, colorBase;
+
+        if (age === 0) {
+          // Bright head — white-green flash
+          ctx.fillStyle = 'rgba(220,255,220,0.95)';
+        } else if (age < 3) {
+          colorBase = COLORS[types[i] === 3 ? 3 : 0];
+          alpha = 0.9 - age * 0.1;
+          ctx.fillStyle = colorBase + alpha + ')';
+        } else {
+          const cidx = types[i] === 3 ? 3 : (i % 2 === 0 ? 0 : 1);
+          alpha = Math.max(0, 0.65 - age * 0.03);
+          ctx.fillStyle = COLORS[cidx] + alpha + ')';
+        }
+
+        // Word injection: overwrite chars with keyword letters
+        let ch;
+        if (wordIdx[i] >= 0 && age < WORDS[wordIdx[i]].length) {
+          ch = WORDS[wordIdx[i]][WORDS[wordIdx[i]].length - 1 - age];
+          ctx.fillStyle = 'rgba(6,249,87,0.9)';
+        } else {
+          ch = stream[r % stream.length];
+        }
+
+        ctx.fillText(ch, x, (r + 1) * FONT_SIZE);
+      }
+
+      // Advance drop
+      drops[i] += speeds[i];
+
+      // Reset when past bottom
+      if (drops[i] * FONT_SIZE > canvas.height + FONT_SIZE * 20) {
+        drops[i]   = Math.random() * -30;
+        types[i]   = Math.random() < 0.5 ? 0 : Math.random() < 0.5 ? 1 : 2;
+        speeds[i]  = 0.3 + Math.random() * 0.7;
+        wordIdx[i] = Math.random() < 0.08 ? Math.random() * WORDS.length | 0 : -1;
+        delete streams[i];
+      }
+    }
+
+    frame++;
+    requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener('resize', init);
 })();
 </script>
 </body>
