@@ -49,7 +49,7 @@
     pointer-events: none;
     z-index: 50;
   }
-  .glitch-text { position: relative; }
+  .glitch-text { position: relative; display: block; }
   .glitch-text::before, .glitch-text::after {
     content: attr(data-text);
     position: absolute;
@@ -58,32 +58,54 @@
     background: #050505;
   }
   .glitch-text::before {
-    left: 2px;
-    text-shadow: -1px 0 #06f957;
-    clip: rect(24px, 550px, 90px, 0);
-    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+    left: 3px;
+    text-shadow: -2px 0 #06f957;
+    animation: glitch-1 1.8s infinite steps(1);
   }
   .glitch-text::after {
-    left: -2px;
-    text-shadow: -1px 0 #ff00c1;
-    clip: rect(85px, 550px, 140px, 0);
-    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+    left: -3px;
+    text-shadow: 2px 0 #ff00c1;
+    animation: glitch-2 1.4s infinite steps(1);
   }
-  @keyframes glitch-anim {
-    0% { clip: rect(10px, 9999px, 31px, 0); }
-    20% { clip: rect(65px, 9999px, 89px, 0); }
-    40% { clip: rect(19px, 9999px, 5px, 0); }
-    60% { clip: rect(83px, 9999px, 95px, 0); }
-    80% { clip: rect(4px, 9999px, 66px, 0); }
-    100% { clip: rect(35px, 9999px, 12px, 0); }
+  @keyframes glitch-1 {
+    0%   { clip-path: inset(8% 0 85% 0);  transform: translate(-3px, 0); }
+    5%   { clip-path: inset(62% 0 12% 0); transform: translate(3px, 0); }
+    10%  { clip-path: inset(33% 0 55% 0); transform: translate(-2px, 0); }
+    15%  { clip-path: inset(75% 0 5%  0); transform: translate(2px, 0); }
+    20%  { clip-path: inset(45% 0 40% 0); transform: translate(-3px, 0); }
+    25%  { clip-path: inset(18% 0 70% 0); transform: translate(3px, 0); }
+    30%  { clip-path: inset(90% 0 2%  0); transform: translate(-1px, 0); }
+    35%  { clip-path: inset(5%  0 88% 0); transform: translate(2px, 0); }
+    40%  { clip-path: inset(55% 0 30% 0); transform: translate(-3px, 0); }
+    45%  { clip-path: inset(28% 0 60% 0); transform: translate(3px, 0); }
+    50%  { clip-path: inset(72% 0 15% 0); transform: translate(-2px, 0); }
+    55%  { clip-path: inset(10% 0 78% 0); transform: translate(1px, 0); }
+    60%  { clip-path: inset(40% 0 48% 0); transform: translate(-3px, 0); }
+    65%  { clip-path: inset(82% 0 8%  0); transform: translate(3px, 0); }
+    70%  { clip-path: inset(22% 0 65% 0); transform: translate(-2px, 0); }
+    75%  { clip-path: inset(58% 0 25% 0); transform: translate(2px, 0); }
+    80%  { clip-path: inset(3%  0 92% 0); transform: translate(-1px, 0); }
+    85%  { clip-path: inset(67% 0 18% 0); transform: translate(3px, 0); }
+    90%  { clip-path: inset(35% 0 52% 0); transform: translate(-3px, 0); }
+    95%  { clip-path: inset(50% 0 35% 0); transform: translate(2px, 0); }
+    100% { clip-path: inset(15% 0 72% 0); transform: translate(-2px, 0); }
   }
-  @keyframes glitch-anim-2 {
-    0% { clip: rect(66px, 9999px, 98px, 0); }
-    20% { clip: rect(8px, 9999px, 13px, 0); }
-    40% { clip: rect(45px, 9999px, 86px, 0); }
-    60% { clip: rect(27px, 9999px, 34px, 0); }
-    80% { clip: rect(93px, 9999px, 7px, 0); }
-    100% { clip: rect(15px, 9999px, 55px, 0); }
+  @keyframes glitch-2 {
+    0%   { clip-path: inset(50% 0 33% 0); transform: translate(3px, 0) skewX(1deg); }
+    7%   { clip-path: inset(15% 0 68% 0); transform: translate(-3px, 0) skewX(-1deg); }
+    14%  { clip-path: inset(78% 0 10% 0); transform: translate(2px, 0); }
+    21%  { clip-path: inset(30% 0 55% 0); transform: translate(-2px, 0) skewX(2deg); }
+    28%  { clip-path: inset(63% 0 22% 0); transform: translate(3px, 0); }
+    35%  { clip-path: inset(7%  0 82% 0); transform: translate(-3px, 0) skewX(-2deg); }
+    42%  { clip-path: inset(45% 0 42% 0); transform: translate(1px, 0); }
+    49%  { clip-path: inset(88% 0 5%  0); transform: translate(-1px, 0) skewX(1deg); }
+    56%  { clip-path: inset(20% 0 70% 0); transform: translate(3px, 0); }
+    63%  { clip-path: inset(55% 0 28% 0); transform: translate(-3px, 0) skewX(-1deg); }
+    70%  { clip-path: inset(38% 0 48% 0); transform: translate(2px, 0); }
+    77%  { clip-path: inset(72% 0 18% 0); transform: translate(-2px, 0) skewX(2deg); }
+    84%  { clip-path: inset(12% 0 75% 0); transform: translate(3px, 0); }
+    91%  { clip-path: inset(93% 0 2%  0); transform: translate(-3px, 0) skewX(-1deg); }
+    100% { clip-path: inset(42% 0 44% 0); transform: translate(2px, 0); }
   }
   /* Page transition: start invisible so no flash on entry */
   body { opacity: 0; transition: opacity 0.65s ease; }
@@ -191,8 +213,9 @@
       <span>MODE: AVAILABLE</span>
     </div>
     <div class="relative">
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9] glitch-text" data-text="DEVAANSH KUSHWAHA">
-        DEVAANSH <br/>KUSHWAHA
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9]">
+        <span class="glitch-text" data-text="DEVAANSH">DEVAANSH</span>
+        <span class="glitch-text" data-text="KUSHWAHA">KUSHWAHA</span>
       </h1>
     </div>
     <div class="bg-surface-dark border border-border-dark rounded p-5 font-mono text-sm md:text-base text-slate-300 shadow-xl relative overflow-hidden">
