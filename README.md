@@ -1,6 +1,6 @@
 # DK_SECURE_PORTFOLIO — Devaansh Kushwaha
 
-A cyberpunk-themed personal portfolio website for Devaansh Kushwaha — B.Tech CSE (Cybersecurity) student at UPES Dehradun, VFX Head at UPES ACM, game developer, and cybersecurity researcher.
+A cyberpunk-themed personal portfolio website for Devaansh Kushwaha — B.Tech CSE (Cybersecurity) student at UPES Dehradun, Joint Secretary at UPES ACM-W, game developer, and cybersecurity researcher.
 
 ## 🌐 Live Site
 
