@@ -1,667 +1,840 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Classified Personnel Dossier - Devaansh Kushwaha</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "primary": "#06f957",
-          "primary-dim": "#04c243",
-          "background-light": "#f5f8f6",
-          "background-dark": "#0b120d",
-          "panel-dark": "#111813",
-          "border-dark": "#273a2d",
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Classified Personnel Dossier - Devaansh Kushwaha</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#A855F7",
+            "primary-dim": "#7E22CE",
+            "background-light": "#f5f8f6",
+            "background-dark": "#0b0716",
+            "panel-dark": "#110b1a",
+            "border-dark": "#271b3d",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"],
+          },
+          backgroundImage: {
+            'grid-pattern': "linear-gradient(to right, #1f2e23 1px, transparent 1px), linear-gradient(to bottom, #1f2e23 1px, transparent 1px)",
+          }
         },
-        fontFamily: {
-          "display": ["Space Grotesk", "sans-serif"],
-          "mono": ["JetBrains Mono", "monospace"],
-        },
-        backgroundImage: {
-          'grid-pattern': "linear-gradient(to right, #1f2e23 1px, transparent 1px), linear-gradient(to bottom, #1f2e23 1px, transparent 1px)",
-        }
       },
-    },
-  }
-</script>
-<style>
-  .glitch-effect:hover {
-    animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
-  }
-  @keyframes glitch {
-    0% { transform: translate(0) }
-    20% { transform: translate(-2px, 2px) }
-    40% { transform: translate(-2px, -2px) }
-    60% { transform: translate(2px, 2px) }
-    80% { transform: translate(2px, -2px) }
-    100% { transform: translate(0) }
-  }
-  .scanline {
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
-    background-size: 100% 4px;
-  }
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: #0f2316; }
-  ::-webkit-scrollbar-thumb { background: #273a2d; }
-  ::-webkit-scrollbar-thumb:hover { background: #06f957; }
-  @keyframes shimmer { 0% { left: -50%; } 100% { left: 150%; } }
-  @keyframes loading { 0% { left: -33%; } 100% { left: 100%; } }
-  /* Page transition: start invisible so no flash on entry */
-  body { opacity: 0; transition: opacity 0.65s ease; }
-</style>
-</head>
-<body class="bg-background-dark min-h-screen font-display text-slate-100 flex flex-col overflow-x-hidden selection:bg-primary selection:text-black">
+    }
+  </script>
+  <style>
+    .glitch-effect:hover {
+      animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    }
 
-<!-- Top Navigation Bar -->
-<header class="sticky top-0 z-50 w-full bg-background-dark/95 backdrop-blur-sm border-b border-primary/20">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="flex items-center justify-between h-14">
-    <div class="flex items-center gap-4">
-      <span class="material-symbols-outlined text-primary animate-pulse">encrypted</span>
-      <h1 class="font-mono text-sm tracking-widest text-primary font-bold">
-        <span class="hidden sm:inline">SYSTEM.ROOT // </span>DK-DOSSIER_V2.4
-      </h1>
-    </div>
-    <div class="hidden md:flex items-center gap-2 px-3 py-1 bg-primary/10 rounded border border-primary/20">
-      <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-      <span class="text-xs font-mono text-primary tracking-wider">SECURE CONNECTION ESTABLISHED</span>
-    </div>
-    <nav class="flex gap-4 md:gap-6">
-      <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group" href="index.html">
-        <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span> HOME
-      </a>
-      <a class="text-xs font-mono text-primary font-bold flex items-center gap-1" href="about.html">
-        <span class="w-2 text-primary">&gt;</span> INTEL
-      </a>
-      <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group" href="technical.html">
-        <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span> PROJECTS
-      </a>
-      <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group" href="certifications.html">
-        <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span> CERTS
-      </a>
-    </nav>
-  </div>
-</div>
-<div class="h-[1px] w-full bg-primary/20 relative overflow-hidden">
-  <div class="absolute inset-y-0 left-0 bg-primary w-1/3" style="animation: loading 2s ease-in-out infinite;"></div>
-</div>
-</header>
-
-<!-- Main Content Area -->
-<main class="flex-grow w-full max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 relative">
-<div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-[0.03] pointer-events-none"></div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
-
-  <!-- Left Column: Main Dossier (8 cols) -->
-  <div class="lg:col-span-8 space-y-12">
-
-    <!-- Profile Header -->
-    <section class="relative border border-primary/20 bg-panel-dark/50 p-6 sm:p-8 rounded-lg overflow-hidden group" id="about">
-      <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
-        <span class="material-symbols-outlined text-9xl text-primary transform -rotate-12">fingerprint</span>
-      </div>
-      <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
-        <div class="relative shrink-0">
-          <div class="w-32 h-32 sm:w-40 sm:h-40 relative rounded border border-primary/40 overflow-hidden">
-            <div class="absolute inset-0 bg-primary/20 z-10 mix-blend-overlay"></div>
-            <div class="absolute inset-0 scanline z-20 pointer-events-none opacity-50"></div>
-            <img alt="Devaansh Kushwaha" class="w-full h-full object-cover grayscale contrast-125" src="assets/images/profile.jpg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCvQm_zTh4463pkhc0HZwey7UxeOlc5PvwpRwipDQCC75ptC3rVGx41687hPQIecXr88_Juhy51tOVkgvKqdqikVI70h8rOEN1bOJ2gMuS4m4fVYxmR2csLS8G1EjbsqoHkzmuwp6X67i29dfb96LmcIeFbH_6vpDC3GJEEHLPHGHIrhcCTFcKn5phXWOSSn_sZ_TJHRxvnBMsK-7icfl9iKn0wTu4ZHw3oshqEN7GQJ8AZfHKV18IgP38j2BlJsEvgzVuo0FKB-w'"/>
-            <div class="absolute top-1 left-1 w-2 h-2 border-t-2 border-l-2 border-primary"></div>
-            <div class="absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 border-primary"></div>
-            <div class="absolute bottom-1 left-1 w-2 h-2 border-b-2 border-l-2 border-primary"></div>
-            <div class="absolute bottom-1 right-1 w-2 h-2 border-b-2 border-r-2 border-primary"></div>
-          </div>
-          <div class="mt-2 text-center">
-            <span class="bg-primary text-black text-[10px] font-bold px-2 py-0.5 rounded tracking-widest font-mono">VERIFIED</span>
-          </div>
-        </div>
-        <div class="flex-1 space-y-4">
-          <div>
-            <h2 class="text-3xl font-display font-bold text-white tracking-tight uppercase glitch-effect cursor-default">Subject: Devaansh Kushwaha</h2>
-            <p class="text-primary font-mono text-sm mt-1 tracking-wider opacity-80">Joint Secretary &amp; Creative Technologist | UPES Dehradun</p>
-          </div>
-          <div class="relative border-l-2 border-primary/30 pl-4 py-1">
-            <h3 class="text-xs font-mono text-slate-400 mb-2 uppercase tracking-widest">[PROFILE] MISSION SUMMARY</h3>
-            <p class="text-slate-300 font-mono text-sm leading-relaxed">
-              VFX Head at UPES ACM with expertise in visual effects, game development, blockchain, and cybersecurity. Currently pursuing B.Tech at UPES Dehradun (Batch 2024–2028) — building AI security tools, leading creative teams, and shipping projects across game dev, Web3, VFX, and cybersecurity.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Core Competencies Grid -->
-    <section>
-      <div class="flex items-center justify-between mb-6 border-b border-primary/20 pb-2">
-        <h3 class="text-xl font-display font-bold text-white flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">terminal</span> TACTICAL CAPABILITIES
-        </h3>
-        <span class="text-xs font-mono text-primary/50 border border-primary/30 px-2 py-1 rounded">Auth: LEVEL 3</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- VFX & Video -->
-        <div class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="p-2 bg-purple-900/20 text-purple-400 rounded border border-purple-900/40">
-              <span class="material-symbols-outlined text-lg">movie</span>
-            </div>
-            <h4 class="font-mono text-slate-200 font-bold">VFX &amp; MOTION</h4>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">After Effects</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Premiere Pro</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Blender</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">DaVinci Resolve</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Photoshop</span>
-          </div>
-        </div>
-        <!-- Game Dev -->
-        <div class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="p-2 bg-green-900/20 text-green-400 rounded border border-green-900/40">
-              <span class="material-symbols-outlined text-lg">gamepad</span>
-            </div>
-            <h4 class="font-mono text-slate-200 font-bold">GAME DEV OPS</h4>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Unity</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">C#</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">3D Modeling</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Game Design</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Level Design</span>
-          </div>
-        </div>
-        <!-- Programming -->
-        <div class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="p-2 bg-yellow-900/20 text-yellow-500 rounded border border-yellow-900/40">
-              <span class="material-symbols-outlined text-lg">code</span>
-            </div>
-            <h4 class="font-mono text-slate-200 font-bold">PROGRAMMING</h4>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Python</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">JavaScript</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Java</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">C</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">HTML/CSS</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Node.js</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Git</span>
-          </div>
-        </div>
-        <!-- Cybersecurity -->
-        <div class="bg-panel-dark border border-purple-900/40 p-5 rounded hover:border-purple-500/50 transition-colors group">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="p-2 bg-purple-900/20 text-purple-400 rounded border border-purple-900/40">
-              <span class="material-symbols-outlined text-lg">security</span>
-            </div>
-            <h4 class="font-mono text-slate-200 font-bold">CYBERSECURITY</h4>
-            <span class="ml-auto text-[10px] font-mono text-purple-400 border border-purple-900/40 px-1.5 py-0.5 rounded">ACTIVE</span>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">Phishing Detection</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">Deep Learning</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">FastAPI</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">TensorFlow</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">Threat Intelligence</span>
-            <span class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">Risk Scoring</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Chronological Timeline -->
-    <section class="relative">
-      <div class="absolute -top-6 -right-6 text-slate-700/10 text-8xl font-black select-none pointer-events-none rotate-12">HISTORY</div>
-      <div class="flex items-center justify-between mb-8 border-b border-primary/20 pb-2 relative z-10">
-        <h3 class="text-xl font-display font-bold text-white flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">history</span> CHRONOLOGICAL INTEL
-        </h3>
-        <div class="transform -rotate-12 border-2 border-primary/30 px-2 py-0.5 rounded text-primary/50 text-xs font-black uppercase opacity-70">CONFIDENTIAL</div>
-      </div>
-      <div class="relative pl-6 sm:pl-10 space-y-12 before:content-[''] before:absolute before:left-[11px] sm:before:left-[19px] before:top-2 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-primary before:via-primary/30 before:to-transparent">
-
-        <!-- Item 0: TryHackMe -->
-        <div class="relative group">
-          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary shadow-[0_0_10px_rgba(6,249,87,0.6)]"></span>
-          </span>
-          <div class="bg-panel-dark border-l-4 border-primary/60 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r ring-1 ring-primary/20 mb-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
-              <h4 class="text-white font-bold font-display text-lg">TryHackMe - Adept Hacker</h4>
-              <span class="font-mono text-primary text-xs bg-primary/10 px-2 py-0.5 rounded border border-primary/30">ACTIVE // 125+ STREAK</span>
-            </div>
-            <p class="text-slate-400 font-mono text-sm mb-2">Cybersecurity Training & CTFs</p>
-            <p class="text-slate-300 text-sm leading-relaxed">Maintaining a Top 20% global ranking by continuously engaging in penetration testing labs, defensive security rooms, and CTF challenges. Achieved the Adept [0x7] rank with 37+ rooms completed.</p>
-          </div>
-        </div>
-
-        <!-- Item 1: Joint Secretary ACM-W -->
-        <div class="relative group">
-          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.6)]"></span>
-          </span>
-          <div class="bg-panel-dark border-l-4 border-red-500/60 pl-4 py-2 hover:bg-panel-dark hover:border-red-500 transition-all duration-300 rounded-r ring-1 ring-red-500/20">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
-              <h4 class="text-white font-bold font-display text-lg">Joint Secretary - ACM-W Student Chapters</h4>
-              <span class="font-mono text-red-400 text-xs bg-red-500/10 px-2 py-0.5 rounded border border-red-500/30">PRESENT // ACTIVE</span>
-            </div>
-            <p class="text-slate-400 font-mono text-sm mb-2">Association for Computing Machinery (Women)</p>
-            <p class="text-slate-300 text-sm leading-relaxed">Leading strategic initiatives, organizing technical workshops, hackathons, and mentoring students in computer science and emerging technologies. Driving community engagement and professional development for ACM-W members.</p>
-          </div>
-        </div>
-
-        <!-- Item 2: CSI Build Hackathon -->
-        <div class="relative group">
-          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
-          </span>
-          <div class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
-              <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">CSI Build - Build4Bharat Hackathon</h4>
-              <span class="font-mono text-slate-500 text-xs">2025</span>
-            </div>
-            <p class="text-slate-400 font-mono text-sm mb-2">Computer Society of India Hackathon</p>
-            <p class="text-slate-300 text-sm leading-relaxed">Participated in CSI Build hackathon focused on innovative solutions for real-world problems. Collaborated with team members on full-stack development and project implementation.</p>
-          </div>
-        </div>
-
-        <!-- Item 3: VFX Head -->
-        <div class="relative group">
-          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
-          </span>
-          <div class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
-              <h4 class="text-white font-bold font-display text-lg">VFX Head - UPES ACM</h4>
-              <span class="font-mono text-slate-400 text-xs bg-slate-800/50 px-2 py-0.5 rounded">2025 – 2026</span>
-            </div>
-            <p class="text-slate-400 font-mono text-sm mb-2">University of Petroleum &amp; Energy Studies, Dehradun</p>
-            <p class="text-slate-300 text-sm leading-relaxed">Leading visual effects and video production for university events. Managing creative teams, event coverage, motion graphics, and 3D animation projects for UPES ACM chapter activities.</p>
-          </div>
-        </div>
-
-        <!-- Item 4: WCHL 2025 -->
-        <div class="relative group">
-          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
-          </span>
-          <div class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
-              <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">Skill Chain - WCHL 2025</h4>
-              <span class="font-mono text-slate-500 text-xs">2025</span>
-            </div>
-            <p class="text-slate-400 font-mono text-sm mb-2">World Championship of Hackathons &amp; Labs — Regional Round Qualifier</p>
-            <p class="text-slate-300 text-sm leading-relaxed">Built an innovative blockchain-based solution for skills verification using smart contracts and Web3. Successfully qualified for regional round. Tech: Blockchain, Smart Contracts, Web3, DApps.</p>
-          </div>
-        </div>
-
-        <!-- Item 5: Global Game Jam 2025 -->
-        <div class="relative group">
-          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
-          </span>
-          <div class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
-              <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">Bubble Labyrinth - Global Game Jam 2025</h4>
-              <span class="font-mono text-slate-500 text-xs">Jan 2025</span>
-            </div>
-            <p class="text-slate-400 font-mono text-sm mb-2">Dehradun, Uttarakhand</p>
-            <p class="text-slate-300 text-sm leading-relaxed">Developed a 48-hour escape room puzzle game with psychological elements using Unity. Roles included 3D Art, Game Design, Game Development, and QA. Published on Global Game Jam platform.</p>
-          </div>
-        </div>
-
-        <!-- Item 6: B.Tech UPES -->
-        <div class="relative group">
-          <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
-          </span>
-          <div class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
-              <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">B.Tech - UPES Dehradun</h4>
-              <span class="font-mono text-slate-500 text-xs">2024 - 2028</span>
-            </div>
-            <p class="text-slate-400 font-mono text-sm mb-2">University of Petroleum and Energy Studies</p>
-            <p class="text-slate-300 text-sm leading-relaxed">Pursuing Bachelor of Technology in Computer Science Engineering with specialization in Cybersecurity. Batch of 2024–2028.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="border border-primary/20 bg-panel-dark/50 p-6 sm:p-8 rounded-lg" id="contact">
-      <div class="flex items-center gap-2 mb-6 border-b border-primary/20 pb-3">
-        <span class="material-symbols-outlined text-primary">contact_mail</span>
-        <h3 class="text-xl font-display font-bold text-white">ESTABLISH CONTACT</h3>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="https://wa.me/+916265954576" target="_blank" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
-          <div class="w-10 h-10 bg-green-900/30 rounded flex items-center justify-center border border-green-900/50 group-hover:border-primary/40">
-            <span class="material-symbols-outlined text-green-400">chat</span>
-          </div>
-          <div>
-            <p class="text-white text-sm font-bold">WhatsApp</p>
-            <p class="text-slate-400 text-xs font-mono">+91 6265954576</p>
-          </div>
-        </a>
-        <a href="https://github.com/devaanshkushwaha06" target="_blank" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
-          <div class="w-10 h-10 bg-slate-700/30 rounded flex items-center justify-center border border-slate-600/50 group-hover:border-primary/40">
-            <span class="material-symbols-outlined text-slate-300">hub</span>
-          </div>
-          <div>
-            <p class="text-white text-sm font-bold">GitHub</p>
-            <p class="text-slate-400 text-xs font-mono">devaanshkushwaha06</p>
-          </div>
-        </a>
-        <a href="mailto:devaanshkushwaha@gmail.com" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
-          <div class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center border border-primary/20 group-hover:border-primary/40">
-            <span class="material-symbols-outlined text-primary">alternate_email</span>
-          </div>
-          <div>
-            <p class="text-white text-sm font-bold">Email</p>
-            <p class="text-slate-400 text-xs font-mono">devaanshkushwaha@gmail.com</p>
-          </div>
-        </a>
-        <a href="mailto:devkush2006@outlook.com" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
-          <div class="w-10 h-10 bg-blue-900/30 rounded flex items-center justify-center border border-blue-800/50 group-hover:border-primary/40">
-            <span class="material-symbols-outlined text-blue-400">alternate_email</span>
-          </div>
-          <div>
-            <p class="text-white text-sm font-bold">Email</p>
-            <p class="text-slate-400 text-xs font-mono">devkush2006@outlook.com</p>
-          </div>
-        </a>
-        <a href="https://www.linkedin.com/in/devaansh-kushwaha-316340338" target="_blank" class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
-          <div class="w-10 h-10 bg-blue-900/30 rounded flex items-center justify-center border border-blue-800/50 group-hover:border-primary/40">
-            <span class="material-symbols-outlined text-blue-400">work</span>
-          </div>
-          <div>
-            <p class="text-white text-sm font-bold">LinkedIn</p>
-            <p class="text-slate-400 text-xs font-mono">devaansh-kushwaha</p>
-          </div>
-        </a>
-      </div>
-    </section>
-
-  </div><!-- end left col -->
-
-  <!-- Right Column: Metadata Sidebar (4 cols) -->
-  <aside class="lg:col-span-4 space-y-6">
-
-    <!-- Status Panel -->
-    <div class="bg-panel-dark border border-primary/20 rounded-lg p-5 relative overflow-hidden">
-      <div class="absolute inset-x-0 top-0 h-1 bg-primary/50"></div>
-      <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Current Status</h3>
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-3 h-3 rounded-full bg-primary animate-ping"></div>
-        <span class="text-primary font-bold font-display tracking-wider text-xl">OPERATIONAL</span>
-      </div>
-      <div class="space-y-3 font-mono text-sm">
-        <div class="flex justify-between border-b border-slate-800 pb-2">
-          <span class="text-slate-500">Role:</span>
-          <span class="text-white font-bold">JOINT SECRETARY</span>
-        </div>
-        <div class="flex justify-between border-b border-slate-800 pb-2">
-          <span class="text-slate-500">Location:</span>
-          <span class="text-primary">UPES // DEHRADUN</span>
-        </div>
-        <div class="flex justify-between border-b border-slate-800 pb-2">
-          <span class="text-slate-500">Unit:</span>
-          <span class="text-white">ACM-W</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-slate-500">Response:</span>
-          <span class="text-primary">&lt; 24 HOURS</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Skills Stats -->
-    <div class="bg-panel-dark border border-slate-800 rounded-lg p-5">
-      <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Skill Proficiency</h3>
-      <div class="space-y-4">
-        <div>
-          <div class="flex justify-between text-xs font-mono mb-1">
-            <span class="text-slate-300">After Effects</span>
-            <span class="text-primary">90%</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-primary h-full w-[90%]"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between text-xs font-mono mb-1">
-            <span class="text-slate-300">Motion Graphics</span>
-            <span class="text-primary">95%</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-primary h-full w-[95%]"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between text-xs font-mono mb-1">
-            <span class="text-slate-300">Python</span>
-            <span class="text-primary">85%</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-primary h-full w-[85%]"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between text-xs font-mono mb-1">
-            <span class="text-slate-300">Unity / C#</span>
-            <span class="text-primary">75%</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-primary h-full w-[75%]"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between text-xs font-mono mb-1">
-            <span class="text-slate-300">Java</span>
-            <span class="text-primary">55%</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-primary h-full w-[55%]"></div>
-          </div>
-          <span class="text-[10px] text-slate-500 font-mono">basics</span>
-        </div>
-        <div>
-          <div class="flex justify-between text-xs font-mono mb-1">
-            <span class="text-slate-300">C</span>
-            <span class="text-primary">60%</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-primary h-full w-[60%]"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between text-xs font-mono mb-1">
-            <span class="text-slate-300">JavaScript</span>
-            <span class="text-primary">80%</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="bg-primary h-full w-[80%]"></div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between text-xs font-mono mb-1">
-            <span class="text-purple-300">Cybersecurity</span>
-            <span class="text-purple-400">65%</span>
-          </div>
-          <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-            <div class="h-full w-[65%] rounded-full" style="background: linear-gradient(90deg, #9333ea, #c084fc)"></div>
-          </div>
-          <span class="text-[10px] text-purple-500 font-mono">actively leveling up</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Stats -->
-    <div class="bg-panel-dark border border-slate-800 rounded-lg p-5">
-      <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Operational Stats</h3>
-      <div class="grid grid-cols-2 gap-3">
-        <div class="bg-black/30 rounded p-3 border border-slate-800">
-          <p class="text-2xl font-bold text-white">7+</p>
-          <p class="text-xs text-primary font-mono">Events Covered</p>
-        </div>
-        <div class="bg-black/30 rounded p-3 border border-slate-800">
-          <p class="text-2xl font-bold text-white">2+</p>
-          <p class="text-xs text-primary font-mono">Hackathons</p>
-        </div>
-        <div class="bg-black/30 rounded p-3 border border-slate-800">
-          <p class="text-2xl font-bold text-white">500+</p>
-          <p class="text-xs text-primary font-mono">Learning Hrs</p>
-        </div>
-        <div class="bg-black/30 rounded p-3 border border-slate-800">
-          <p class="text-2xl font-bold text-white">Top 20%</p>
-          <p class="text-xs text-primary font-mono">TryHackMe</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Download Resume -->
-    <a href="assets/Devaansh_Kushwaha_CV.pdf" download="Devaansh_Kushwaha_CV.pdf" class="w-full group relative overflow-hidden bg-primary/10 hover:bg-primary/20 border border-primary text-primary font-mono text-sm py-3 px-4 rounded transition-all flex items-center justify-center gap-2">
-      <span class="material-symbols-outlined text-lg">download</span>
-      <span class="font-bold tracking-wider">DOWNLOAD_RESUME</span>
-    </a>
-
-  </aside>
-
-</div>
-</main>
-
-<!-- Footer -->
-<footer class="mt-12 border-t border-primary/10 bg-background-dark py-6">
-<div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-slate-600">
-  <p>CLASSIFIED MATERIAL // EYES ONLY</p>
-  <p class="mt-2 md:mt-0">© 2025 DEVAANSH KUSHWAHA. ALL RIGHTS RESERVED.</p>
-</div>
-</footer>
-
-<!-- Page Transition Overlay -->
-<div id="page-transition" class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center pointer-events-none opacity-0" style="transition:opacity 0.3s ease">
-  <div class="w-full max-w-lg mx-6">
-    <div class="bg-[#050f07] border border-primary/50 rounded-lg shadow-[0_0_60px_rgba(6,249,87,0.25)] overflow-hidden">
-      <div class="flex items-center gap-2 px-4 py-3 border-b border-primary/20 bg-black/40">
-        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-        <div class="w-3 h-3 rounded-full bg-primary/80"></div>
-        <span id="pt-title" class="text-primary/70 text-[11px] font-mono ml-3 tracking-widest">root@dk-system: ~</span>
-        <div class="ml-auto flex gap-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-        </div>
-      </div>
-      <div id="pt-output" class="p-5 font-mono text-[12px] leading-6 space-y-0.5 min-h-[180px]"></div>
-      <div class="px-5 pb-4">
-        <div id="pt-progress-bar" class="w-0 h-0.5 bg-primary rounded-full" style="transition:width 2.2s linear"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  const pageLabels = {
-    'index.html':          { cmd: 'cd /',               label: 'HOME' },
-    'about.html':          { cmd: 'cd /about',          label: 'ABOUT' },
-    'technical.html':      { cmd: 'cd /projects',       label: 'PROJECTS' },
-    'certifications.html': { cmd: 'cd /certifications', label: 'CERTIFICATIONS' },
-  };
-
-  function buildLines(dest) {
-    const info = pageLabels[dest] || { cmd: 'cd /' + dest, label: dest.toUpperCase() };
-    return [
-      { text: '$ ' + info.cmd, color: 'text-primary', delay: 0 },
-      { text: '[*] Resolving route: /' + info.label.toLowerCase() + '...', color: 'text-slate-400', delay: 280 },
-      { text: '[*] Authenticating session token...', color: 'text-slate-400', delay: 560 },
-      { text: '[OK] Token valid — DK_V1.0', color: 'text-green-400', delay: 840 },
-      { text: '[*] Loading module: ' + info.label + '...', color: 'text-slate-400', delay: 1100 },
-      { text: '[OK] Module loaded successfully', color: 'text-green-400', delay: 1380 },
-      { text: '[*] Rendering interface...', color: 'text-slate-400', delay: 1620 },
-      { text: '>>> NAVIGATING TO ' + info.label + ' <<<', color: 'text-primary font-bold', delay: 1900 },
-    ];
-  }
-
-  function typeText(el, text, speed, cb) {
-    let i = 0;
-    const cursor = document.createElement('span');
-    cursor.className = 'inline-block w-1.5 h-3 bg-primary align-middle ml-0.5 opacity-80';
-    cursor.style.animation = 'blink 1s step-end infinite';
-    el.appendChild(cursor);
-    const iv = setInterval(() => {
-      if (i < text.length) {
-        el.insertBefore(document.createTextNode(text[i++]), cursor);
-      } else {
-        clearInterval(iv);
-        cursor.remove();
-        if (cb) cb();
+    @keyframes glitch {
+      0% {
+        transform: translate(0)
       }
-    }, speed);
-  }
 
-  function runTransition(dest) {
-    const overlay = document.getElementById('page-transition');
-    const output  = document.getElementById('pt-output');
-    const bar     = document.getElementById('pt-progress-bar');
-    const lines   = buildLines(dest);
+      20% {
+        transform: translate(-2px, 2px)
+      }
 
-    output.innerHTML = '';
-    overlay.style.pointerEvents = 'all';
-    overlay.style.opacity = '1';
+      40% {
+        transform: translate(-2px, -2px)
+      }
 
-    setTimeout(() => { bar.style.width = '100%'; }, 50);
+      60% {
+        transform: translate(2px, 2px)
+      }
 
-    lines.forEach(({ text, color, delay }) => {
-      setTimeout(() => {
-        const row = document.createElement('div');
-        row.className = 'flex items-start gap-2 ' + color;
-        const arrow = document.createElement('span');
-        arrow.className = 'select-none text-primary/40 shrink-0 mt-0.5';
-        arrow.textContent = '›';
-        const span = document.createElement('span');
-        row.appendChild(arrow);
-        row.appendChild(span);
-        output.appendChild(row);
-        output.scrollTop = output.scrollHeight;
-        typeText(span, text, 16);
-      }, delay);
-    });
+      80% {
+        transform: translate(2px, -2px)
+      }
 
-    const total = lines[lines.length - 1].delay + 400;
-    setTimeout(() => { window.location.href = dest; }, total);
-  }
+      100% {
+        transform: translate(0)
+      }
+    }
 
-  document.addEventListener('click', function(e) {
-    const a = e.target.closest('a[href]');
-    if (!a) return;
-    const href = a.getAttribute('href');
-    if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel')) return;
-    const dest = href.split('/').pop().split('?')[0];
-    if (!pageLabels[dest]) return;
-    const current = window.location.pathname.split('/').pop() || 'index.html';
-    if (dest === current) return;
-    e.preventDefault();
-    runTransition(dest);
-  });
+    .scanline {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
+      background-size: 100% 4px;
+    }
 
-  // Smooth entry: body starts at opacity:0 via CSS, fade+slide in on DOM ready
-  document.addEventListener('DOMContentLoaded', function() {
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      document.body.style.opacity = '1';
-    }));
-  });
-})();
-</script>
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0f0723;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #271b3d;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #A855F7;
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -50%;
+      }
+
+      100% {
+        left: 150%;
+      }
+    }
+
+    @keyframes loading {
+      0% {
+        left: -33%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* Page transition: start invisible so no flash on entry */
+    body {
+      opacity: 0;
+      transition: opacity 0.65s ease;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-dark min-h-screen font-display text-slate-100 flex flex-col overflow-x-hidden selection:bg-primary selection:text-black">
+
+  <!-- Top Navigation Bar -->
+  <header class="sticky top-0 z-50 w-full bg-background-dark/95 backdrop-blur-sm border-b border-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <div class="flex items-center gap-4">
+          <span class="material-symbols-outlined text-primary animate-pulse">encrypted</span>
+          <h1 class="font-mono text-sm tracking-widest text-primary font-bold">
+            <span class="hidden sm:inline">SYSTEM.ROOT // </span>DK-DOSSIER_V2.4
+          </h1>
+        </div>
+        <div class="hidden md:flex items-center gap-2 px-3 py-1 bg-primary/10 rounded border border-primary/20">
+          <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+          <span class="text-xs font-mono text-primary tracking-wider">SECURE CONNECTION ESTABLISHED</span>
+        </div>
+        <nav class="flex gap-4 md:gap-6">
+          <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group"
+            href="index.html">
+            <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span> HOME
+          </a>
+          <a class="text-xs font-mono text-primary font-bold flex items-center gap-1" href="about.html">
+            <span class="w-2 text-primary">&gt;</span> INTEL
+          </a>
+          <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group"
+            href="technical.html">
+            <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span>
+            PROJECTS
+          </a>
+          <a class="text-xs font-mono text-slate-400 hover:text-primary transition-colors flex items-center gap-1 group"
+            href="certifications.html">
+            <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-300 text-primary">&gt;</span> CERTS
+          </a>
+        </nav>
+      </div>
+    </div>
+    <div class="h-[1px] w-full bg-primary/20 relative overflow-hidden">
+      <div class="absolute inset-y-0 left-0 bg-primary w-1/3" style="animation: loading 2s ease-in-out infinite;"></div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow w-full max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 relative">
+    <div class="absolute inset-0 bg-grid-pattern bg-[length:40px_40px] opacity-[0.03] pointer-events-none"></div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+
+      <!-- Left Column: Main Dossier (8 cols) -->
+      <div class="lg:col-span-8 space-y-12">
+
+        <!-- Profile Header -->
+        <section class="relative border border-primary/20 bg-panel-dark/50 p-6 sm:p-8 rounded-lg overflow-hidden group"
+          id="about">
+          <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
+            <span class="material-symbols-outlined text-9xl text-primary transform -rotate-12">fingerprint</span>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-8 items-start relative z-10">
+            <div class="relative shrink-0">
+              <div class="w-32 h-32 sm:w-40 sm:h-40 relative rounded border border-primary/40 overflow-hidden">
+                <div class="absolute inset-0 bg-primary/20 z-10 mix-blend-overlay"></div>
+                <div class="absolute inset-0 scanline z-20 pointer-events-none opacity-50"></div>
+                <img alt="Devaansh Kushwaha" class="w-full h-full object-cover grayscale contrast-125"
+                  src="assets/images/profile.jpg"
+                  onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCvQm_zTh4463pkhc0HZwey7UxeOlc5PvwpRwipDQCC75ptC3rVGx41687hPQIecXr88_Juhy51tOVkgvKqdqikVI70h8rOEN1bOJ2gMuS4m4fVYxmR2csLS8G1EjbsqoHkzmuwp6X67i29dfb96LmcIeFbH_6vpDC3GJEEHLPHGHIrhcCTFcKn5phXWOSSn_sZ_TJHRxvnBMsK-7icfl9iKn0wTu4ZHw3oshqEN7GQJ8AZfHKV18IgP38j2BlJsEvgzVuo0FKB-w'" />
+                <div class="absolute top-1 left-1 w-2 h-2 border-t-2 border-l-2 border-primary"></div>
+                <div class="absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 border-primary"></div>
+                <div class="absolute bottom-1 left-1 w-2 h-2 border-b-2 border-l-2 border-primary"></div>
+                <div class="absolute bottom-1 right-1 w-2 h-2 border-b-2 border-r-2 border-primary"></div>
+              </div>
+              <div class="mt-2 text-center">
+                <span
+                  class="bg-primary text-black text-[10px] font-bold px-2 py-0.5 rounded tracking-widest font-mono">VERIFIED</span>
+              </div>
+            </div>
+            <div class="flex-1 space-y-4">
+              <div>
+                <h2
+                  class="text-3xl font-display font-bold text-white tracking-tight uppercase glitch-effect cursor-default">
+                  Subject: Devaansh Kushwaha</h2>
+                <p class="text-primary font-mono text-sm mt-1 tracking-wider opacity-80">Joint Secretary &amp; Creative
+                  Technologist | UPES Dehradun</p>
+              </div>
+              <div class="relative border-l-2 border-primary/30 pl-4 py-1">
+                <h3 class="text-xs font-mono text-slate-400 mb-2 uppercase tracking-widest">[PROFILE] MISSION SUMMARY
+                </h3>
+                <p class="text-slate-300 font-mono text-sm leading-relaxed">
+                  VFX Head at UPES ACM with expertise in visual effects, game development, blockchain, and
+                  cybersecurity. Currently pursuing B.Tech at UPES Dehradun (Batch 2024–2028) — building AI security
+                  tools, leading creative teams, and shipping projects across game dev, Web3, VFX, and cybersecurity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Core Competencies Grid -->
+        <section>
+          <div class="flex items-center justify-between mb-6 border-b border-primary/20 pb-2">
+            <h3 class="text-xl font-display font-bold text-white flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">terminal</span> TACTICAL CAPABILITIES
+            </h3>
+            <span class="text-xs font-mono text-primary/50 border border-primary/30 px-2 py-1 rounded">Auth: LEVEL
+              3</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- VFX & Video -->
+            <div
+              class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="p-2 bg-purple-900/20 text-purple-400 rounded border border-purple-900/40">
+                  <span class="material-symbols-outlined text-lg">movie</span>
+                </div>
+                <h4 class="font-mono text-slate-200 font-bold">VFX &amp; MOTION</h4>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">After
+                  Effects</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Premiere
+                  Pro</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Blender</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">DaVinci
+                  Resolve</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Photoshop</span>
+              </div>
+            </div>
+            <!-- Game Dev -->
+            <div
+              class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="p-2 bg-green-900/20 text-green-400 rounded border border-green-900/40">
+                  <span class="material-symbols-outlined text-lg">gamepad</span>
+                </div>
+                <h4 class="font-mono text-slate-200 font-bold">GAME DEV OPS</h4>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Unity</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">C#</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">3D
+                  Modeling</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Game
+                  Design</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Level
+                  Design</span>
+              </div>
+            </div>
+            <!-- Programming -->
+            <div
+              class="bg-panel-dark border border-slate-800 p-5 rounded hover:border-primary/40 transition-colors group">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="p-2 bg-yellow-900/20 text-yellow-500 rounded border border-yellow-900/40">
+                  <span class="material-symbols-outlined text-lg">code</span>
+                </div>
+                <h4 class="font-mono text-slate-200 font-bold">PROGRAMMING</h4>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Python</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">JavaScript</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Java</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">C</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">HTML/CSS</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Node.js</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-slate-700 group-hover:border-primary/30 transition-colors">Git</span>
+              </div>
+            </div>
+            <!-- Cybersecurity -->
+            <div
+              class="bg-panel-dark border border-purple-900/40 p-5 rounded hover:border-purple-500/50 transition-colors group">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="p-2 bg-purple-900/20 text-purple-400 rounded border border-purple-900/40">
+                  <span class="material-symbols-outlined text-lg">security</span>
+                </div>
+                <h4 class="font-mono text-slate-200 font-bold">CYBERSECURITY</h4>
+                <span
+                  class="ml-auto text-[10px] font-mono text-purple-400 border border-purple-900/40 px-1.5 py-0.5 rounded">ACTIVE</span>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">Phishing
+                  Detection</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">Deep
+                  Learning</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">FastAPI</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">TensorFlow</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">Threat
+                  Intelligence</span>
+                <span
+                  class="px-2 py-1 bg-slate-800 text-slate-300 text-xs font-mono rounded border border-purple-900/40 group-hover:border-purple-500/40 transition-colors">Risk
+                  Scoring</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chronological Timeline -->
+        <section class="relative">
+          <div
+            class="absolute -top-6 -right-6 text-slate-700/10 text-8xl font-black select-none pointer-events-none rotate-12">
+            HISTORY</div>
+          <div class="flex items-center justify-between mb-8 border-b border-primary/20 pb-2 relative z-10">
+            <h3 class="text-xl font-display font-bold text-white flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary">history</span> CHRONOLOGICAL INTEL
+            </h3>
+            <div
+              class="transform -rotate-12 border-2 border-primary/30 px-2 py-0.5 rounded text-primary/50 text-xs font-black uppercase opacity-70">
+              CONFIDENTIAL</div>
+          </div>
+          <div
+            class="relative pl-6 sm:pl-10 space-y-12 before:content-[''] before:absolute before:left-[11px] sm:before:left-[19px] before:top-2 before:bottom-0 before:w-[2px] before:bg-gradient-to-b before:from-primary before:via-primary/30 before:to-transparent">
+
+            <!-- Item 0: TryHackMe -->
+            <div class="relative group">
+              <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary shadow-[0_0_10px_rgba(168,85,247,0.6)]"></span>
+              </span>
+              <div
+                class="bg-panel-dark border-l-4 border-primary/60 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r ring-1 ring-primary/20 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                  <h4 class="text-white font-bold font-display text-lg">TryHackMe - Adept Hacker</h4>
+                  <span
+                    class="font-mono text-primary text-xs bg-primary/10 px-2 py-0.5 rounded border border-primary/30">ACTIVE
+                    // 125+ STREAK</span>
+                </div>
+                <p class="text-slate-400 font-mono text-sm mb-2">Cybersecurity Training & CTFs</p>
+                <p class="text-slate-300 text-sm leading-relaxed">Maintaining a Top 20% global ranking by continuously
+                  engaging in penetration testing labs, defensive security rooms, and CTF challenges. Achieved the Adept
+                  [0x7] rank with 37+ rooms completed.</p>
+              </div>
+            </div>
+
+            <!-- Item 1: Joint Secretary ACM-W -->
+            <div class="relative group">
+              <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.6)]"></span>
+              </span>
+              <div
+                class="bg-panel-dark border-l-4 border-red-500/60 pl-4 py-2 hover:bg-panel-dark hover:border-red-500 transition-all duration-300 rounded-r ring-1 ring-red-500/20">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                  <h4 class="text-white font-bold font-display text-lg">Joint Secretary - ACM-W Student Chapters</h4>
+                  <span
+                    class="font-mono text-red-400 text-xs bg-red-500/10 px-2 py-0.5 rounded border border-red-500/30">PRESENT
+                    // ACTIVE</span>
+                </div>
+                <p class="text-slate-400 font-mono text-sm mb-2">Association for Computing Machinery (Women)</p>
+                <p class="text-slate-300 text-sm leading-relaxed">Leading strategic initiatives, organizing technical
+                  workshops, hackathons, and mentoring students in computer science and emerging technologies. Driving
+                  community engagement and professional development for ACM-W members.</p>
+              </div>
+            </div>
+
+            <!-- Item 2: CSI Build Hackathon -->
+            <div class="relative group">
+              <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
+              </span>
+              <div
+                class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                  <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">CSI Build -
+                    Build4Bharat Hackathon</h4>
+                  <span class="font-mono text-slate-500 text-xs">2025</span>
+                </div>
+                <p class="text-slate-400 font-mono text-sm mb-2">Computer Society of India Hackathon</p>
+                <p class="text-slate-300 text-sm leading-relaxed">Participated in CSI Build hackathon focused on
+                  innovative solutions for real-world problems. Collaborated with team members on full-stack development
+                  and project implementation.</p>
+              </div>
+            </div>
+
+            <!-- Item 3: VFX Head -->
+            <div class="relative group">
+              <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
+              </span>
+              <div
+                class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                  <h4 class="text-white font-bold font-display text-lg">VFX Head - UPES ACM</h4>
+                  <span class="font-mono text-slate-400 text-xs bg-slate-800/50 px-2 py-0.5 rounded">2025 – 2026</span>
+                </div>
+                <p class="text-slate-400 font-mono text-sm mb-2">University of Petroleum &amp; Energy Studies, Dehradun
+                </p>
+                <p class="text-slate-300 text-sm leading-relaxed">Leading visual effects and video production for
+                  university events. Managing creative teams, event coverage, motion graphics, and 3D animation projects
+                  for UPES ACM chapter activities.</p>
+              </div>
+            </div>
+
+            <!-- Item 4: WCHL 2025 -->
+            <div class="relative group">
+              <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
+              </span>
+              <div
+                class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                  <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">Skill Chain - WCHL
+                    2025</h4>
+                  <span class="font-mono text-slate-500 text-xs">2025</span>
+                </div>
+                <p class="text-slate-400 font-mono text-sm mb-2">World Championship of Hackathons &amp; Labs — Regional
+                  Round Qualifier</p>
+                <p class="text-slate-300 text-sm leading-relaxed">Built an innovative blockchain-based solution for
+                  skills verification using smart contracts and Web3. Successfully qualified for regional round. Tech:
+                  Blockchain, Smart Contracts, Web3, DApps.</p>
+              </div>
+            </div>
+
+            <!-- Item 5: Global Game Jam 2025 -->
+            <div class="relative group">
+              <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
+              </span>
+              <div
+                class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                  <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">Bubble Labyrinth -
+                    Global Game Jam 2025</h4>
+                  <span class="font-mono text-slate-500 text-xs">Jan 2025</span>
+                </div>
+                <p class="text-slate-400 font-mono text-sm mb-2">Dehradun, Uttarakhand</p>
+                <p class="text-slate-300 text-sm leading-relaxed">Developed a 48-hour escape room puzzle game with
+                  psychological elements using Unity. Roles included 3D Art, Game Design, Game Development, and QA.
+                  Published on Global Game Jam platform.</p>
+              </div>
+            </div>
+
+            <!-- Item 6: B.Tech UPES -->
+            <div class="relative group">
+              <span class="absolute -left-[30px] sm:-left-[39px] top-1.5 flex h-4 w-4 items-center justify-center">
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-700 group-hover:bg-primary transition-colors"></span>
+              </span>
+              <div
+                class="bg-panel-dark/40 border-l-4 border-slate-700 pl-4 py-2 hover:bg-panel-dark hover:border-primary transition-all duration-300 rounded-r">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+                  <h4 class="text-slate-200 font-bold font-display text-lg group-hover:text-white">B.Tech - UPES
+                    Dehradun</h4>
+                  <span class="font-mono text-slate-500 text-xs">2024 - 2028</span>
+                </div>
+                <p class="text-slate-400 font-mono text-sm mb-2">University of Petroleum and Energy Studies</p>
+                <p class="text-slate-300 text-sm leading-relaxed">Pursuing Bachelor of Technology in Computer Science
+                  Engineering with specialization in Cybersecurity. Batch of 2024–2028.</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="border border-primary/20 bg-panel-dark/50 p-6 sm:p-8 rounded-lg" id="contact">
+          <div class="flex items-center gap-2 mb-6 border-b border-primary/20 pb-3">
+            <span class="material-symbols-outlined text-primary">contact_mail</span>
+            <h3 class="text-xl font-display font-bold text-white">ESTABLISH CONTACT</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="https://wa.me/+916265954576" target="_blank"
+              class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+              <div
+                class="w-10 h-10 bg-green-900/30 rounded flex items-center justify-center border border-green-900/50 group-hover:border-primary/40">
+                <span class="material-symbols-outlined text-green-400">chat</span>
+              </div>
+              <div>
+                <p class="text-white text-sm font-bold">WhatsApp</p>
+                <p class="text-slate-400 text-xs font-mono">+91 6265954576</p>
+              </div>
+            </a>
+            <a href="https://github.com/devaanshkushwaha06" target="_blank"
+              class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+              <div
+                class="w-10 h-10 bg-slate-700/30 rounded flex items-center justify-center border border-slate-600/50 group-hover:border-primary/40">
+                <span class="material-symbols-outlined text-slate-300">hub</span>
+              </div>
+              <div>
+                <p class="text-white text-sm font-bold">GitHub</p>
+                <p class="text-slate-400 text-xs font-mono">devaanshkushwaha06</p>
+              </div>
+            </a>
+            <a href="mailto:devaanshkushwaha@gmail.com"
+              class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+              <div
+                class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center border border-primary/20 group-hover:border-primary/40">
+                <span class="material-symbols-outlined text-primary">alternate_email</span>
+              </div>
+              <div>
+                <p class="text-white text-sm font-bold">Email</p>
+                <p class="text-slate-400 text-xs font-mono">devaanshkushwaha@gmail.com</p>
+              </div>
+            </a>
+            <a href="mailto:devkush2006@outlook.com"
+              class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+              <div
+                class="w-10 h-10 bg-blue-900/30 rounded flex items-center justify-center border border-blue-800/50 group-hover:border-primary/40">
+                <span class="material-symbols-outlined text-blue-400">alternate_email</span>
+              </div>
+              <div>
+                <p class="text-white text-sm font-bold">Email</p>
+                <p class="text-slate-400 text-xs font-mono">devkush2006@outlook.com</p>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/devaansh-kushwaha-316340338" target="_blank"
+              class="flex items-center gap-4 bg-slate-800/50 border border-slate-700 rounded p-4 hover:border-primary/60 hover:bg-slate-800 transition-all group">
+              <div
+                class="w-10 h-10 bg-blue-900/30 rounded flex items-center justify-center border border-blue-800/50 group-hover:border-primary/40">
+                <span class="material-symbols-outlined text-blue-400">work</span>
+              </div>
+              <div>
+                <p class="text-white text-sm font-bold">LinkedIn</p>
+                <p class="text-slate-400 text-xs font-mono">devaansh-kushwaha</p>
+              </div>
+            </a>
+          </div>
+        </section>
+
+      </div><!-- end left col -->
+
+      <!-- Right Column: Metadata Sidebar (4 cols) -->
+      <aside class="lg:col-span-4 space-y-6">
+
+        <!-- Status Panel -->
+        <div class="bg-panel-dark border border-primary/20 rounded-lg p-5 relative overflow-hidden">
+          <div class="absolute inset-x-0 top-0 h-1 bg-primary/50"></div>
+          <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Current Status</h3>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-3 h-3 rounded-full bg-primary animate-ping"></div>
+            <span class="text-primary font-bold font-display tracking-wider text-xl">OPERATIONAL</span>
+          </div>
+          <div class="space-y-3 font-mono text-sm">
+            <div class="flex justify-between border-b border-slate-800 pb-2">
+              <span class="text-slate-500">Role:</span>
+              <span class="text-white font-bold">JOINT SECRETARY</span>
+            </div>
+            <div class="flex justify-between border-b border-slate-800 pb-2">
+              <span class="text-slate-500">Location:</span>
+              <span class="text-primary">UPES // DEHRADUN</span>
+            </div>
+            <div class="flex justify-between border-b border-slate-800 pb-2">
+              <span class="text-slate-500">Unit:</span>
+              <span class="text-white">ACM-W</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-500">Response:</span>
+              <span class="text-primary">&lt; 24 HOURS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Stats -->
+        <div class="bg-panel-dark border border-slate-800 rounded-lg p-5">
+          <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Skill Proficiency</h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-300">After Effects</span>
+                <span class="text-primary">90%</span>
+              </div>
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full w-[90%]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-300">Motion Graphics</span>
+                <span class="text-primary">95%</span>
+              </div>
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full w-[95%]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-300">Python</span>
+                <span class="text-primary">85%</span>
+              </div>
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full w-[85%]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-300">Unity / C#</span>
+                <span class="text-primary">75%</span>
+              </div>
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full w-[75%]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-300">Java</span>
+                <span class="text-primary">55%</span>
+              </div>
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full w-[55%]"></div>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">basics</span>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-300">C</span>
+                <span class="text-primary">60%</span>
+              </div>
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full w-[60%]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-300">JavaScript</span>
+                <span class="text-primary">80%</span>
+              </div>
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full w-[80%]"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-purple-300">Cybersecurity</span>
+                <span class="text-purple-400">65%</span>
+              </div>
+              <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                <div class="h-full w-[65%] rounded-full" style="background: linear-gradient(90deg, #9333ea, #c084fc)">
+                </div>
+              </div>
+              <span class="text-[10px] text-purple-500 font-mono">actively leveling up</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="bg-panel-dark border border-slate-800 rounded-lg p-5">
+          <h3 class="font-mono text-xs text-slate-500 uppercase tracking-widest mb-4">Operational Stats</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-black/30 rounded p-3 border border-slate-800">
+              <p class="text-2xl font-bold text-white">7+</p>
+              <p class="text-xs text-primary font-mono">Events Covered</p>
+            </div>
+            <div class="bg-black/30 rounded p-3 border border-slate-800">
+              <p class="text-2xl font-bold text-white">2+</p>
+              <p class="text-xs text-primary font-mono">Hackathons</p>
+            </div>
+            <div class="bg-black/30 rounded p-3 border border-slate-800">
+              <p class="text-2xl font-bold text-white">500+</p>
+              <p class="text-xs text-primary font-mono">Learning Hrs</p>
+            </div>
+            <div class="bg-black/30 rounded p-3 border border-slate-800">
+              <p class="text-2xl font-bold text-white">Top 20%</p>
+              <p class="text-xs text-primary font-mono">TryHackMe</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Resume -->
+        <a href="assets/Devaansh_Kushwaha_CV.pdf" download="Devaansh_Kushwaha_CV.pdf"
+          class="w-full group relative overflow-hidden bg-primary/10 hover:bg-primary/20 border border-primary text-primary font-mono text-sm py-3 px-4 rounded transition-all flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-lg">download</span>
+          <span class="font-bold tracking-wider">DOWNLOAD_RESUME</span>
+        </a>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-12 border-t border-primary/10 bg-background-dark py-6">
+    <div
+      class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-slate-600">
+      <p>CLASSIFIED MATERIAL // EYES ONLY</p>
+      <p class="mt-2 md:mt-0">© 2025 DEVAANSH KUSHWAHA. ALL RIGHTS RESERVED.</p>
+    </div>
+  </footer>
+
+  <!-- Page Transition Overlay -->
+  <div id="page-transition"
+    class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center pointer-events-none opacity-0"
+    style="transition:opacity 0.3s ease">
+    <div class="w-full max-w-lg mx-6">
+      <div
+        class="bg-[#050f07] border border-primary/50 rounded-lg shadow-[0_0_60px_rgba(168,85,247,0.25)] overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-primary/20 bg-black/40">
+          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-primary/80"></div>
+          <span id="pt-title" class="text-primary/70 text-[11px] font-mono ml-3 tracking-widest">root@dk-system:
+            ~</span>
+          <div class="ml-auto flex gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          </div>
+        </div>
+        <div id="pt-output" class="p-5 font-mono text-[12px] leading-6 space-y-0.5 min-h-[180px]"></div>
+        <div class="px-5 pb-4">
+          <div id="pt-progress-bar" class="w-0 h-0.5 bg-primary rounded-full" style="transition:width 2.2s linear">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      (function () {
+        const pageLabels = {
+          'index.html': { cmd: 'cd /', label: 'HOME' },
+          'about.html': { cmd: 'cd /about', label: 'ABOUT' },
+          'technical.html': { cmd: 'cd /projects', label: 'PROJECTS' },
+          'certifications.html': { cmd: 'cd /certifications', label: 'CERTIFICATIONS' },
+        };
+
+        function buildLines(dest) {
+          const info = pageLabels[dest] || { cmd: 'cd /' + dest, label: dest.toUpperCase() };
+          return [
+            { text: '$ ' + info.cmd, color: 'text-primary', delay: 0 },
+            { text: '[*] Resolving route: /' + info.label.toLowerCase() + '...', color: 'text-slate-400', delay: 280 },
+            { text: '[*] Authenticating session token...', color: 'text-slate-400', delay: 560 },
+            { text: '[OK] Token valid — DK_V1.0', color: 'text-green-400', delay: 840 },
+            { text: '[*] Loading module: ' + info.label + '...', color: 'text-slate-400', delay: 1100 },
+            { text: '[OK] Module loaded successfully', color: 'text-green-400', delay: 1380 },
+            { text: '[*] Rendering interface...', color: 'text-slate-400', delay: 1620 },
+            { text: '>>> NAVIGATING TO ' + info.label + ' <<<', color: 'text-primary font-bold', delay: 1900 },
+          ];
+        }
+
+        function typeText(el, text, speed, cb) {
+          let i = 0;
+          const cursor = document.createElement('span');
+          cursor.className = 'inline-block w-1.5 h-3 bg-primary align-middle ml-0.5 opacity-80';
+          cursor.style.animation = 'blink 1s step-end infinite';
+          el.appendChild(cursor);
+          const iv = setInterval(() => {
+            if (i < text.length) {
+              el.insertBefore(document.createTextNode(text[i++]), cursor);
+            } else {
+              clearInterval(iv);
+              cursor.remove();
+              if (cb) cb();
+            }
+          }, speed);
+        }
+
+        function runTransition(dest) {
+          const overlay = document.getElementById('page-transition');
+          const output = document.getElementById('pt-output');
+          const bar = document.getElementById('pt-progress-bar');
+          const lines = buildLines(dest);
+
+          output.innerHTML = '';
+          overlay.style.pointerEvents = 'all';
+          overlay.style.opacity = '1';
+
+          setTimeout(() => { bar.style.width = '100%'; }, 50);
+
+          lines.forEach(({ text, color, delay }) => {
+            setTimeout(() => {
+              const row = document.createElement('div');
+              row.className = 'flex items-start gap-2 ' + color;
+              const arrow = document.createElement('span');
+              arrow.className = 'select-none text-primary/40 shrink-0 mt-0.5';
+              arrow.textContent = '›';
+              const span = document.createElement('span');
+              row.appendChild(arrow);
+              row.appendChild(span);
+              output.appendChild(row);
+              output.scrollTop = output.scrollHeight;
+              typeText(span, text, 16);
+            }, delay);
+          });
+
+          const total = lines[lines.length - 1].delay + 400;
+          setTimeout(() => { window.location.href = dest; }, total);
+        }
+
+        document.addEventListener('click', function (e) {
+          const a = e.target.closest('a[href]');
+          if (!a) return;
+          const href = a.getAttribute('href');
+          if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel')) return;
+          const dest = href.split('/').pop().split('?')[0];
+          if (!pageLabels[dest]) return;
+          const current = window.location.pathname.split('/').pop() || 'index.html';
+          if (dest === current) return;
+          e.preventDefault();
+          runTransition(dest);
+        });
+
+        // Smooth entry: body starts at opacity:0 via CSS, fade+slide in on DOM ready
+        document.addEventListener('DOMContentLoaded', function () {
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            document.body.style.opacity = '1';
+          }));
+        });
+      })();
+  </script>
 </body>
+
 </html>

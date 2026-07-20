@@ -1,690 +1,917 @@
 <!DOCTYPE html>
 <html class="dark" lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Devaansh Kushwaha - Portfolio</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "primary": "#06f957",
-          "primary-dark": "#04c946",
-          "background-light": "#f5f8f6",
-          "background-dark": "#050505",
-          "surface-dark": "#0f1410",
-          "border-dark": "#1f2923",
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Devaansh Kushwaha - Portfolio</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#A855F7",
+            "primary-dark": "#7E22CE",
+            "background-light": "#f5f8f6",
+            "background-dark": "#05030A",
+            "surface-dark": "#0d0a14",
+            "border-dark": "#1d162d",
+          },
+          fontFamily: {
+            "display": ["Space Grotesk", "sans-serif"],
+            "mono": ["Courier New", "monospace"],
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'blink': 'blink 1s step-end infinite',
+          },
+          keyframes: {
+            blink: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0' },
+            }
+          }
         },
-        fontFamily: {
-          "display": ["Space Grotesk", "sans-serif"],
-          "mono": ["Courier New", "monospace"],
-        },
-        animation: {
-          'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          'blink': 'blink 1s step-end infinite',
-        },
-        keyframes: {
-          blink: {
-            '0%, 100%': { opacity: '1' },
-            '50%': { opacity: '0' },
+      },
+    }
+  </script>
+  <style>
+    .scanline-overlay {
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1));
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .glitch-text {
+      position: relative;
+      display: block;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #05030A;
+    }
+
+    .glitch-text::before {
+      left: 3px;
+      text-shadow: -2px 0 #A855F7;
+      animation: glitch-1 1.8s infinite steps(1);
+    }
+
+    .glitch-text::after {
+      left: -3px;
+      text-shadow: 2px 0 #ff00c1;
+      animation: glitch-2 1.4s infinite steps(1);
+    }
+
+    @keyframes glitch-1 {
+      0% {
+        clip-path: inset(8% 0 85% 0);
+        transform: translate(-3px, 0);
+      }
+
+      5% {
+        clip-path: inset(62% 0 12% 0);
+        transform: translate(3px, 0);
+      }
+
+      10% {
+        clip-path: inset(33% 0 55% 0);
+        transform: translate(-2px, 0);
+      }
+
+      15% {
+        clip-path: inset(75% 0 5% 0);
+        transform: translate(2px, 0);
+      }
+
+      20% {
+        clip-path: inset(45% 0 40% 0);
+        transform: translate(-3px, 0);
+      }
+
+      25% {
+        clip-path: inset(18% 0 70% 0);
+        transform: translate(3px, 0);
+      }
+
+      30% {
+        clip-path: inset(90% 0 2% 0);
+        transform: translate(-1px, 0);
+      }
+
+      35% {
+        clip-path: inset(5% 0 88% 0);
+        transform: translate(2px, 0);
+      }
+
+      40% {
+        clip-path: inset(55% 0 30% 0);
+        transform: translate(-3px, 0);
+      }
+
+      45% {
+        clip-path: inset(28% 0 60% 0);
+        transform: translate(3px, 0);
+      }
+
+      50% {
+        clip-path: inset(72% 0 15% 0);
+        transform: translate(-2px, 0);
+      }
+
+      55% {
+        clip-path: inset(10% 0 78% 0);
+        transform: translate(1px, 0);
+      }
+
+      60% {
+        clip-path: inset(40% 0 48% 0);
+        transform: translate(-3px, 0);
+      }
+
+      65% {
+        clip-path: inset(82% 0 8% 0);
+        transform: translate(3px, 0);
+      }
+
+      70% {
+        clip-path: inset(22% 0 65% 0);
+        transform: translate(-2px, 0);
+      }
+
+      75% {
+        clip-path: inset(58% 0 25% 0);
+        transform: translate(2px, 0);
+      }
+
+      80% {
+        clip-path: inset(3% 0 92% 0);
+        transform: translate(-1px, 0);
+      }
+
+      85% {
+        clip-path: inset(67% 0 18% 0);
+        transform: translate(3px, 0);
+      }
+
+      90% {
+        clip-path: inset(35% 0 52% 0);
+        transform: translate(-3px, 0);
+      }
+
+      95% {
+        clip-path: inset(50% 0 35% 0);
+        transform: translate(2px, 0);
+      }
+
+      100% {
+        clip-path: inset(15% 0 72% 0);
+        transform: translate(-2px, 0);
+      }
+    }
+
+    @keyframes glitch-2 {
+      0% {
+        clip-path: inset(50% 0 33% 0);
+        transform: translate(3px, 0) skewX(1deg);
+      }
+
+      7% {
+        clip-path: inset(15% 0 68% 0);
+        transform: translate(-3px, 0) skewX(-1deg);
+      }
+
+      14% {
+        clip-path: inset(78% 0 10% 0);
+        transform: translate(2px, 0);
+      }
+
+      21% {
+        clip-path: inset(30% 0 55% 0);
+        transform: translate(-2px, 0) skewX(2deg);
+      }
+
+      28% {
+        clip-path: inset(63% 0 22% 0);
+        transform: translate(3px, 0);
+      }
+
+      35% {
+        clip-path: inset(7% 0 82% 0);
+        transform: translate(-3px, 0) skewX(-2deg);
+      }
+
+      42% {
+        clip-path: inset(45% 0 42% 0);
+        transform: translate(1px, 0);
+      }
+
+      49% {
+        clip-path: inset(88% 0 5% 0);
+        transform: translate(-1px, 0) skewX(1deg);
+      }
+
+      56% {
+        clip-path: inset(20% 0 70% 0);
+        transform: translate(3px, 0);
+      }
+
+      63% {
+        clip-path: inset(55% 0 28% 0);
+        transform: translate(-3px, 0) skewX(-1deg);
+      }
+
+      70% {
+        clip-path: inset(38% 0 48% 0);
+        transform: translate(2px, 0);
+      }
+
+      77% {
+        clip-path: inset(72% 0 18% 0);
+        transform: translate(-2px, 0) skewX(2deg);
+      }
+
+      84% {
+        clip-path: inset(12% 0 75% 0);
+        transform: translate(3px, 0);
+      }
+
+      91% {
+        clip-path: inset(93% 0 2% 0);
+        transform: translate(-3px, 0) skewX(-1deg);
+      }
+
+      100% {
+        clip-path: inset(42% 0 44% 0);
+        transform: translate(2px, 0);
+      }
+    }
+
+    /* Page transition: start invisible so no flash on entry */
+    body {
+      opacity: 0;
+      transition: opacity 0.65s ease;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark">
+  <!-- Cybersecurity Breach Background Canvas -->
+  <canvas id="breach-canvas"
+    style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+  <!-- Scanline Overlay -->
+  <div class="fixed inset-0 scanline-overlay" style="z-index:1;"></div>
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 w-full border-b border-border-dark bg-background-dark/90 backdrop-blur-sm">
+    <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3 group">
+        <span class="material-symbols-outlined text-primary animate-pulse-slow">terminal</span>
+        <div class="flex flex-col">
+          <span class="text-xs text-primary/70 tracking-widest font-mono">SYSTEM_ID: DK_V1.0</span>
+          <span
+            class="text-sm font-bold text-white tracking-wide group-hover:text-primary transition-colors duration-300">ROOT_ACCESS</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-1">
+        <a class="px-4 py-2 text-sm text-primary bg-primary/10 border border-primary/20 rounded font-bold flex items-center gap-2"
+          href="index.html">
+          <span class="text-primary text-[10px] font-mono">00</span> HOME
+        </a>
+        <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20"
+          href="technical.html">
+          <span
+            class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">01</span>
+          PROJECTS
+        </a>
+        <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20"
+          href="about.html">
+          <span
+            class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">02</span>
+          ABOUT
+        </a>
+        <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20"
+          href="certifications.html">
+          <span
+            class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">03</span>
+          CERTIFICATIONS
+        </a>
+        <a class="ml-4 px-4 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/40 text-primary text-sm font-bold rounded flex items-center gap-2 transition-all"
+          href="about.html#contact">
+          <span class="material-symbols-outlined text-[18px]">lock_open</span> CONTACT
+        </a>
+      </nav>
+      <button class="md:hidden text-white hover:text-primary transition-colors"
+        onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+      class="hidden md:hidden bg-background-dark border-t border-border-dark px-4 py-3 flex flex-col gap-2">
+      <a class="text-primary font-bold py-2 font-mono text-sm" href="index.html">00 // HOME</a>
+      <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="technical.html">01 // PROJECTS</a>
+      <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="about.html">02 // ABOUT</a>
+      <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="certifications.html">03 //
+        CERTIFICATIONS</a>
+      <a class="text-primary border border-primary/40 py-2 px-3 rounded font-mono text-sm mt-1"
+        href="about.html#contact">CONTACT</a>
+    </div>
+  </header>
+  <!-- Main Content Area -->
+  <main class="flex-grow flex flex-col justify-center relative container mx-auto px-4 py-12 lg:py-20"
+    style="position:relative;z-index:2;">
+    <div class="absolute inset-0 z-0 pointer-events-none opacity-0"
+      style="background-image: radial-gradient(#1d162d 1px, transparent 1px); background-size: 32px 32px;"></div>
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <!-- Left Column: Avatar -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-1">
+        <div class="relative w-full max-w-[400px]">
+          <!-- Corner brackets -->
+          <div id="corner-tl"
+            class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary z-20 transition-all duration-500">
+          </div>
+          <div id="corner-tr"
+            class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary z-20 transition-all duration-500">
+          </div>
+          <div id="corner-bl"
+            class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary z-20 transition-all duration-500">
+          </div>
+          <div id="corner-br"
+            class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary z-20 transition-all duration-500">
+          </div>
+
+          <!-- Photo container -->
+          <div class="relative w-full aspect-square bg-surface-dark rounded border border-border-dark overflow-hidden">
+            <img id="profile-img" alt="Devaansh Kushwaha"
+              class="w-full h-full object-cover opacity-60 filter blur-md grayscale scale-110 transition-all duration-1000"
+              src="assets/images/profile.jpg" />
+            <!-- Encrypted overlay -->
+            <div id="encrypt-overlay"
+              class="absolute inset-0 flex flex-col items-center justify-center bg-black/50 backdrop-blur-[2px] transition-all duration-500">
+              <span id="fp-icon"
+                class="material-symbols-outlined text-primary text-5xl mb-3 transition-all duration-300">fingerprint</span>
+              <div id="encrypt-label"
+                class="px-3 py-1 bg-primary/10 border border-primary/50 text-primary text-xs font-mono font-bold tracking-widest rounded mb-4">
+                IDENTITY ENCRYPTED
+              </div>
+              <button id="sudo-btn" onclick="startReveal()" class="flex items-center gap-2 px-5 py-2 bg-primary/10 border border-primary text-primary text-sm font-mono font-bold tracking-widest rounded
+                   hover:bg-primary hover:text-black active:scale-95 transition-all duration-200 cursor-pointer shadow-[0_0_10px_rgba(168,85,247,0.3)]
+                   hover:shadow-[0_0_20px_rgba(168,85,247,0.6)]">
+                <span class="material-symbols-outlined text-[18px]">terminal</span>
+                SUDO REVEAL
+              </button>
+            </div>
+
+            <!-- Terminal overlay (hidden initially) -->
+            <div id="terminal-overlay" class="absolute inset-0 bg-black/90 flex flex-col hidden z-30 p-4">
+              <!-- Terminal title bar -->
+              <div class="flex items-center gap-2 mb-3 pb-2 border-b border-primary/30">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-primary"></div>
+                <span class="text-primary text-[11px] font-mono ml-2 tracking-widest">root@dk-system: ~</span>
+              </div>
+              <!-- Terminal output -->
+              <div id="terminal-output"
+                class="flex-1 font-mono text-[11px] leading-relaxed overflow-hidden space-y-[2px]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Right Column: Content -->
+      <div class="lg:col-span-7 flex flex-col gap-6 lg:pl-10 order-2 lg:order-2">
+        <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-primary/60">
+          <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            STATUS: ACTIVE</span>
+          <span class="hidden sm:inline text-slate-700">|</span>
+          <span>LOC: UPES_CAMPUS</span>
+          <span class="hidden sm:inline text-slate-700">|</span>
+          <span>MODE: AVAILABLE</span>
+        </div>
+        <div class="relative">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9]">
+            <span class="glitch-text" data-text="DEVAANSH">DEVAANSH</span>
+            <span class="glitch-text" data-text="KUSHWAHA">KUSHWAHA</span>
+          </h1>
+        </div>
+        <div
+          class="bg-surface-dark border border-border-dark rounded p-5 font-mono text-sm md:text-base text-slate-300 shadow-xl relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-full bg-primary/50"></div>
+          <div class="space-y-2">
+            <p class="flex flex-wrap gap-2">
+              <span class="text-primary font-bold select-none">&gt;</span>
+              <span class="text-slate-400">ROLE:</span>
+              <span class="text-white">JOINT SECRETARY @ UPES ACM-W</span>
+            </p>
+            <p class="flex flex-wrap gap-2 pl-4 border-l border-primary/20">
+              <span class="text-slate-500 select-none">├─</span>
+              <span class="text-slate-500">CURRENT:</span>
+              <span class="text-slate-300">Joint Secretary · ACM-W Student Chapters [2026–2027]</span>
+            </p>
+            <p class="flex flex-wrap gap-2 pl-4 border-l border-purple-500/20">
+              <span class="text-slate-500 select-none">└─</span>
+              <span class="text-purple-400">PREVIOUS:</span>
+              <span class="text-slate-300">VFX Head · UPES ACM [2025–2026]</span>
+            </p>
+            <p class="flex flex-wrap gap-2">
+              <span class="text-primary font-bold select-none">&gt;</span>
+              <span class="text-slate-400">EXPERTISE:</span>
+              <span class="text-primary">CYBERSECURITY // GAME_DEV // VFX_MOTION</span>
+            </p>
+            <p class="flex flex-wrap gap-2">
+              <span class="text-primary font-bold select-none">&gt;</span>
+              <span class="text-slate-400">CURRENT_MISSION:</span>
+              <span class="text-white">B.TECH @ UPES DEHRADUN [2024–2028]</span>
+              <span class="w-2.5 h-5 bg-primary inline-block animate-blink ml-1 align-middle"></span>
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+          <a href="technical.html"
+            class="relative overflow-hidden group bg-primary text-background-dark font-bold text-lg px-8 py-3 rounded hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all duration-300 text-center">
+            <span class="relative z-10 flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined">folder_open</span> VIEW PROJECTS
+            </span>
+            <div
+              class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 skew-y-12 origin-bottom">
+            </div>
+          </a>
+          <a href="about.html"
+            class="px-8 py-3 rounded border border-border-dark text-white hover:bg-white/5 hover:border-primary/50 transition-all duration-300 font-mono text-sm flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-primary text-base">person</span> ABOUT_ME
+          </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-border-dark mt-4">
+          <div class="flex flex-col">
+            <span class="text-2xl font-bold text-white">3+</span>
+            <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Projects</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-bold text-white">3+</span>
+            <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Hackathons</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-bold text-white">2</span>
+            <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Years UPES</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-bold text-white">Top 20%</span>
+            <span class="text-[10px] text-primary font-mono tracking-wider uppercase">TryHackMe Rank</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Expertise Cards -->
+    <div class="mt-24 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 relative z-10">
+      <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
+        <div
+          class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-primary group-hover:text-black">gamepad</span>
+        </div>
+        <h3 class="text-white text-lg font-bold mb-2">Game Development</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Unity engine, C#, 3D modeling &amp; game design in 48-hour
+          jams.</p>
+        <div class="mt-4 pt-3 border-t border-border-dark flex flex-wrap gap-1">
+          <span
+            class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">Unity</span>
+          <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">C#</span>
+          <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">GGJ
+            2025</span>
+        </div>
+      </div>
+      <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
+        <div
+          class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-primary group-hover:text-black">school</span>
+        </div>
+        <h3 class="text-white text-lg font-bold mb-2">Leadership &amp; Events</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Joint Secretary at ACM-W, leading initiatives, organizing
+          technical events, and mentoring student developers.</p>
+        <div class="mt-4 pt-3 border-t border-border-dark flex flex-wrap gap-1">
+          <span
+            class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">ACM-W</span>
+          <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">Community
+            Building</span>
+          <span
+            class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">2026–2027</span>
+        </div>
+      </div>
+      <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
+        <div
+          class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-primary group-hover:text-black">movie</span>
+        </div>
+        <h3 class="text-white text-lg font-bold mb-2">VFX &amp; Motion</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Cinematic VFX, motion graphics &amp; event production. VFX
+          Head at UPES ACM — 7+ events covered.</p>
+        <div class="mt-4 pt-3 border-t border-border-dark flex flex-wrap gap-1">
+          <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">After
+            Effects</span>
+          <span
+            class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">Blender</span>
+          <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">Premiere
+            Pro</span>
+        </div>
+      </div>
+      <div
+        class="bg-[#0d0a12] border border-purple-900/40 p-6 rounded hover:border-purple-500/60 transition-colors group">
+        <div
+          class="w-10 h-10 bg-purple-900/20 rounded flex items-center justify-center mb-4 group-hover:bg-purple-500/30 transition-colors border border-purple-900/40">
+          <span class="material-symbols-outlined text-purple-400">security</span>
+        </div>
+        <h3 class="text-white text-lg font-bold mb-2">Cybersecurity</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">AI-powered phishing detection, deep learning threat analysis
+          &amp; security tooling. Built &amp; deployed on Vercel.</p>
+        <div class="mt-4 pt-3 border-t border-purple-900/30 flex flex-wrap gap-1">
+          <span
+            class="text-[10px] font-mono text-purple-400/70 border border-purple-900/40 px-1.5 py-0.5 rounded">TensorFlow</span>
+          <span
+            class="text-[10px] font-mono text-purple-400/70 border border-purple-900/40 px-1.5 py-0.5 rounded">FastAPI</span>
+          <span
+            class="text-[10px] font-mono text-purple-400/70 border border-purple-900/40 px-1.5 py-0.5 rounded">LSTM</span>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    const revealLines = [
+      { text: '$ sudo decrypt --target=identity.enc', delay: 0, color: 'text-primary' },
+      { text: '[*] Initializing decryption protocol...', delay: 320, color: 'text-slate-400' },
+      { text: '[*] Loading AES-256 cipher keys...', delay: 640, color: 'text-slate-400' },
+      { text: '[OK] Cipher keys loaded successfully', delay: 960, color: 'text-green-400' },
+      { text: '[*] Bypassing biometric lock...', delay: 1240, color: 'text-slate-400' },
+      { text: '[OK] Biometric hash matched: DK_V1.0', delay: 1560, color: 'text-green-400' },
+      { text: '[*] Decrypting subject data...', delay: 1820, color: 'text-slate-400' },
+      { text: '[OK] Encryption layer 1 removed', delay: 2080, color: 'text-green-400' },
+      { text: '[OK] Encryption layer 2 removed', delay: 2240, color: 'text-green-400' },
+      { text: '[OK] Encryption layer 3 removed', delay: 2380, color: 'text-green-400' },
+      { text: '>>> ACCESS GRANTED <<<', delay: 2600, color: 'text-primary font-bold' },
+      { text: '[SYS] Identity decryption complete.', delay: 2800, color: 'text-slate-300' },
+    ];
+
+    let revealed = false;
+
+    function startReveal() {
+      if (revealed) return;
+
+      const btn = document.getElementById('sudo-btn');
+      const encLabel = document.getElementById('encrypt-label');
+      const terminal = document.getElementById('terminal-overlay');
+      const output = document.getElementById('terminal-output');
+      const img = document.getElementById('profile-img');
+      const overlay = document.getElementById('encrypt-overlay');
+
+      // Animate corners
+      ['corner-tl', 'corner-tr', 'corner-bl', 'corner-br'].forEach(id => {
+        document.getElementById(id).classList.add('w-16', 'h-16');
+      });
+
+      // Hide button & label, show terminal
+      btn.classList.add('opacity-0', 'pointer-events-none');
+      encLabel.classList.add('hidden');
+      terminal.classList.remove('hidden');
+      output.innerHTML = '';
+
+      // Type each line with delay
+      revealLines.forEach(({ text, delay, color }) => {
+        setTimeout(() => {
+          const line = document.createElement('div');
+          line.className = color + ' flex items-start gap-1';
+          line.innerHTML = `<span class="select-none opacity-50 shrink-0">&gt;</span><span class="terminal-type"></span>`;
+          output.appendChild(line);
+          typeText(line.querySelector('.terminal-type'), text, 18);
+          output.scrollTop = output.scrollHeight;
+        }, delay);
+      });
+
+      // After last line + small pause — fade terminal, then reveal photo
+      const revealAt = revealLines[revealLines.length - 1].delay + 600;
+      setTimeout(() => {
+        // Flash terminal green
+        terminal.classList.add('bg-primary/10');
+        setTimeout(() => terminal.classList.remove('bg-primary/10'), 200);
+
+        // Fade out terminal first
+        setTimeout(() => {
+          terminal.style.transition = 'opacity 0.6s';
+          terminal.style.opacity = '0';
+
+          // After terminal fades, reveal photo and hide everything
+          setTimeout(() => {
+            terminal.classList.add('hidden');
+            terminal.style.opacity = '';
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            overlay.style.transition = 'opacity 0.8s';
+            img.classList.remove('blur-md', 'grayscale', 'opacity-60', 'scale-110');
+            img.classList.add('opacity-100', 'scale-100');
+            img.style.filter = 'none';
+            revealed = true;
+          }, 650);
+        }, 300);
+      }, revealAt);
+    }
+
+    function typeText(el, text, speed) {
+      let i = 0;
+      const cursor = document.createElement('span');
+      cursor.className = 'inline-block w-1.5 h-3 bg-primary align-middle ml-0.5 animate-blink';
+      el.appendChild(cursor);
+      const iv = setInterval(() => {
+        if (i < text.length) {
+          el.insertBefore(document.createTextNode(text[i]), cursor);
+          i++;
+        } else {
+          clearInterval(iv);
+          cursor.remove();
+        }
+      }, speed);
+    }
+  </script>
+  <!-- Footer -->
+  <footer class="border-t border-border-dark bg-background-dark py-4 px-4 text-center md:text-left"
+    style="position:relative;z-index:2;">
+    <div
+      class="container mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-mono">
+      <div>© 2025 DEVAANSH KUSHWAHA | ALL RIGHTS RESERVED</div>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <a href="https://github.com/devaanshkushwaha06" target="_blank"
+          class="hover:text-primary transition-colors">GITHUB</a>
+        <span class="text-primary">STATUS: ONLINE</span>
+      </div>
+    </div>
+  </footer>
+  <!-- Page Transition Overlay -->
+  <div id="page-transition"
+    class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center pointer-events-none opacity-0"
+    style="transition:opacity 0.3s ease">
+    <div class="w-full max-w-lg mx-6">
+      <div
+        class="bg-[#050f07] border border-primary/50 rounded-lg shadow-[0_0_60px_rgba(168,85,247,0.25)] overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-primary/20 bg-black/40">
+          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-primary/80"></div>
+          <span id="pt-title" class="text-primary/70 text-[11px] font-mono ml-3 tracking-widest">root@dk-system:
+            ~</span>
+          <div class="ml-auto flex gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+          </div>
+        </div>
+        <div id="pt-output" class="p-5 font-mono text-[12px] leading-6 space-y-0.5 min-h-[180px]"></div>
+        <div class="px-5 pb-4">
+          <div id="pt-progress-bar" class="w-0 h-0.5 bg-primary rounded-full" style="transition:width 2.2s linear">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const pageLabels = {
+        'index.html': { cmd: 'cd /', label: 'HOME' },
+        'about.html': { cmd: 'cd /about', label: 'ABOUT' },
+        'technical.html': { cmd: 'cd /projects', label: 'PROJECTS' },
+        'certifications.html': { cmd: 'cd /certifications', label: 'CERTIFICATIONS' },
+      };
+
+      function buildLines(dest) {
+        const info = pageLabels[dest] || { cmd: 'cd /' + dest, label: dest.toUpperCase() };
+        return [
+          { text: '$ ' + info.cmd, color: 'text-primary', delay: 0 },
+          { text: '[*] Resolving route: /' + info.label.toLowerCase() + '...', color: 'text-slate-400', delay: 280 },
+          { text: '[*] Authenticating session token...', color: 'text-slate-400', delay: 560 },
+          { text: '[OK] Token valid — DK_V1.0', color: 'text-green-400', delay: 840 },
+          { text: '[*] Loading module: ' + info.label + '...', color: 'text-slate-400', delay: 1100 },
+          { text: '[OK] Module loaded successfully', color: 'text-green-400', delay: 1380 },
+          { text: '[*] Rendering interface...', color: 'text-slate-400', delay: 1620 },
+          { text: '>>> NAVIGATING TO ' + info.label + ' <<<', color: 'text-primary font-bold', delay: 1900 },
+        ];
+      }
+
+      function typeText(el, text, speed, cb) {
+        let i = 0;
+        const cursor = document.createElement('span');
+        cursor.className = 'inline-block w-1.5 h-3 bg-primary align-middle ml-0.5 opacity-80';
+        cursor.style.animation = 'blink 1s step-end infinite';
+        el.appendChild(cursor);
+        const iv = setInterval(() => {
+          if (i < text.length) {
+            el.insertBefore(document.createTextNode(text[i++]), cursor);
+          } else {
+            clearInterval(iv);
+            cursor.remove();
+            if (cb) cb();
+          }
+        }, speed);
+      }
+
+      function runTransition(dest) {
+        const overlay = document.getElementById('page-transition');
+        const output = document.getElementById('pt-output');
+        const bar = document.getElementById('pt-progress-bar');
+        const lines = buildLines(dest);
+
+        output.innerHTML = '';
+        overlay.style.pointerEvents = 'all';
+        overlay.style.opacity = '1';
+
+        // Start progress bar
+        setTimeout(() => { bar.style.width = '100%'; }, 50);
+
+        lines.forEach(({ text, color, delay }) => {
+          setTimeout(() => {
+            const row = document.createElement('div');
+            row.className = 'flex items-start gap-2 ' + color;
+            const arrow = document.createElement('span');
+            arrow.className = 'select-none text-primary/40 shrink-0 mt-0.5';
+            arrow.textContent = '›';
+            const span = document.createElement('span');
+            row.appendChild(arrow);
+            row.appendChild(span);
+            output.appendChild(row);
+            output.scrollTop = output.scrollHeight;
+            typeText(span, text, 16);
+          }, delay);
+        });
+
+        const total = lines[lines.length - 1].delay + 400;
+        setTimeout(() => { window.location.href = dest; }, total);
+      }
+
+      // Intercept nav link clicks
+      document.addEventListener('click', function (e) {
+        const a = e.target.closest('a[href]');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel')) return;
+        const dest = href.split('/').pop().split('?')[0];
+        if (!pageLabels[dest]) return;
+        // Don't transition to current page
+        const current = window.location.pathname.split('/').pop() || 'index.html';
+        if (dest === current) return;
+        e.preventDefault();
+        runTransition(dest);
+      });
+
+      // Page entrance: fade in from black on load
+      // Smooth entry: body starts at opacity:0 via CSS, fade+slide in on DOM ready
+      document.addEventListener('DOMContentLoaded', function () {
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          document.body.style.opacity = '1';
+        }));
+      });
+    })();
+  </script>
+
+  <!-- Cybersecurity Breach Canvas Animation -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('breach-canvas');
+      const ctx = canvas.getContext('2d');
+
+      const HEX = '0123456789ABCDEF';
+      const BIN = '01';
+      const SYM = '{}[]<>/\\|;:@#$%^&*!?~';
+      const WORDS = ['BREACH', 'ACCESS', 'DENIED', 'EXPLOIT', 'INJECT', 'SCAN', 'FUZZ', 'PAYLOAD', 'ROOT', 'SHELL', '0x00', 'NULL', 'OVERFLOW', 'CIPHER', 'HASH', 'XOR', 'NMAP', 'SSH', 'RSA', 'AES'];
+
+      let cols = [], drops = [], types = [], speeds = [], timers = [], wordIdx = [];
+      const FONT_SIZE = 13;
+      const COLORS = [
+        'rgba(168,85,247,',   // primary green
+        'rgba(4,201,70,',   // darker green
+        'rgba(0,255,180,',  // cyan-green
+        'rgba(0,200,255,',  // blue accent (rare)
+      ];
+
+      function randomChar(type) {
+        if (type === 0) return HEX[Math.random() * HEX.length | 0];
+        if (type === 1) return BIN[Math.random() * BIN.length | 0];
+        if (type === 2) return SYM[Math.random() * SYM.length | 0];
+        return HEX[Math.random() * HEX.length | 0];
+      }
+
+      function init() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const numCols = Math.floor(canvas.width / FONT_SIZE);
+        cols = [];
+        drops = [];
+        types = [];
+        speeds = [];
+        timers = [];
+        wordIdx = [];
+        for (let i = 0; i < numCols; i++) {
+          drops[i] = Math.random() * -canvas.height / FONT_SIZE | 0;
+          types[i] = Math.random() < 0.5 ? 0 : Math.random() < 0.5 ? 1 : 2;
+          speeds[i] = 0.3 + Math.random() * 0.7;
+          timers[i] = Math.random() * 60 | 0;
+          wordIdx[i] = Math.random() < 0.08 ? Math.random() * WORDS.length | 0 : -1;
+        }
+      }
+
+      // Per-column character streams
+      const streams = [];
+      function getStream(col, rows) {
+        if (!streams[col] || streams[col].length !== rows) {
+          streams[col] = Array.from({ length: rows }, () => randomChar(types[col]));
+        }
+        return streams[col];
+      }
+
+      let frame = 0;
+      function draw() {
+        // Fade trail
+        ctx.fillStyle = 'rgba(5,5,5,0.18)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = FONT_SIZE + 'px "Courier New", monospace';
+
+        const rows = Math.ceil(canvas.height / FONT_SIZE) + 2;
+
+        for (let i = 0; i < drops.length; i++) {
+          const stream = getStream(i, rows);
+          const x = i * FONT_SIZE;
+
+          // Occasionally mutate a char in the stream
+          if (frame % 3 === 0) {
+            const mutIdx = Math.random() * rows | 0;
+            stream[mutIdx] = randomChar(types[i]);
+          }
+
+          const drop = drops[i] | 0;
+
+          // Draw column characters
+          for (let r = Math.max(0, drop - 18); r <= drop && r < rows; r++) {
+            const age = drop - r;  // 0 = head
+            let alpha, colorBase;
+
+            if (age === 0) {
+              // Bright head — white-green flash
+              ctx.fillStyle = 'rgba(220,255,220,0.95)';
+            } else if (age < 3) {
+              colorBase = COLORS[types[i] === 3 ? 3 : 0];
+              alpha = 0.9 - age * 0.1;
+              ctx.fillStyle = colorBase + alpha + ')';
+            } else {
+              const cidx = types[i] === 3 ? 3 : (i % 2 === 0 ? 0 : 1);
+              alpha = Math.max(0, 0.65 - age * 0.03);
+              ctx.fillStyle = COLORS[cidx] + alpha + ')';
+            }
+
+            // Word injection: overwrite chars with keyword letters
+            let ch;
+            if (wordIdx[i] >= 0 && age < WORDS[wordIdx[i]].length) {
+              ch = WORDS[wordIdx[i]][WORDS[wordIdx[i]].length - 1 - age];
+              ctx.fillStyle = 'rgba(168,85,247,0.9)';
+            } else {
+              ch = stream[r % stream.length];
+            }
+
+            ctx.fillText(ch, x, (r + 1) * FONT_SIZE);
+          }
+
+          // Advance drop
+          drops[i] += speeds[i];
+
+          // Reset when past bottom
+          if (drops[i] * FONT_SIZE > canvas.height + FONT_SIZE * 20) {
+            drops[i] = Math.random() * -30;
+            types[i] = Math.random() < 0.5 ? 0 : Math.random() < 0.5 ? 1 : 2;
+            speeds[i] = 0.3 + Math.random() * 0.7;
+            wordIdx[i] = Math.random() < 0.08 ? Math.random() * WORDS.length | 0 : -1;
+            delete streams[i];
           }
         }
-      },
-    },
-  }
-</script>
-<style>
-  .scanline-overlay {
-    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
-    background-size: 100% 4px;
-    pointer-events: none;
-    z-index: 50;
-  }
-  .glitch-text { position: relative; display: block; }
-  .glitch-text::before, .glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: #050505;
-  }
-  .glitch-text::before {
-    left: 3px;
-    text-shadow: -2px 0 #06f957;
-    animation: glitch-1 1.8s infinite steps(1);
-  }
-  .glitch-text::after {
-    left: -3px;
-    text-shadow: 2px 0 #ff00c1;
-    animation: glitch-2 1.4s infinite steps(1);
-  }
-  @keyframes glitch-1 {
-    0%   { clip-path: inset(8% 0 85% 0);  transform: translate(-3px, 0); }
-    5%   { clip-path: inset(62% 0 12% 0); transform: translate(3px, 0); }
-    10%  { clip-path: inset(33% 0 55% 0); transform: translate(-2px, 0); }
-    15%  { clip-path: inset(75% 0 5%  0); transform: translate(2px, 0); }
-    20%  { clip-path: inset(45% 0 40% 0); transform: translate(-3px, 0); }
-    25%  { clip-path: inset(18% 0 70% 0); transform: translate(3px, 0); }
-    30%  { clip-path: inset(90% 0 2%  0); transform: translate(-1px, 0); }
-    35%  { clip-path: inset(5%  0 88% 0); transform: translate(2px, 0); }
-    40%  { clip-path: inset(55% 0 30% 0); transform: translate(-3px, 0); }
-    45%  { clip-path: inset(28% 0 60% 0); transform: translate(3px, 0); }
-    50%  { clip-path: inset(72% 0 15% 0); transform: translate(-2px, 0); }
-    55%  { clip-path: inset(10% 0 78% 0); transform: translate(1px, 0); }
-    60%  { clip-path: inset(40% 0 48% 0); transform: translate(-3px, 0); }
-    65%  { clip-path: inset(82% 0 8%  0); transform: translate(3px, 0); }
-    70%  { clip-path: inset(22% 0 65% 0); transform: translate(-2px, 0); }
-    75%  { clip-path: inset(58% 0 25% 0); transform: translate(2px, 0); }
-    80%  { clip-path: inset(3%  0 92% 0); transform: translate(-1px, 0); }
-    85%  { clip-path: inset(67% 0 18% 0); transform: translate(3px, 0); }
-    90%  { clip-path: inset(35% 0 52% 0); transform: translate(-3px, 0); }
-    95%  { clip-path: inset(50% 0 35% 0); transform: translate(2px, 0); }
-    100% { clip-path: inset(15% 0 72% 0); transform: translate(-2px, 0); }
-  }
-  @keyframes glitch-2 {
-    0%   { clip-path: inset(50% 0 33% 0); transform: translate(3px, 0) skewX(1deg); }
-    7%   { clip-path: inset(15% 0 68% 0); transform: translate(-3px, 0) skewX(-1deg); }
-    14%  { clip-path: inset(78% 0 10% 0); transform: translate(2px, 0); }
-    21%  { clip-path: inset(30% 0 55% 0); transform: translate(-2px, 0) skewX(2deg); }
-    28%  { clip-path: inset(63% 0 22% 0); transform: translate(3px, 0); }
-    35%  { clip-path: inset(7%  0 82% 0); transform: translate(-3px, 0) skewX(-2deg); }
-    42%  { clip-path: inset(45% 0 42% 0); transform: translate(1px, 0); }
-    49%  { clip-path: inset(88% 0 5%  0); transform: translate(-1px, 0) skewX(1deg); }
-    56%  { clip-path: inset(20% 0 70% 0); transform: translate(3px, 0); }
-    63%  { clip-path: inset(55% 0 28% 0); transform: translate(-3px, 0) skewX(-1deg); }
-    70%  { clip-path: inset(38% 0 48% 0); transform: translate(2px, 0); }
-    77%  { clip-path: inset(72% 0 18% 0); transform: translate(-2px, 0) skewX(2deg); }
-    84%  { clip-path: inset(12% 0 75% 0); transform: translate(3px, 0); }
-    91%  { clip-path: inset(93% 0 2%  0); transform: translate(-3px, 0) skewX(-1deg); }
-    100% { clip-path: inset(42% 0 44% 0); transform: translate(2px, 0); }
-  }
-  /* Page transition: start invisible so no flash on entry */
-  body { opacity: 0; transition: opacity 0.65s ease; }
-</style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-background-dark">
-<!-- Cybersecurity Breach Background Canvas -->
-<canvas id="breach-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
-<!-- Scanline Overlay -->
-<div class="fixed inset-0 scanline-overlay" style="z-index:1;"></div>
-<!-- Navigation -->
-<header class="sticky top-0 z-40 w-full border-b border-border-dark bg-background-dark/90 backdrop-blur-sm">
-<div class="container mx-auto px-4 h-16 flex items-center justify-between">
-  <div class="flex items-center gap-3 group">
-    <span class="material-symbols-outlined text-primary animate-pulse-slow">terminal</span>
-    <div class="flex flex-col">
-      <span class="text-xs text-primary/70 tracking-widest font-mono">SYSTEM_ID: DK_V1.0</span>
-      <span class="text-sm font-bold text-white tracking-wide group-hover:text-primary transition-colors duration-300">ROOT_ACCESS</span>
-    </div>
-  </div>
-  <nav class="hidden md:flex items-center gap-1">
-    <a class="px-4 py-2 text-sm text-primary bg-primary/10 border border-primary/20 rounded font-bold flex items-center gap-2" href="index.html">
-      <span class="text-primary text-[10px] font-mono">00</span> HOME
-    </a>
-    <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20" href="technical.html">
-      <span class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">01</span> PROJECTS
-    </a>
-    <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20" href="about.html">
-      <span class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">02</span> ABOUT
-    </a>
-    <a class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-all duration-300 flex items-center gap-2 group border border-transparent hover:border-primary/20" href="certifications.html">
-      <span class="text-primary/50 text-[10px] group-hover:text-primary font-mono opacity-0 group-hover:opacity-100 transition-opacity">03</span> CERTIFICATIONS
-    </a>
-    <a class="ml-4 px-4 py-2 bg-primary/10 hover:bg-primary/20 border border-primary/40 text-primary text-sm font-bold rounded flex items-center gap-2 transition-all" href="about.html#contact">
-      <span class="material-symbols-outlined text-[18px]">lock_open</span> CONTACT
-    </a>
-  </nav>
-  <button class="md:hidden text-white hover:text-primary transition-colors" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-    <span class="material-symbols-outlined">menu</span>
-  </button>
-</div>
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="hidden md:hidden bg-background-dark border-t border-border-dark px-4 py-3 flex flex-col gap-2">
-  <a class="text-primary font-bold py-2 font-mono text-sm" href="index.html">00 // HOME</a>
-  <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="technical.html">01 // PROJECTS</a>
-  <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="about.html">02 // ABOUT</a>
-  <a class="text-slate-400 hover:text-primary py-2 font-mono text-sm" href="certifications.html">03 // CERTIFICATIONS</a>
-  <a class="text-primary border border-primary/40 py-2 px-3 rounded font-mono text-sm mt-1" href="about.html#contact">CONTACT</a>
-</div>
-</header>
-<!-- Main Content Area -->
-<main class="flex-grow flex flex-col justify-center relative container mx-auto px-4 py-12 lg:py-20" style="position:relative;z-index:2;">
-<div class="absolute inset-0 z-0 pointer-events-none opacity-0" style="background-image: radial-gradient(#1f2923 1px, transparent 1px); background-size: 32px 32px;"></div>
-<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-  <!-- Left Column: Avatar -->
-  <div class="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-1">
-    <div class="relative w-full max-w-[400px]">
-      <!-- Corner brackets -->
-      <div id="corner-tl" class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary z-20 transition-all duration-500"></div>
-      <div id="corner-tr" class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary z-20 transition-all duration-500"></div>
-      <div id="corner-bl" class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary z-20 transition-all duration-500"></div>
-      <div id="corner-br" class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary z-20 transition-all duration-500"></div>
 
-      <!-- Photo container -->
-      <div class="relative w-full aspect-square bg-surface-dark rounded border border-border-dark overflow-hidden">
-        <img id="profile-img" alt="Devaansh Kushwaha"
-          class="w-full h-full object-cover opacity-60 filter blur-md grayscale scale-110 transition-all duration-1000"
-          src="assets/images/profile.jpg"/>
-        <!-- Encrypted overlay -->
-        <div id="encrypt-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/50 backdrop-blur-[2px] transition-all duration-500">
-          <span id="fp-icon" class="material-symbols-outlined text-primary text-5xl mb-3 transition-all duration-300">fingerprint</span>
-          <div id="encrypt-label" class="px-3 py-1 bg-primary/10 border border-primary/50 text-primary text-xs font-mono font-bold tracking-widest rounded mb-4">
-            IDENTITY ENCRYPTED
-          </div>
-          <button id="sudo-btn"
-            onclick="startReveal()"
-            class="flex items-center gap-2 px-5 py-2 bg-primary/10 border border-primary text-primary text-sm font-mono font-bold tracking-widest rounded
-                   hover:bg-primary hover:text-black active:scale-95 transition-all duration-200 cursor-pointer shadow-[0_0_10px_rgba(6,249,87,0.3)]
-                   hover:shadow-[0_0_20px_rgba(6,249,87,0.6)]">
-            <span class="material-symbols-outlined text-[18px]">terminal</span>
-            SUDO REVEAL
-          </button>
-        </div>
-
-        <!-- Terminal overlay (hidden initially) -->
-        <div id="terminal-overlay" class="absolute inset-0 bg-black/90 flex flex-col hidden z-30 p-4">
-          <!-- Terminal title bar -->
-          <div class="flex items-center gap-2 mb-3 pb-2 border-b border-primary/30">
-            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div class="w-3 h-3 rounded-full bg-primary"></div>
-            <span class="text-primary text-[11px] font-mono ml-2 tracking-widest">root@dk-system: ~</span>
-          </div>
-          <!-- Terminal output -->
-          <div id="terminal-output" class="flex-1 font-mono text-[11px] leading-relaxed overflow-hidden space-y-[2px]"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Right Column: Content -->
-  <div class="lg:col-span-7 flex flex-col gap-6 lg:pl-10 order-2 lg:order-2">
-    <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-primary/60">
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> STATUS: ACTIVE</span>
-      <span class="hidden sm:inline text-slate-700">|</span>
-      <span>LOC: UPES_CAMPUS</span>
-      <span class="hidden sm:inline text-slate-700">|</span>
-      <span>MODE: AVAILABLE</span>
-    </div>
-    <div class="relative">
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[0.9]">
-        <span class="glitch-text" data-text="DEVAANSH">DEVAANSH</span>
-        <span class="glitch-text" data-text="KUSHWAHA">KUSHWAHA</span>
-      </h1>
-    </div>
-    <div class="bg-surface-dark border border-border-dark rounded p-5 font-mono text-sm md:text-base text-slate-300 shadow-xl relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-1 h-full bg-primary/50"></div>
-      <div class="space-y-2">
-        <p class="flex flex-wrap gap-2">
-          <span class="text-primary font-bold select-none">&gt;</span>
-          <span class="text-slate-400">ROLE:</span>
-          <span class="text-white">JOINT SECRETARY @ UPES ACM-W</span>
-        </p>
-        <p class="flex flex-wrap gap-2 pl-4 border-l border-primary/20">
-          <span class="text-slate-500 select-none">├─</span>
-          <span class="text-slate-500">CURRENT:</span>
-          <span class="text-slate-300">Joint Secretary · ACM-W Student Chapters [2026–2027]</span>
-        </p>
-        <p class="flex flex-wrap gap-2 pl-4 border-l border-purple-500/20">
-          <span class="text-slate-500 select-none">└─</span>
-          <span class="text-purple-400">PREVIOUS:</span>
-          <span class="text-slate-300">VFX Head · UPES ACM [2025–2026]</span>
-        </p>
-        <p class="flex flex-wrap gap-2">
-          <span class="text-primary font-bold select-none">&gt;</span>
-          <span class="text-slate-400">EXPERTISE:</span>
-          <span class="text-primary">CYBERSECURITY // GAME_DEV // VFX_MOTION</span>
-        </p>
-        <p class="flex flex-wrap gap-2">
-          <span class="text-primary font-bold select-none">&gt;</span>
-          <span class="text-slate-400">CURRENT_MISSION:</span>
-          <span class="text-white">B.TECH @ UPES DEHRADUN [2024–2028]</span>
-          <span class="w-2.5 h-5 bg-primary inline-block animate-blink ml-1 align-middle"></span>
-        </p>
-      </div>
-    </div>
-    <div class="flex flex-col sm:flex-row gap-4 pt-4">
-      <a href="technical.html" class="relative overflow-hidden group bg-primary text-background-dark font-bold text-lg px-8 py-3 rounded hover:shadow-[0_0_20px_rgba(6,249,87,0.4)] transition-all duration-300 text-center">
-        <span class="relative z-10 flex items-center justify-center gap-2">
-          <span class="material-symbols-outlined">folder_open</span> VIEW PROJECTS
-        </span>
-        <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 skew-y-12 origin-bottom"></div>
-      </a>
-      <a href="about.html" class="px-8 py-3 rounded border border-border-dark text-white hover:bg-white/5 hover:border-primary/50 transition-all duration-300 font-mono text-sm flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined text-primary text-base">person</span> ABOUT_ME
-      </a>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-border-dark mt-4">
-      <div class="flex flex-col">
-        <span class="text-2xl font-bold text-white">3+</span>
-        <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Projects</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-2xl font-bold text-white">3+</span>
-        <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Hackathons</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-2xl font-bold text-white">2</span>
-        <span class="text-[10px] text-primary font-mono tracking-wider uppercase">Years UPES</span>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-2xl font-bold text-white">Top 20%</span>
-        <span class="text-[10px] text-primary font-mono tracking-wider uppercase">TryHackMe Rank</span>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Expertise Cards -->
-<div class="mt-24 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 relative z-10">
-  <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
-    <div class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
-      <span class="material-symbols-outlined text-primary group-hover:text-black">gamepad</span>
-    </div>
-    <h3 class="text-white text-lg font-bold mb-2">Game Development</h3>
-    <p class="text-sm text-slate-400 leading-relaxed">Unity engine, C#, 3D modeling &amp; game design in 48-hour jams.</p>
-    <div class="mt-4 pt-3 border-t border-border-dark flex flex-wrap gap-1">
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">Unity</span>
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">C#</span>
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">GGJ 2025</span>
-    </div>
-  </div>
-  <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
-    <div class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
-      <span class="material-symbols-outlined text-primary group-hover:text-black">school</span>
-    </div>
-    <h3 class="text-white text-lg font-bold mb-2">Leadership &amp; Events</h3>
-    <p class="text-sm text-slate-400 leading-relaxed">Joint Secretary at ACM-W, leading initiatives, organizing technical events, and mentoring student developers.</p>
-    <div class="mt-4 pt-3 border-t border-border-dark flex flex-wrap gap-1">
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">ACM-W</span>
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">Community Building</span>
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">2026–2027</span>
-    </div>
-  </div>
-  <div class="bg-[#0a0f0c] border border-border-dark p-6 rounded hover:border-primary/50 transition-colors group">
-    <div class="w-10 h-10 bg-primary/10 rounded flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-black transition-colors">
-      <span class="material-symbols-outlined text-primary group-hover:text-black">movie</span>
-    </div>
-    <h3 class="text-white text-lg font-bold mb-2">VFX &amp; Motion</h3>
-    <p class="text-sm text-slate-400 leading-relaxed">Cinematic VFX, motion graphics &amp; event production. VFX Head at UPES ACM — 7+ events covered.</p>
-    <div class="mt-4 pt-3 border-t border-border-dark flex flex-wrap gap-1">
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">After Effects</span>
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">Blender</span>
-      <span class="text-[10px] font-mono text-primary/60 border border-primary/20 px-1.5 py-0.5 rounded">Premiere Pro</span>
-    </div>
-  </div>
-  <div class="bg-[#0d0a12] border border-purple-900/40 p-6 rounded hover:border-purple-500/60 transition-colors group">
-    <div class="w-10 h-10 bg-purple-900/20 rounded flex items-center justify-center mb-4 group-hover:bg-purple-500/30 transition-colors border border-purple-900/40">
-      <span class="material-symbols-outlined text-purple-400">security</span>
-    </div>
-    <h3 class="text-white text-lg font-bold mb-2">Cybersecurity</h3>
-    <p class="text-sm text-slate-400 leading-relaxed">AI-powered phishing detection, deep learning threat analysis &amp; security tooling. Built &amp; deployed on Vercel.</p>
-    <div class="mt-4 pt-3 border-t border-purple-900/30 flex flex-wrap gap-1">
-      <span class="text-[10px] font-mono text-purple-400/70 border border-purple-900/40 px-1.5 py-0.5 rounded">TensorFlow</span>
-      <span class="text-[10px] font-mono text-purple-400/70 border border-purple-900/40 px-1.5 py-0.5 rounded">FastAPI</span>
-      <span class="text-[10px] font-mono text-purple-400/70 border border-purple-900/40 px-1.5 py-0.5 rounded">LSTM</span>
-    </div>
-  </div>
-</div>
-</main>
-<script>
-const revealLines = [
-  { text: '$ sudo decrypt --target=identity.enc', delay: 0, color: 'text-primary' },
-  { text: '[*] Initializing decryption protocol...', delay: 320, color: 'text-slate-400' },
-  { text: '[*] Loading AES-256 cipher keys...', delay: 640, color: 'text-slate-400' },
-  { text: '[OK] Cipher keys loaded successfully', delay: 960, color: 'text-green-400' },
-  { text: '[*] Bypassing biometric lock...', delay: 1240, color: 'text-slate-400' },
-  { text: '[OK] Biometric hash matched: DK_V1.0', delay: 1560, color: 'text-green-400' },
-  { text: '[*] Decrypting subject data...', delay: 1820, color: 'text-slate-400' },
-  { text: '[OK] Encryption layer 1 removed', delay: 2080, color: 'text-green-400' },
-  { text: '[OK] Encryption layer 2 removed', delay: 2240, color: 'text-green-400' },
-  { text: '[OK] Encryption layer 3 removed', delay: 2380, color: 'text-green-400' },
-  { text: '>>> ACCESS GRANTED <<<', delay: 2600, color: 'text-primary font-bold' },
-  { text: '[SYS] Identity decryption complete.', delay: 2800, color: 'text-slate-300' },
-];
-
-let revealed = false;
-
-function startReveal() {
-  if (revealed) return;
-
-  const btn = document.getElementById('sudo-btn');
-  const encLabel = document.getElementById('encrypt-label');
-  const terminal = document.getElementById('terminal-overlay');
-  const output = document.getElementById('terminal-output');
-  const img = document.getElementById('profile-img');
-  const overlay = document.getElementById('encrypt-overlay');
-
-  // Animate corners
-  ['corner-tl','corner-tr','corner-bl','corner-br'].forEach(id => {
-    document.getElementById(id).classList.add('w-16','h-16');
-  });
-
-  // Hide button & label, show terminal
-  btn.classList.add('opacity-0','pointer-events-none');
-  encLabel.classList.add('hidden');
-  terminal.classList.remove('hidden');
-  output.innerHTML = '';
-
-  // Type each line with delay
-  revealLines.forEach(({ text, delay, color }) => {
-    setTimeout(() => {
-      const line = document.createElement('div');
-      line.className = color + ' flex items-start gap-1';
-      line.innerHTML = `<span class="select-none opacity-50 shrink-0">&gt;</span><span class="terminal-type"></span>`;
-      output.appendChild(line);
-      typeText(line.querySelector('.terminal-type'), text, 18);
-      output.scrollTop = output.scrollHeight;
-    }, delay);
-  });
-
-  // After last line + small pause — fade terminal, then reveal photo
-  const revealAt = revealLines[revealLines.length - 1].delay + 600;
-  setTimeout(() => {
-    // Flash terminal green
-    terminal.classList.add('bg-primary/10');
-    setTimeout(() => terminal.classList.remove('bg-primary/10'), 200);
-
-    // Fade out terminal first
-    setTimeout(() => {
-      terminal.style.transition = 'opacity 0.6s';
-      terminal.style.opacity = '0';
-
-      // After terminal fades, reveal photo and hide everything
-      setTimeout(() => {
-        terminal.classList.add('hidden');
-        terminal.style.opacity = '';
-        overlay.classList.add('opacity-0', 'pointer-events-none');
-        overlay.style.transition = 'opacity 0.8s';
-        img.classList.remove('blur-md', 'grayscale', 'opacity-60', 'scale-110');
-        img.classList.add('opacity-100', 'scale-100');
-        img.style.filter = 'none';
-        revealed = true;
-      }, 650);
-    }, 300);
-  }, revealAt);
-}
-
-function typeText(el, text, speed) {
-  let i = 0;
-  const cursor = document.createElement('span');
-  cursor.className = 'inline-block w-1.5 h-3 bg-primary align-middle ml-0.5 animate-blink';
-  el.appendChild(cursor);
-  const iv = setInterval(() => {
-    if (i < text.length) {
-      el.insertBefore(document.createTextNode(text[i]), cursor);
-      i++;
-    } else {
-      clearInterval(iv);
-      cursor.remove();
-    }
-  }, speed);
-}
-</script>
-<!-- Footer -->
-<footer class="border-t border-border-dark bg-background-dark py-4 px-4 text-center md:text-left" style="position:relative;z-index:2;">
-<div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-500 font-mono">
-  <div>© 2025 DEVAANSH KUSHWAHA | ALL RIGHTS RESERVED</div>
-  <div class="flex gap-4 mt-2 md:mt-0">
-    <a href="https://github.com/devaanshkushwaha06" target="_blank" class="hover:text-primary transition-colors">GITHUB</a>
-    <span class="text-primary">STATUS: ONLINE</span>
-  </div>
-</div>
-</footer>
-<!-- Page Transition Overlay -->
-<div id="page-transition" class="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center pointer-events-none opacity-0" style="transition:opacity 0.3s ease">
-  <div class="w-full max-w-lg mx-6">
-    <div class="bg-[#050f07] border border-primary/50 rounded-lg shadow-[0_0_60px_rgba(6,249,87,0.25)] overflow-hidden">
-      <div class="flex items-center gap-2 px-4 py-3 border-b border-primary/20 bg-black/40">
-        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-        <div class="w-3 h-3 rounded-full bg-primary/80"></div>
-        <span id="pt-title" class="text-primary/70 text-[11px] font-mono ml-3 tracking-widest">root@dk-system: ~</span>
-        <div class="ml-auto flex gap-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
-        </div>
-      </div>
-      <div id="pt-output" class="p-5 font-mono text-[12px] leading-6 space-y-0.5 min-h-[180px]"></div>
-      <div class="px-5 pb-4">
-        <div id="pt-progress-bar" class="w-0 h-0.5 bg-primary rounded-full" style="transition:width 2.2s linear"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  const pageLabels = {
-    'index.html':          { cmd: 'cd /',               label: 'HOME' },
-    'about.html':          { cmd: 'cd /about',          label: 'ABOUT' },
-    'technical.html':      { cmd: 'cd /projects',       label: 'PROJECTS' },
-    'certifications.html': { cmd: 'cd /certifications', label: 'CERTIFICATIONS' },
-  };
-
-  function buildLines(dest) {
-    const info = pageLabels[dest] || { cmd: 'cd /' + dest, label: dest.toUpperCase() };
-    return [
-      { text: '$ ' + info.cmd, color: 'text-primary', delay: 0 },
-      { text: '[*] Resolving route: /' + info.label.toLowerCase() + '...', color: 'text-slate-400', delay: 280 },
-      { text: '[*] Authenticating session token...', color: 'text-slate-400', delay: 560 },
-      { text: '[OK] Token valid — DK_V1.0', color: 'text-green-400', delay: 840 },
-      { text: '[*] Loading module: ' + info.label + '...', color: 'text-slate-400', delay: 1100 },
-      { text: '[OK] Module loaded successfully', color: 'text-green-400', delay: 1380 },
-      { text: '[*] Rendering interface...', color: 'text-slate-400', delay: 1620 },
-      { text: '>>> NAVIGATING TO ' + info.label + ' <<<', color: 'text-primary font-bold', delay: 1900 },
-    ];
-  }
-
-  function typeText(el, text, speed, cb) {
-    let i = 0;
-    const cursor = document.createElement('span');
-    cursor.className = 'inline-block w-1.5 h-3 bg-primary align-middle ml-0.5 opacity-80';
-    cursor.style.animation = 'blink 1s step-end infinite';
-    el.appendChild(cursor);
-    const iv = setInterval(() => {
-      if (i < text.length) {
-        el.insertBefore(document.createTextNode(text[i++]), cursor);
-      } else {
-        clearInterval(iv);
-        cursor.remove();
-        if (cb) cb();
-      }
-    }, speed);
-  }
-
-  function runTransition(dest) {
-    const overlay = document.getElementById('page-transition');
-    const output  = document.getElementById('pt-output');
-    const bar     = document.getElementById('pt-progress-bar');
-    const lines   = buildLines(dest);
-
-    output.innerHTML = '';
-    overlay.style.pointerEvents = 'all';
-    overlay.style.opacity = '1';
-
-    // Start progress bar
-    setTimeout(() => { bar.style.width = '100%'; }, 50);
-
-    lines.forEach(({ text, color, delay }) => {
-      setTimeout(() => {
-        const row = document.createElement('div');
-        row.className = 'flex items-start gap-2 ' + color;
-        const arrow = document.createElement('span');
-        arrow.className = 'select-none text-primary/40 shrink-0 mt-0.5';
-        arrow.textContent = '›';
-        const span = document.createElement('span');
-        row.appendChild(arrow);
-        row.appendChild(span);
-        output.appendChild(row);
-        output.scrollTop = output.scrollHeight;
-        typeText(span, text, 16);
-      }, delay);
-    });
-
-    const total = lines[lines.length - 1].delay + 400;
-    setTimeout(() => { window.location.href = dest; }, total);
-  }
-
-  // Intercept nav link clicks
-  document.addEventListener('click', function(e) {
-    const a = e.target.closest('a[href]');
-    if (!a) return;
-    const href = a.getAttribute('href');
-    if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel')) return;
-    const dest = href.split('/').pop().split('?')[0];
-    if (!pageLabels[dest]) return;
-    // Don't transition to current page
-    const current = window.location.pathname.split('/').pop() || 'index.html';
-    if (dest === current) return;
-    e.preventDefault();
-    runTransition(dest);
-  });
-
-  // Page entrance: fade in from black on load
-  // Smooth entry: body starts at opacity:0 via CSS, fade+slide in on DOM ready
-  document.addEventListener('DOMContentLoaded', function() {
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      document.body.style.opacity = '1';
-    }));
-  });
-})();
-</script>
-
-<!-- Cybersecurity Breach Canvas Animation -->
-<script>
-(function() {
-  const canvas = document.getElementById('breach-canvas');
-  const ctx = canvas.getContext('2d');
-
-  const HEX   = '0123456789ABCDEF';
-  const BIN   = '01';
-  const SYM   = '{}[]<>/\\|;:@#$%^&*!?~';
-  const WORDS = ['BREACH','ACCESS','DENIED','EXPLOIT','INJECT','SCAN','FUZZ','PAYLOAD','ROOT','SHELL','0x00','NULL','OVERFLOW','CIPHER','HASH','XOR','NMAP','SSH','RSA','AES'];
-
-  let cols = [], drops = [], types = [], speeds = [], timers = [], wordIdx = [];
-  const FONT_SIZE = 13;
-  const COLORS = [
-    'rgba(6,249,87,',   // primary green
-    'rgba(4,201,70,',   // darker green
-    'rgba(0,255,180,',  // cyan-green
-    'rgba(0,200,255,',  // blue accent (rare)
-  ];
-
-  function randomChar(type) {
-    if (type === 0) return HEX[Math.random() * HEX.length | 0];
-    if (type === 1) return BIN[Math.random() * BIN.length | 0];
-    if (type === 2) return SYM[Math.random() * SYM.length | 0];
-    return HEX[Math.random() * HEX.length | 0];
-  }
-
-  function init() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const numCols = Math.floor(canvas.width / FONT_SIZE);
-    cols    = [];
-    drops   = [];
-    types   = [];
-    speeds  = [];
-    timers  = [];
-    wordIdx = [];
-    for (let i = 0; i < numCols; i++) {
-      drops[i]   = Math.random() * -canvas.height / FONT_SIZE | 0;
-      types[i]   = Math.random() < 0.5 ? 0 : Math.random() < 0.5 ? 1 : 2;
-      speeds[i]  = 0.3 + Math.random() * 0.7;
-      timers[i]  = Math.random() * 60 | 0;
-      wordIdx[i] = Math.random() < 0.08 ? Math.random() * WORDS.length | 0 : -1;
-    }
-  }
-
-  // Per-column character streams
-  const streams = [];
-  function getStream(col, rows) {
-    if (!streams[col] || streams[col].length !== rows) {
-      streams[col] = Array.from({length: rows}, () => randomChar(types[col]));
-    }
-    return streams[col];
-  }
-
-  let frame = 0;
-  function draw() {
-    // Fade trail
-    ctx.fillStyle = 'rgba(5,5,5,0.18)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.font = FONT_SIZE + 'px "Courier New", monospace';
-
-    const rows = Math.ceil(canvas.height / FONT_SIZE) + 2;
-
-    for (let i = 0; i < drops.length; i++) {
-      const stream = getStream(i, rows);
-      const x = i * FONT_SIZE;
-
-      // Occasionally mutate a char in the stream
-      if (frame % 3 === 0) {
-        const mutIdx = Math.random() * rows | 0;
-        stream[mutIdx] = randomChar(types[i]);
+        frame++;
+        requestAnimationFrame(draw);
       }
 
-      const drop = drops[i] | 0;
-
-      // Draw column characters
-      for (let r = Math.max(0, drop - 18); r <= drop && r < rows; r++) {
-        const age = drop - r;  // 0 = head
-        let alpha, colorBase;
-
-        if (age === 0) {
-          // Bright head — white-green flash
-          ctx.fillStyle = 'rgba(220,255,220,0.95)';
-        } else if (age < 3) {
-          colorBase = COLORS[types[i] === 3 ? 3 : 0];
-          alpha = 0.9 - age * 0.1;
-          ctx.fillStyle = colorBase + alpha + ')';
-        } else {
-          const cidx = types[i] === 3 ? 3 : (i % 2 === 0 ? 0 : 1);
-          alpha = Math.max(0, 0.65 - age * 0.03);
-          ctx.fillStyle = COLORS[cidx] + alpha + ')';
-        }
-
-        // Word injection: overwrite chars with keyword letters
-        let ch;
-        if (wordIdx[i] >= 0 && age < WORDS[wordIdx[i]].length) {
-          ch = WORDS[wordIdx[i]][WORDS[wordIdx[i]].length - 1 - age];
-          ctx.fillStyle = 'rgba(6,249,87,0.9)';
-        } else {
-          ch = stream[r % stream.length];
-        }
-
-        ctx.fillText(ch, x, (r + 1) * FONT_SIZE);
-      }
-
-      // Advance drop
-      drops[i] += speeds[i];
-
-      // Reset when past bottom
-      if (drops[i] * FONT_SIZE > canvas.height + FONT_SIZE * 20) {
-        drops[i]   = Math.random() * -30;
-        types[i]   = Math.random() < 0.5 ? 0 : Math.random() < 0.5 ? 1 : 2;
-        speeds[i]  = 0.3 + Math.random() * 0.7;
-        wordIdx[i] = Math.random() < 0.08 ? Math.random() * WORDS.length | 0 : -1;
-        delete streams[i];
-      }
-    }
-
-    frame++;
-    requestAnimationFrame(draw);
-  }
-
-  init();
-  draw();
-  window.addEventListener('resize', init);
-})();
-</script>
+      init();
+      draw();
+      window.addEventListener('resize', init);
+    })();
+  </script>
 </body>
+
 </html>
